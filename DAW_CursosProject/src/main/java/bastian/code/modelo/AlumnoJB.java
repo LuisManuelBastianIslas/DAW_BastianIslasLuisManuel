@@ -1,6 +1,7 @@
 package bastian.code.modelo;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 public class AlumnoJB extends persona implements Serializable {
 
@@ -22,8 +23,8 @@ public class AlumnoJB extends persona implements Serializable {
         this.nombreEstatusAlumno = nombreEstatusAlumno;
     }
 
-    public AlumnoJB(String curp, String nombre, String apellidoPaterno, String apleiidoMaterno, String direccion, String telefono, String celular, String email, String matriculaAlumno, int idCarrera, String nombreCarrera, int anoInscripcion, int isEstatusAlumno, String nombreEstatusAlumno) {
-        super(curp, nombre, apellidoPaterno, apleiidoMaterno, direccion, telefono, celular, email);
+    public AlumnoJB(String curp, String nombre, String apellidoPaterno, String apleiidoMaterno, String genero, LocalDate fechaNacimiento, String direccion, String telefono, String celular, String email, String matriculaAlumno, int idCarrera, String nombreCarrera, int anoInscripcion, int isEstatusAlumno, String nombreEstatusAlumno) {
+        super(curp, nombre, apellidoPaterno, apleiidoMaterno, genero, fechaNacimiento, direccion, telefono, celular, email);
         this.matriculaAlumno = matriculaAlumno;
         this.idCarrera = idCarrera;
         this.nombreCarrera = nombreCarrera;

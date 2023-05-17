@@ -1,6 +1,7 @@
 package bastian.code.modelo;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 public class persona implements Serializable {
 
@@ -9,6 +10,8 @@ public class persona implements Serializable {
     private String nombre;
     private String apellidoPaterno;
     private String apleiidoMaterno;
+    private String genero;
+    private LocalDate fechaNacimiento;
     private String direccion;
     private String telefono;
     private String celular;
@@ -16,11 +19,13 @@ public class persona implements Serializable {
 
     public persona() {}
 
-    public persona(String curp, String nombre, String apellidoPaterno, String apleiidoMaterno, String direccion, String telefono, String celular, String email) {
+    public persona(String curp, String nombre, String apellidoPaterno, String apleiidoMaterno, String genero, LocalDate fechaNacimiento, String direccion, String telefono, String celular, String email) {
         this.curp = curp;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
         this.apleiidoMaterno = apleiidoMaterno;
+        this.genero = genero;
+        this.fechaNacimiento = fechaNacimiento;
         this.direccion = direccion;
         this.telefono = telefono;
         this.celular = celular;
@@ -89,6 +94,14 @@ public class persona implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
     }
 
     @Override
