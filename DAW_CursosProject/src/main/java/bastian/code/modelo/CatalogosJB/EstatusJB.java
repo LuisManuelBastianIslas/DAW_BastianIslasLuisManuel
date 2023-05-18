@@ -1,16 +1,16 @@
-package bastian.code.modelo;
+package bastian.code.modelo.CatalogosJB;
 
 import java.io.Serializable;
 
-public class TipoJB implements Serializable {
+public class EstatusJB implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private int id;
     private String nombre;
 
-    public TipoJB() {}
+    public EstatusJB() {}
 
-    public TipoJB(int id, String nombre) {
+    public EstatusJB(int id, String nombre) {
         this.id = id;
         this.nombre = nombre;
     }

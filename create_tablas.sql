@@ -13,6 +13,12 @@ create table tipoContrato(
 	primary key (idTipoContrato)
 );
 
+create table tipoCarrera(
+	idTipoCarrera serial not null,
+	nombreTipoCarrera varchar(15),
+	primary key (idTipoCarrera)
+);
+
 create table tipoEstudio(
 	idTipoEstudio serial not null,
 	nombreTipoEstudio varchar(20),
@@ -35,6 +41,12 @@ create table estatusAlumno(
 	idEstatusAlumno serial not null,
 	nombreEstatusAlumno varchar(15),
 	primary key (idEstatusAlumno)
+);
+
+create table estatusCursoAlumno(
+	idEstatusCursoAlumno serial not null,
+	nombreEstatusCursoAlumno varchar(15),
+	primary key (idEstatusCursoAlumno)
 );
 
 -- ---------
@@ -70,9 +82,11 @@ create table profesor(
 create table carrera(
 	idCarrera int not null unique,
 	nombreCarrera varchar(45),
-	idTipoEstudio int not null,
+	idTipoCarrera int not null,
 	curpProfesor varchar(18),
-	primary key (idCarrera)
+	primary key (idCarrera),
+	foreign key (idTipoCarrera) references tipoCarrera(idTipoCarrera),
+	foreign key (curpProfesor) references profesor(curpProfesor)
 );
 
 create table alumno(
@@ -178,10 +192,11 @@ create table cursoAlumno(	-- De esta se saca el cardex
 	matriculaAlumno varchar(7) not null,
 	periodo int not null,
 	nrc int not null,
-	idEstatusCurso int not null,
+	idEstatusCursoAlumno int not null,
 	calificacion int,
 	foreign key (matriculaAlumno) references alumno(matriculaAlumno),
-	foreign key (periodo, nrc) references curso(periodo, nrc)
+	foreign key (periodo, nrc) references curso(periodo, nrc),
+	foreign key (idEstatusCursoAlumno) references estatusCursoAlumno(idEstatusCursoAlumno)
 );
 
 create table incidencias(

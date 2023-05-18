@@ -1,5 +1,7 @@
 package bastian.code.modelo;
 
+import bastian.code.modelo.CatalogosJB.TipoJB;
+
 import java.io.Serializable;
 
 public class MateriaJB implements Serializable {
@@ -9,18 +11,16 @@ public class MateriaJB implements Serializable {
     private String nombreMateria;
     private int creditos;
     private int horas;
-    private int idTipoMateria;
-    private String nombreTipoMateria;
+    private TipoJB tipoMateria;
 
     public MateriaJB() {}
 
-    public MateriaJB(int idMateria, String nombreMateria, int creditos, int horas, int idTipoMateria, String nombreTipoMateria) {
+    public MateriaJB(int idMateria, String nombreMateria, int creditos, int horas, TipoJB tipoMateria) {
         this.idMateria = idMateria;
         this.nombreMateria = nombreMateria;
         this.creditos = creditos;
         this.horas = horas;
-        this.idTipoMateria = idTipoMateria;
-        this.nombreTipoMateria = nombreTipoMateria;
+        this.tipoMateria = tipoMateria;
     }
 
     public int getIdMateria() {
@@ -56,18 +56,14 @@ public class MateriaJB implements Serializable {
     }
 
     public int getIdTipoMateria() {
-        return idTipoMateria;
+        return tipoMateria.getId();
     }
 
-    public void setIdTipoMateria(int idTipoMateria) {
-        this.idTipoMateria = idTipoMateria;
+    public TipoJB getTipoMateria() {
+        return tipoMateria;
     }
 
-    public String getNombreTipoMateria() {
-        return nombreTipoMateria;
-    }
-
-    public void setNombreTipoMateria(String nombreTipoMateria) {
-        this.nombreTipoMateria = nombreTipoMateria;
+    public void setTipoMateria(TipoJB tipoMateria) {
+        this.tipoMateria = tipoMateria;
     }
 }

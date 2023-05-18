@@ -21,6 +21,15 @@ en el proyecto. Tambien se incluyen notas.
 - Para la tabla requicito materia se usa el mismo JB que materia
 
 
+*! Añadir la tabla estatusCursoAlumno
+*! Añadir la tabla tipoCarrera
+	Con ello, cambiar idTipoEstudio en carrera a idTipoCarrera
+	Poner curps de los porfesores en Carreras
+
+*! Terminar el DAO de profesor porque se usa en asignatura
+
+* Se va a cambiar la parte de como una materia puede ser impartida en
+  carreras distintas. Osea, otra tabla mas.
 
 * No te revuelvas en EstudioJB, cada DAO/Servlet va a ejecutar
   el SQL a su conveniencia debido a que ya sabes donde buscar
@@ -33,3 +42,7 @@ en el proyecto. Tambien se incluyen notas.
 * Piensa si vale la pena cambiar los atributos año de int a Year (java.time)
 
 * Creo que a profesor le faltan atributos
+
+**! PROBAR EN LOS DAO: Hacer programacion funcional
+ Tratar de hacer una funcion que haga los getInt() y getString() aparte, pasando
+ como parametro el ResultSet, con el fin de no tener que repetir la llenada de informacion.

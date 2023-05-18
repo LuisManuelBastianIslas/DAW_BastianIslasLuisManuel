@@ -5,64 +5,52 @@ import java.io.Serializable;
 public class AsignaturaJB implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private String nrc;
-    private int idMateria;
-    private String nombreMateria;
-    private String curpProfesor;
-    private String nombreProfesor;
+    private int nrc;
+    private MateriaJB materia;
+    private ProfesorJB profesor;
     private int cupoMinimo;
     private int cupoMaximo;
 
     public AsignaturaJB() {}
 
-    public AsignaturaJB(String nrc, int idMateria, String nombreMateria, String curpProfesor, String nombreProfesor, int cupoMinimo, int cupoMaximo) {
+    public AsignaturaJB(int nrc, MateriaJB materia, ProfesorJB profesor, int cupoMinimo, int cupoMaximo) {
         this.nrc = nrc;
-        this.idMateria = idMateria;
-        this.nombreMateria = nombreMateria;
-        this.curpProfesor = curpProfesor;
-        this.nombreProfesor = nombreProfesor;
+        this.materia = materia;
+        this.profesor = profesor;
         this.cupoMinimo = cupoMinimo;
         this.cupoMaximo = cupoMaximo;
     }
 
-    public String getNrc() {
+    public int getNrc() {
         return nrc;
     }
 
-    public void setNrc(String nrc) {
+    public void setNrc(int nrc) {
         this.nrc = nrc;
     }
 
     public int getIdMateria() {
-        return idMateria;
+        return this.materia.getIdMateria();
     }
 
-    public void setIdMateria(int idMateria) {
-        this.idMateria = idMateria;
+    public MateriaJB getMateria() {
+        return materia;
     }
 
-    public String getNombreMateria() {
-        return nombreMateria;
-    }
-
-    public void setNombreMateria(String nombreMateria) {
-        this.nombreMateria = nombreMateria;
+    public void setMateria(MateriaJB materia) {
+        this.materia = materia;
     }
 
     public String getCurpProfesor() {
-        return curpProfesor;
+        return this.profesor.getCurp();
     }
 
-    public void setCurpProfesor(String curpProfesor) {
-        this.curpProfesor = curpProfesor;
+    public ProfesorJB getProfesor() {
+        return profesor;
     }
 
-    public String getNombreProfesor() {
-        return nombreProfesor;
-    }
-
-    public void setNombreProfesor(String nombreProfesor) {
-        this.nombreProfesor = nombreProfesor;
+    public void setProfesor(ProfesorJB profesor) {
+        this.profesor = profesor;
     }
 
     public int getCupoMinimo() {
