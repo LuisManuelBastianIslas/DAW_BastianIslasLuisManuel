@@ -29,7 +29,7 @@ public class SQLPersona {
 
     private ArrayList<String> tkDatosPersona (String registros) {
         ArrayList<String> datosPersona = new ArrayList<>();
-        StringTokenizer st = new StringTokenizer(registros, ".");
+        StringTokenizer st = new StringTokenizer(registros, "-");
 
         while (st.hasMoreTokens()) {
             String dato = st.nextToken();

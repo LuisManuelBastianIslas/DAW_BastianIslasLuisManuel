@@ -15,6 +15,7 @@ public class AsignaturaDAO {
     /**
      * PRIMERA PARTE: Funciones con selectSQL
      */
+    //Lista todas las aignatras sin discriminacion
     public static ArrayList<AsignaturaJB> select() {
         Connection conn = null;
         PreparedStatement ps = null;
@@ -45,8 +46,33 @@ public class AsignaturaDAO {
         return asignaturas;
     }
 
+    //Una asignatura en especifico
+
+    //Lista las asignaturas que impate un Profesor en especifico
+    //Lista las asignaturas que son de una materia en especifico
+    //Lista las asignaturas que son de una carrera en especifico
+    //Lista las asignaturas que son de una carrera en especifico y para un semestre en especifico
 
     /**
      * SEGUNDA PARTE: Funciones con insertSQL
      */
+    public static void insert(AsignaturaJB asignatura) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+
+        try {
+            conn = Conexion.getConnection();
+            ps = conn.prepareStatement(insertSQL);
+
+            ps.setInt(1, asignatura.getNrc());
+            ps.setInt(2, asignatura.getIdMateria());
+            ps.setInt(3, asignatura.getIdProfesor());
+            ps.setInt(4, asignatura.getCupoMinimo());
+            ps.setInt(5, asignatura.getCupoMaximo());
+
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

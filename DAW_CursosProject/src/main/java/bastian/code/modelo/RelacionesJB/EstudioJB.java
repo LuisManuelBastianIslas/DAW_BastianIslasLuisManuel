@@ -1,4 +1,4 @@
-package bastian.code.modelo;
+package bastian.code.modelo.RelacionesJB;
 
 import java.io.Serializable;
 

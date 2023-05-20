@@ -49,6 +49,24 @@ create table estatusCursoAlumno(
 	primary key (idEstatusCursoAlumno)
 );
 
+-- -------------
+-- Entidad Padre
+-- -------------
+
+create table persona(
+	curp varchar(18) not null unique,
+	nombre text not null,
+	apellidoMaterno text not null,
+	apellidoPaterno text not null,
+	genero varchar(1) not null,
+	fechaNacimiento date not null,
+	direccion text,
+	telefono varchar(10),
+	celular varchar(10),
+	email text,
+	primary key (curp)
+);
+
 -- ---------
 -- Entidades
 -- ---------
@@ -64,60 +82,43 @@ create table materia(
 );
 
 create table profesor(
-	curpProfesor varchar(18) not null unique,
-	nombre text not null,
-	apellidoMaterno text not null,
-	apellidoPaterno text not null,
-	genero varchar(1) not null,
-	fechaNacimiento date not null,
-	direccion text,
-	telefono varchar(10),
-	celular varchar(10),
-	email text,
+	idProfesor int not null unique,
 	idTipoContrato int not null,
-	primary key (curpProfesor),
+	primary key (idProfesor),
 	foreign key (idTipoContrato) references tipoContrato(idTipoContrato)
-);
+) inherits(persona);
 
 create table carrera(
 	idCarrera int not null unique,
 	nombreCarrera varchar(45),
 	idTipoCarrera int not null,
-	curpProfesor varchar(18),
+	idProfesor int,
 	primary key (idCarrera),
 	foreign key (idTipoCarrera) references tipoCarrera(idTipoCarrera),
-	foreign key (curpProfesor) references profesor(curpProfesor)
+	foreign key (idProfesor) references profesor(idProfesor)
 );
 
 create table alumno(
-	curpAlumno varchar(18) not null unique,
-	nombre text not null,
-	apellidoMaterno text not null,
-	apellidoPaterno text not null,
-	genero varchar(1) not null,
-	fechaNacimiento date not null,
-	direccion text,
-	telefono varchar(10),
-	celular varchar(10),
-	email text,
 	matriculaAlumno varchar(7) unique,
 	idCarrera int,
 	anoInscripcion int,
 	idEstatusAlumno int not null,
+	idProfesor int,
 	primary key (matriculaAlumno),
 	foreign key (idCarrera) references carrera(idCarrera),
-	foreign key (idEstatusAlumno) references estatusAlumno(idEstatusAlumno)
-);
+	foreign key (idEstatusAlumno) references estatusAlumno(idEstatusAlumno),
+	foreign key (idProfesor) references profesor(idProfesor)
+) inherits(persona);
 
 create table asignatura(
 	nrc int not null unique,
 	idMateria int,
-	curpProfesor varchar(18),
+	idProfesor int,
 	cupoMinimo int,
 	cupoMaximo int,
 	primary key (nrc),
 	foreign key (idMateria) references materia(idMateria),
-	foreign key (curpProfesor) references profesor(curpProfesor)
+	foreign key (idProfesor) references profesor(idProfesor)
 );
 
 create table salon(
@@ -147,17 +148,8 @@ create table requicitoMateria(
 	foreign key (idMateriaRequicito) references materia(idMateria)
 );
 
-create table catalogoEstudio(
-	idCatalogoEstudio serial not null,
-	curpProfesor varchar(18),
-	matriculaAlumno varchar(7),
-	primary key (idCatalogoEstudio),
-	foreign key (curpProfesor) references profesor(curpProfesor),
-	foreign key (matriculaAlumno) references alumno(matriculaAlumno)
-);
-
 create table estudio(
-	idCatalogoEstudio int not null,
+	curp varchar(18) not null,
 	-- curpProfesor varchar(18) not null,
 	-- matriculaAlumno varchar(7) not null,
 	universidad text,
@@ -165,17 +157,25 @@ create table estudio(
 	cedula varchar(7),
 	anoGraduacion int,
 	idTipoEstudio int not null,
-	foreign key (idCatalogoEstudio) references catalogoEstudio(idCatalogoEstudio),
+	foreign key (curp) references persona(curp),
 	-- foreign key (curpProfesor) references profesor(curpProfesor),
 	-- foreign key (matriculaAlumno) references alumno(matriculaAlumno),
 	foreign key (idTipoEstudio) references tipoEstudio(idTipoEstudio)
 );
 
 create table materiaProfesor(
-	curpProfesor varchar(18) not null,
+	idProfesor int not null,
 	idMateria int not null,
-	foreign key (curpProfesor) references profesor(curpProfesor),
+	foreign key (idProfesor) references profesor(idProfesor),
 	foreign key (idMateria) references materia(idMateria)
+);
+
+create table materiaCarrera(
+	idMateria int not null,
+	idCarrera int not null,
+	semestre int not null,
+	foreign key (idMateria) references materia(idMateria),
+	foreign key (idCarrera) references carrera(idCarrera)
 );
 
 create table cursoSalon(
@@ -220,10 +220,10 @@ create table administrador(
 );
 -- Al final los logins de manera muy arcaica
 create table loginProfesor(
-	curpProfesor varchar(18) not null,
+	idProfesor int not null,
 	contraseñaLoginProfesor text not null,
 	statusLoginProfesor boolean not null,
-	foreign key (curpProfesor) references profesor(curpProfesor)
+	foreign key (idProfesor) references profesor(idProfesor)
 );
 
 create table loginAlumno(

@@ -1,36 +1,37 @@
 package bastian.code.modelo;
 
+import bastian.code.modelo.CatalogosJB.CarreraJB;
+import bastian.code.modelo.CatalogosJB.EstatusJB;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 
 public class AlumnoJB extends persona implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     private String matriculaAlumno;
-    private int idCarrera;
-    private String nombreCarrera;
+    private CarreraJB carrera;
     private int anoInscripcion;
-    private int isEstatusAlumno;
-    private String nombreEstatusAlumno;
+    private EstatusJB estatusAlumno;
+    private ProfesorJB profesor;
 
     public AlumnoJB() {}
 
-    public AlumnoJB(String matriculaAlumno, int idCarrera, String nombreCarrera, int anoInscripcion, int isEstatusAlumno, String nombreEstatusAlumno) {
+    public AlumnoJB(String matriculaAlumno, CarreraJB carrera, int anoInscripcion, EstatusJB estatusAlumno, ProfesorJB profesor) {
         this.matriculaAlumno = matriculaAlumno;
-        this.idCarrera = idCarrera;
-        this.nombreCarrera = nombreCarrera;
+        this.carrera = carrera;
         this.anoInscripcion = anoInscripcion;
-        this.isEstatusAlumno = isEstatusAlumno;
-        this.nombreEstatusAlumno = nombreEstatusAlumno;
+        this.estatusAlumno = estatusAlumno;
+        this.profesor = profesor;
     }
 
-    public AlumnoJB(String curp, String nombre, String apellidoPaterno, String apleiidoMaterno, String genero, LocalDate fechaNacimiento, String direccion, String telefono, String celular, String email, String matriculaAlumno, int idCarrera, String nombreCarrera, int anoInscripcion, int isEstatusAlumno, String nombreEstatusAlumno) {
+    public AlumnoJB(String curp, String nombre, String apellidoPaterno, String apleiidoMaterno, String genero, LocalDate fechaNacimiento, String direccion, String telefono, String celular, String email, String matriculaAlumno, CarreraJB carrera, int anoInscripcion, EstatusJB estatusAlumno, ProfesorJB profesor) {
         super(curp, nombre, apellidoPaterno, apleiidoMaterno, genero, fechaNacimiento, direccion, telefono, celular, email);
         this.matriculaAlumno = matriculaAlumno;
-        this.idCarrera = idCarrera;
-        this.nombreCarrera = nombreCarrera;
+        this.carrera = carrera;
         this.anoInscripcion = anoInscripcion;
-        this.isEstatusAlumno = isEstatusAlumno;
-        this.nombreEstatusAlumno = nombreEstatusAlumno;
+        this.estatusAlumno = estatusAlumno;
+        this.profesor = profesor;
     }
 
     public String getMatriculaAlumno() {
@@ -41,20 +42,16 @@ public class AlumnoJB extends persona implements Serializable {
         this.matriculaAlumno = matriculaAlumno;
     }
 
+    public CarreraJB getCarrera() {
+        return carrera;
+    }
+
+    public void setCarrera(CarreraJB carrera) {
+        this.carrera = carrera;
+    }
+
     public int getIdCarrera() {
-        return idCarrera;
-    }
-
-    public void setIdCarrera(int idCarrera) {
-        this.idCarrera = idCarrera;
-    }
-
-    public String getNombreCarrera() {
-        return nombreCarrera;
-    }
-
-    public void setNombreCarrera(String nombreCarrera) {
-        this.nombreCarrera = nombreCarrera;
+        return carrera.getIdCarrera();
     }
 
     public int getAnoInscripcion() {
@@ -65,19 +62,27 @@ public class AlumnoJB extends persona implements Serializable {
         this.anoInscripcion = anoInscripcion;
     }
 
+    public EstatusJB getEstatusAlumno() {
+        return estatusAlumno;
+    }
+
+    public void setEstatusAlumno(EstatusJB estatusAlumno) {
+        this.estatusAlumno = estatusAlumno;
+    }
+
     public int getIsEstatusAlumno() {
-        return isEstatusAlumno;
+        return estatusAlumno.getId();
     }
 
-    public void setIsEstatusAlumno(int isEstatusAlumno) {
-        this.isEstatusAlumno = isEstatusAlumno;
+    public ProfesorJB getProfesor() {
+        return profesor;
     }
 
-    public String getNombreEstatusAlumno() {
-        return nombreEstatusAlumno;
+    public void setProfesor(ProfesorJB profesor) {
+        this.profesor = profesor;
     }
 
-    public void setNombreEstatusAlumno(String nombreEstatusAlumno) {
-        this.nombreEstatusAlumno = nombreEstatusAlumno;
+    public int getIdProfesor() {
+        return this.profesor.getIdProfesor();
     }
 }

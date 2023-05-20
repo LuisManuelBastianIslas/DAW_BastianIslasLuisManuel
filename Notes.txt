@@ -8,7 +8,6 @@ en el proyecto. Tambien se incluyen notas.
 - Para las tablas "estatus" se les hizo un JB (Lo mismoq que tipo
   pero debido al nombre tuve que hacerlo aparte)
 - No se hizo JB de la tabla administrador (No creo no se ocupe)
-- No se hizo JB de la tabla carrera (Creo no ocuparla)
 - No se hizo JB de la tabla catalogoEstudio (Creo no ocuparla)
 - No se hizo JB de la tabla curso (Tal vez no se ocupe)
 - No se hizo JB de la tabla cursoAlumno (Espero no ocuparla)
@@ -17,23 +16,28 @@ en el proyecto. Tambien se incluyen notas.
 - No se hizo JB de la tabla estatusCurso (No creo que se ocupe)
 - Se hizo JB de la tabla incidencias (puede que al final no la ocupe)
 - Ninguna tabla login tiene JB por obvias razones
-- No se hizo JB de la yabla materiaProfesor (Posiblemente si se ocupe)
+- No se hizo JB de la tabla materiaProfesor (Posiblemente si se ocupe)
 - Para la tabla requicito materia se usa el mismo JB que materia
 
+*! Terminar el DAO de asignatura
+	Veo que hay muchas consultas diferentes que se pueden hacer
 
-*! Añadir la tabla estatusCursoAlumno
-*! Añadir la tabla tipoCarrera
-	Con ello, cambiar idTipoEstudio en carrera a idTipoCarrera
-	Poner curps de los porfesores en Carreras
+*! Terminar el DAO de profesor
+	- Ver si se cambia el ID por String
+	Veo que hay muchas consultas diferentes que se pueden hacer
+	- Como obtener la cantidad de profesores
 
-*! Terminar el DAO de profesor porque se usa en asignatura
+*! Terminar el DAO de alumno
+	- Usa String.subString() y String.format() para las
+	Veo que hay muchas consultas diferentes que se pueden hacer
+	- Com obtener la cantidad de alumnos de un periodo
+
+*? Crear DAO que modifique datos de la BD (cAlumnos, cProfesores, cAdmins, periodoActual)
 
 * Se va a cambiar la parte de como una materia puede ser impartida en
   carreras distintas. Osea, otra tabla mas.
 
-* No te revuelvas en EstudioJB, cada DAO/Servlet va a ejecutar
-  el SQL a su conveniencia debido a que ya sabes donde buscar
-  Para empezar a optimizar, solo se almaxenará los datos del estudio
+* Modifica EstuduioJB por la modificacion de herencia desde PostGreSQL
 * Titulo String o Int...? por el momento lo tome como string
 
 * ¿Podré limitar la estancia de un alumno a 5 incidencias?
@@ -46,3 +50,8 @@ en el proyecto. Tambien se incluyen notas.
 **! PROBAR EN LOS DAO: Hacer programacion funcional
  Tratar de hacer una funcion que haga los getInt() y getString() aparte, pasando
  como parametro el ResultSet, con el fin de no tener que repetir la llenada de informacion.
+
+*- Yo se que se puede hacer de otra forma lo del tipo se materia si quiero hacer combinaciones,
+   pero ya estoy mas alla que aca :/
+   Como no hare filtrados de ese tipo y el usuario no me especifico como lo queria, asi se queda
+   a menos que tenga tiempo para hacer la modificacion

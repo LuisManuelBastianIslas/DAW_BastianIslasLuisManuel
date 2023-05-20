@@ -41,16 +41,16 @@ public class AsignaturaJB implements Serializable {
         this.materia = materia;
     }
 
-    public String getCurpProfesor() {
-        return this.profesor.getCurp();
-    }
-
     public ProfesorJB getProfesor() {
         return profesor;
     }
 
     public void setProfesor(ProfesorJB profesor) {
         this.profesor = profesor;
+    }
+
+    public int getIdProfesor() {
+        return this.profesor.getIdProfesor();
     }
 
     public int getCupoMinimo() {

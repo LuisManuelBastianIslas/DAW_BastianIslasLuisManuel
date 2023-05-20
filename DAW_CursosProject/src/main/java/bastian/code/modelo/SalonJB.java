@@ -1,22 +1,22 @@
 package bastian.code.modelo;
 
+import bastian.code.modelo.CatalogosJB.TipoJB;
+
 import java.io.Serializable;
 
 public class SalonJB implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private String idSalon;
-    private int idTipoSalon;
-    private String nombreTipoSalon;
+    private TipoJB tipoSalon;
     private String ubicacion;
     private int cantidadPupitres;
 
     public SalonJB() {}
 
-    public SalonJB(String idSalon, int idTipoSalon, String nombreTipoSalon, String ubicacion, int cantidadPupitres) {
+    public SalonJB(String idSalon, TipoJB tipoSalon, String ubicacion, int cantidadPupitres) {
         this.idSalon = idSalon;
-        this.idTipoSalon = idTipoSalon;
-        this.nombreTipoSalon = nombreTipoSalon;
+        this.tipoSalon = tipoSalon;
         this.ubicacion = ubicacion;
         this.cantidadPupitres = cantidadPupitres;
     }
@@ -29,20 +29,16 @@ public class SalonJB implements Serializable {
         this.idSalon = idSalon;
     }
 
-    public int getIdTipoSalon() {
-        return idTipoSalon;
+    public TipoJB getTipoSalon() {
+        return tipoSalon;
     }
 
-    public void setIdTipoSalon(int idTipoSalon) {
-        this.idTipoSalon = idTipoSalon;
+    public void setTipoSalon(TipoJB tipoSalon) {
+        this.tipoSalon = tipoSalon;
     }
 
-    public String getNombreTipoSalon() {
-        return nombreTipoSalon;
-    }
-
-    public void setNombreTipoSalon(String nombreTipoSalon) {
-        this.nombreTipoSalon = nombreTipoSalon;
+    public int getIdTipoSalon () {
+        return this.tipoSalon.getId();
     }
 
     public String getUbicacion() {

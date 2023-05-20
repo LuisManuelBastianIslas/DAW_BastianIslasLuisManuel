@@ -1,40 +1,46 @@
 package bastian.code.modelo;
 
+import bastian.code.modelo.CatalogosJB.TipoJB;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 
 public class ProfesorJB extends persona implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private int idTipoContrato;
-    private String nombreTipoContrato;
+    private int idProfesor;
+    private TipoJB tipoContrato;
 
     public ProfesorJB() {}
 
-    public ProfesorJB(int idTipoContrato, String nombreTipoContrato) {
-        this.idTipoContrato = idTipoContrato;
-        this.nombreTipoContrato = nombreTipoContrato;
+    public ProfesorJB(int idProfesor, TipoJB tipoContrato) {
+        this.idProfesor = idProfesor;
+        this.tipoContrato = tipoContrato;
     }
 
-    public ProfesorJB(String curp, String nombre, String apellidoPaterno, String apleiidoMaterno, String genero, LocalDate fechaNacimiento, String direccion, String telefono, String celular, String email, int idTipoContrato, String nombreTipoContrato) {
+    public ProfesorJB(String curp, String nombre, String apellidoPaterno, String apleiidoMaterno, String genero, LocalDate fechaNacimiento, String direccion, String telefono, String celular, String email, int idProfesor, TipoJB tipoContrato) {
         super(curp, nombre, apellidoPaterno, apleiidoMaterno, genero, fechaNacimiento, direccion, telefono, celular, email);
-        this.idTipoContrato = idTipoContrato;
-        this.nombreTipoContrato = nombreTipoContrato;
+        this.idProfesor = idProfesor;
+        this.tipoContrato = tipoContrato;
+    }
+
+    public int getIdProfesor() {
+        return idProfesor;
+    }
+
+    public void setIdProfesor(int idProfesor) {
+        this.idProfesor = idProfesor;
+    }
+
+    public TipoJB getTipoContrato() {
+        return tipoContrato;
+    }
+
+    public void setTipoContrato(TipoJB tipoContrato) {
+        this.tipoContrato = tipoContrato;
     }
 
     public int getIdTipoContrato() {
-        return idTipoContrato;
-    }
-
-    public void setIdTipoContrato(int idTipoContrato) {
-        this.idTipoContrato = idTipoContrato;
-    }
-
-    public String getNombreTipoContrato() {
-        return nombreTipoContrato;
-    }
-
-    public void setNombreTipoContrato(String nombreTipoContrato) {
-        this.nombreTipoContrato = nombreTipoContrato;
+        return this.tipoContrato.getId();
     }
 }

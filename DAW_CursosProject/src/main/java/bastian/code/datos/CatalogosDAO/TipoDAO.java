@@ -1,5 +1,6 @@
-package bastian.code.datos;
+package bastian.code.datos.CatalogosDAO;
 
+import bastian.code.datos.Conexion;
 import bastian.code.modelo.CatalogosJB.TipoJB;
 
 import java.sql.*;
