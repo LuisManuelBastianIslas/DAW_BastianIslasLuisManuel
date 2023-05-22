@@ -35,7 +35,7 @@ public class CarreraDAO {
                 int idCarrera = rs.getInt("idCarrera");
                 String nombreCarrera = rs.getString("nombreCarrera");
                 TipoJB tipoCarrera = TipoDAO.select("Carrera", rs.getInt("idTipoCarrera"));
-                ProfesorJB profesor = ProfesorDAO.select( rs.getInt("idProfesor") );
+                ProfesorJB profesor = ProfesorDAO.select( rs.getString("idProfesor") );
 
                 CarreraJB carrera = new CarreraJB(idCarrera, nombreCarrera, tipoCarrera, profesor);
                 carreras.add(carrera);
@@ -64,7 +64,7 @@ public class CarreraDAO {
             int idCarrera = rs.getInt("idCarrera");
             String nombreCarrera = rs.getString("nombreCarrera");
             TipoJB tipoCarrera = TipoDAO.select("Carrera", rs.getInt("idTipoCarrera"));
-            ProfesorJB profesor = ProfesorDAO.select(rs.getInt("idProfesor"));
+            ProfesorJB profesor = ProfesorDAO.select(rs.getString("idProfesor"));
 
             carrera = new CarreraJB(idCarrera, nombreCarrera, tipoCarrera, profesor);
         } catch (SQLException e) {

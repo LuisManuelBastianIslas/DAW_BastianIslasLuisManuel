@@ -8,9 +8,11 @@
         <h2>Bienvenido</h2>
         <h3>Inicia sesion con tu urario y contraseña</h3>
         <br/>
-        <p>Usuario: <input type="text"></p>
-        <p>Contraseña: <input type="password"></p>
-        <p><input type="submit" value="Login"></p>
+        <form action="JoinSV" method="post">
+            <p>Usuario: <input type="text" name="usuario"></p>
+            <p>Contraseña: <input type="password" name="contrasena"></p>
+            <p><input type="submit" value="Login"></p>
+        </form>
         <a href="hello-servlet">Hello Servlet</a>
     </body>
 </html>

@@ -66,7 +66,7 @@ public class AsignaturaDAO {
 
             ps.setInt(1, asignatura.getNrc());
             ps.setInt(2, asignatura.getIdMateria());
-            ps.setInt(3, asignatura.getIdProfesor());
+            ps.setString(3, asignatura.getIdProfesor());
             ps.setInt(4, asignatura.getCupoMinimo());
             ps.setInt(5, asignatura.getCupoMaximo());
 

@@ -3,7 +3,7 @@
 -- * Catalogos *
 create table tipoMateria(
 	idTipoMateria serial not null,
-	nombreTipoMateria varchar(20),
+	nombreTipoMateria varchar(25),
 	primary key (idTipoMateria)
 );
 
@@ -82,7 +82,7 @@ create table materia(
 );
 
 create table profesor(
-	idProfesor int not null unique,
+	idProfesor varchar(4) not null unique,
 	idTipoContrato int not null,
 	primary key (idProfesor),
 	foreign key (idTipoContrato) references tipoContrato(idTipoContrato)
@@ -92,7 +92,7 @@ create table carrera(
 	idCarrera int not null unique,
 	nombreCarrera varchar(45),
 	idTipoCarrera int not null,
-	idProfesor int,
+	idProfesor varchar(4),
 	primary key (idCarrera),
 	foreign key (idTipoCarrera) references tipoCarrera(idTipoCarrera),
 	foreign key (idProfesor) references profesor(idProfesor)
@@ -103,7 +103,7 @@ create table alumno(
 	idCarrera int,
 	anoInscripcion int,
 	idEstatusAlumno int not null,
-	idProfesor int,
+	idProfesor varchar(4),
 	primary key (matriculaAlumno),
 	foreign key (idCarrera) references carrera(idCarrera),
 	foreign key (idEstatusAlumno) references estatusAlumno(idEstatusAlumno),
@@ -113,7 +113,7 @@ create table alumno(
 create table asignatura(
 	nrc int not null unique,
 	idMateria int,
-	idProfesor int,
+	idProfesor varchar(4),
 	cupoMinimo int,
 	cupoMaximo int,
 	primary key (nrc),
@@ -164,7 +164,7 @@ create table estudio(
 );
 
 create table materiaProfesor(
-	idProfesor int not null,
+	idProfesor varchar(4) not null,
 	idMateria int not null,
 	foreign key (idProfesor) references profesor(idProfesor),
 	foreign key (idMateria) references materia(idMateria)
@@ -220,22 +220,22 @@ create table administrador(
 );
 -- Al final los logins de manera muy arcaica
 create table loginProfesor(
-	idProfesor int not null,
+	idProfesor varchar(4) not null,
 	contraseñaLoginProfesor text not null,
-	statusLoginProfesor boolean not null,
+	estatusLoginProfesor boolean not null,
 	foreign key (idProfesor) references profesor(idProfesor)
 );
 
 create table loginAlumno(
 	matriculaAlumno varchar(7) not null,
 	contraseñaLoginAlumno text not null,
-	statusLoginAlumno boolean not null,
+	estatusLoginAlumno boolean not null,
 	foreign key (matriculaAlumno) references alumno(matriculaAlumno)
 );
 
 create table loginAdministrador(
 	usuarioAdministrador text not null,
 	contraseñaLoginAdministrador text not null,
-	statusLoginAdministrador boolean not null,
+	estatusLoginAdministrador boolean not null,
 	foreign key (usuarioAdministrador) references administrador(usuarioAdministrador)
 );

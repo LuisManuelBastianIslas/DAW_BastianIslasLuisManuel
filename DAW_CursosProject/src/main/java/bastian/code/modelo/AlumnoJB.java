@@ -70,7 +70,7 @@ public class AlumnoJB extends persona implements Serializable {
         this.estatusAlumno = estatusAlumno;
     }
 
-    public int getIsEstatusAlumno() {
+    public int getIdEstatusAlumno() {
         return estatusAlumno.getId();
     }
 
@@ -82,7 +82,7 @@ public class AlumnoJB extends persona implements Serializable {
         this.profesor = profesor;
     }
 
-    public int getIdProfesor() {
+    public String getIdProfesor() {
         return this.profesor.getIdProfesor();
     }
 }

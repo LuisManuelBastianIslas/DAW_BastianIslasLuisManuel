@@ -22,6 +22,8 @@ en el proyecto. Tambien se incluyen notas.
 *! Terminar el DAO de asignatura
 	Veo que hay muchas consultas diferentes que se pueden hacer
 
+*! Editar persona, no se esta caluculando la edad...
+
 *! Terminar el DAO de profesor
 	- Ver si se cambia el ID por String
 	Veo que hay muchas consultas diferentes que se pueden hacer
@@ -32,7 +34,12 @@ en el proyecto. Tambien se incluyen notas.
 	Veo que hay muchas consultas diferentes que se pueden hacer
 	- Com obtener la cantidad de alumnos de un periodo
 
-*? Crear DAO que modifique datos de la BD (cAlumnos, cProfesores, cAdmins, periodoActual)
+*! Modificar los select de los DAOs, se encontraron errores.
+   TIP: usa String.replaceAll("'", "") antes de crear el PreparedStatement
+
+*! Verifica la parte de contraseñas. ¡Dejaste las ñ's, funciona, no se hasta que punto
+
+*? Crear DAO que modifique datos de la BD (periodoActual)
 
 * Se va a cambiar la parte de como una materia puede ser impartida en
   carreras distintas. Osea, otra tabla mas.

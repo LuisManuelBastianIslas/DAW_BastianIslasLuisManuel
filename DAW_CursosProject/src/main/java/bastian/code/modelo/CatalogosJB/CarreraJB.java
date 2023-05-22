@@ -57,7 +57,7 @@ public class CarreraJB implements Serializable {
         this.profesor = profesor;
     }
 
-    public int getIdProfesor() {
+    public String getIdProfesor() {
         return this.profesor.getIdProfesor();
     }
 }

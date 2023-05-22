@@ -45,7 +45,7 @@ public class AlumnoDAO {
                 CarreraJB carrera = CarreraDAO.select( rs.getInt("idCarrera") );
                 int anoInscripcion = rs.getInt("anoInscripcion");
                 EstatusJB estatusAlumno = EstatusDAO.select("Alumno", rs.getInt("idEstatusAlumno") );
-                ProfesorJB profesor = ProfesorDAO.select( rs.getInt("idProfesor") );
+                ProfesorJB profesor = ProfesorDAO.select( rs.getString("idProfesor") );
 
                 AlumnoJB alumno = new AlumnoJB(curp, nombre, apellidoPaterno, apleiidoMaterno, genero, fechaNacimiento, direccion, telefono, celular, email, matriculaAlumno, carrera, anoInscripcion, estatusAlumno, profesor);
                 alumnos.add(alumno);
@@ -87,7 +87,7 @@ public class AlumnoDAO {
             CarreraJB carrera = CarreraDAO.select( rs.getInt("idCarrera") );
             int anoInscripcion = rs.getInt("anoInscripcion");
             EstatusJB estatusAlumno = EstatusDAO.select("Alumno", rs.getInt("idEstatusAlumno") );
-            ProfesorJB profesor = ProfesorDAO.select( rs.getInt("idProfesor") );
+            ProfesorJB profesor = ProfesorDAO.select( rs.getString("idProfesor") );
 
             alumno = new AlumnoJB(curp, nombre, apellidoPaterno, apleiidoMaterno, genero, fechaNacimiento, direccion, telefono, celular, email, matriculaAlumno, carrera, anoInscripcion, estatusAlumno, profesor);
         } catch (SQLException e) {

@@ -38,7 +38,7 @@ public class ProfesorDAO {
                 String telefono = rs.getString("telefono");
                 String celular = rs.getString("celular");
                 String email = rs.getString("email");
-                int idProfesor = rs.getInt("idProfesor");
+                String idProfesor = rs.getString("idProfesor");
                 TipoJB tipoContrato = TipoDAO.select("Contrato", rs.getInt("idTipoContrato") );
 
                 ProfesorJB profesor = new ProfesorJB(curp, nombre, apellidoPaterno, apleiidoMaterno, genero, fechaNacimiento, direccion, telefono, celular, email, idProfesor, tipoContrato);
@@ -52,7 +52,7 @@ public class ProfesorDAO {
     }
 
     //Un Profesor en especifico
-    public static ProfesorJB select(int IdProfesor) {
+    public static ProfesorJB select(String IdProfesor) {
         String query = selectSQL + " where idProfesor = " + IdProfesor;
 
         Connection conn = null;
@@ -76,7 +76,7 @@ public class ProfesorDAO {
             String telefono = rs.getString("telefono");
             String celular = rs.getString("celular");
             String email = rs.getString("email");
-            int idProfesor = rs.getInt("idProfesor");
+            String idProfesor = rs.getString("idProfesor");
             TipoJB tipoContrato = TipoDAO.select("Contrato", rs.getInt("idTipoContrato") );
 
             profesor = new ProfesorJB(curp, nombre, apellidoPaterno, apleiidoMaterno, genero, fechaNacimiento, direccion, telefono, celular, email, idProfesor, tipoContrato);
