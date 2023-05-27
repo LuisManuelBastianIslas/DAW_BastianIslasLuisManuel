@@ -31,12 +31,12 @@ public class AlumnoDAO {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                String curp = rs.getString("curpAlumno");
+                String curp = rs.getString("curp");
                 String nombre = rs.getString("nombre");
                 String apellidoPaterno = rs.getString("apellidoPaterno");
                 String apleiidoMaterno = rs.getString("apellidoMaterno");
                 String genero = rs.getString("genero"); //Posiblemente cambie a objeto
-                LocalDate fechaNacimiento = LocalDate.parse( rs.getString("anoNacimiento") );
+                LocalDate fechaNacimiento = LocalDate.parse( rs.getString("fechaNacimiento") );
                 String direccion = rs.getString("direccoin");
                 String telefono = rs.getString("telefono");
                 String celular = rs.getString("celular");
@@ -54,12 +54,16 @@ public class AlumnoDAO {
             throw new RuntimeException(e);
         }
 
+        Conexion.close(rs);
+        Conexion.close(ps);
+        Conexion.close(conn);
+
         return alumnos;
     }
 
     //Llama a un alumno en especifico
     public static AlumnoJB select(String MatriculaAlumno) {
-        String query = selectSQL + " where matriculaALumno = " + MatriculaAlumno;
+        String query = selectSQL + " where matriculaALumno = " + "'"+MatriculaAlumno.toUpperCase()+"'";
 
         Connection conn = null;
         PreparedStatement ps = null;
@@ -70,30 +74,35 @@ public class AlumnoDAO {
             conn = Conexion.getConnection();
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
+            System.out.println(ps.toString() + "\nPara eliminar este msg, esya en AlumnoDAO");
+            while ( rs.next() ) {
+                String curp = rs.getString("curp");
+                String nombre = rs.getString("nombre");
+                String apellidoPaterno = rs.getString("apellidoPaterno");
+                String apleiidoMaterno = rs.getString("apellidoMaterno");
+                String genero = rs.getString("genero"); //Posiblemente cambie a objeto
+                LocalDate fechaNacimiento = LocalDate.parse(rs.getString("fechaNacimiento"));
+                String direccion = rs.getString("direccion");
+                String telefono = rs.getString("telefono");
+                String celular = rs.getString("celular");
+                String email = rs.getString("email");
+                String matriculaAlumno = rs.getString("matriculaAlumno");
+                CarreraJB carrera = CarreraDAO.select(rs.getInt("idCarrera"));
+                int anoInscripcion = rs.getInt("anoInscripcion");
+                EstatusJB estatusAlumno = EstatusDAO.select("Alumno", rs.getInt("idEstatusAlumno"));
+                ProfesorJB profesor = ProfesorDAO.select( rs.getString("idProfesor") );
 
-            rs.next();
-
-            String curp = rs.getString("curpAlumno");
-            String nombre = rs.getString("nombre");
-            String apellidoPaterno = rs.getString("apellidoPaterno");
-            String apleiidoMaterno = rs.getString("apellidoMaterno");
-            String genero = rs.getString("genero"); //Posiblemente cambie a objeto
-            LocalDate fechaNacimiento = LocalDate.parse( rs.getString("anoNacimiento") );
-            String direccion = rs.getString("direccoin");
-            String telefono = rs.getString("telefono");
-            String celular = rs.getString("celular");
-            String email = rs.getString("email");
-            String matriculaAlumno = rs.getString("matriculaAlumno");
-            CarreraJB carrera = CarreraDAO.select( rs.getInt("idCarrera") );
-            int anoInscripcion = rs.getInt("anoInscripcion");
-            EstatusJB estatusAlumno = EstatusDAO.select("Alumno", rs.getInt("idEstatusAlumno") );
-            ProfesorJB profesor = ProfesorDAO.select( rs.getString("idProfesor") );
-
-            alumno = new AlumnoJB(curp, nombre, apellidoPaterno, apleiidoMaterno, genero, fechaNacimiento, direccion, telefono, celular, email, matriculaAlumno, carrera, anoInscripcion, estatusAlumno, profesor);
+                alumno = new AlumnoJB(curp, nombre, apellidoPaterno, apleiidoMaterno, genero, fechaNacimiento, direccion, telefono, celular, email, matriculaAlumno, carrera, anoInscripcion, estatusAlumno, profesor);
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
+        Conexion.close(rs);
+        Conexion.close(ps);
+        Conexion.close(conn);
+
+        System.out.println("Se ha enviado la matricula " + alumno.getMatriculaAlumno() + "\nPara eliminar este msg, esya en AlumnoDAO");
         return alumno;
     }
 

@@ -8,9 +8,11 @@ import java.util.ArrayList;
 
 public class TipoDAO {
 
-    private static final String selectSQL = "select * from tipo?";
+    private static final String selectSQL = "select * from tipoREP";
 
     public static ArrayList<TipoJB> select(String nombreTipo) {
+        String query = selectSQL;
+
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -18,8 +20,8 @@ public class TipoDAO {
 
         try {
             conn = Conexion.getConnection();
-            ps = conn.prepareStatement(selectSQL);
-            ps.setString(1, nombreTipo);
+            query = query.replaceFirst("REP", nombreTipo);
+            ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -33,11 +35,15 @@ public class TipoDAO {
             throw new RuntimeException(e);
         }
 
+        Conexion.close(rs);
+        Conexion.close(ps);
+        Conexion.close(conn);
+
         return tipos;
     }
 
     public static TipoJB select(String nombreTipo, int idTipo) {
-        String query = selectSQL + " where idTipo" + nombreTipo + " = " + idTipo;
+        String query = selectSQL + " where idTipo" + nombreTipo + " = " + "'"+idTipo+"'";
 
         Connection conn = null;
         PreparedStatement ps = null;
@@ -46,8 +52,8 @@ public class TipoDAO {
 
         try {
             conn = Conexion.getConnection();
+            query = query.replaceFirst("REP", nombreTipo);
             ps = conn.prepareStatement(query);
-            ps.setString(1, nombreTipo);
             rs = ps.executeQuery();
 
             rs.next();  //Solo es 1 row ;]
@@ -59,6 +65,10 @@ public class TipoDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
+        Conexion.close(rs);
+        Conexion.close(ps);
+        Conexion.close(conn);
 
         return tipo;
     }

@@ -44,11 +44,15 @@ public class CarreraDAO {
             throw new RuntimeException(e);
         }
 
+        Conexion.close(rs);
+        Conexion.close(ps);
+        Conexion.close(conn);
+
         return carreras;
     }
 
     public static CarreraJB select(int IdCarerra) {
-        String query = selectSQL + "where idCarrera = " + IdCarerra;
+        String query = selectSQL + "where idCarrera = " + "'"+IdCarerra+"'";
 
         Connection conn = null;
         PreparedStatement ps = null;
@@ -70,6 +74,10 @@ public class CarreraDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
+        Conexion.close(rs);
+        Conexion.close(ps);
+        Conexion.close(conn);
 
         return carrera;
     }

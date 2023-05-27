@@ -41,6 +41,10 @@ public class MateriaDAO {
             throw new RuntimeException(e);
         }
 
+        Conexion.close(rs);
+        Conexion.close(ps);
+        Conexion.close(conn);
+
         return materias;
     }
 
@@ -73,6 +77,10 @@ public class MateriaDAO {
             throw new RuntimeException(e);
         }
 
+        Conexion.close(rs);
+        Conexion.close(ps);
+        Conexion.close(conn);
+
         return materias;
     }
 
@@ -103,6 +111,10 @@ public class MateriaDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
+        Conexion.close(rs);
+        Conexion.close(ps);
+        Conexion.close(conn);
 
         return materia;
     }

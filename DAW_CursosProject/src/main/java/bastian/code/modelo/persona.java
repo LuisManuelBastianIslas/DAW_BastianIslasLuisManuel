@@ -64,6 +64,22 @@ public class persona implements Serializable {
         this.apleiidoMaterno = apleiidoMaterno;
     }
 
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+
+    public LocalDate getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
     public String getDireccion() {
         return direccion;
     }
@@ -94,14 +110,6 @@ public class persona implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getGenero() {
-        return genero;
-    }
-
-    public void setGenero(String genero) {
-        this.genero = genero;
     }
 
     @Override

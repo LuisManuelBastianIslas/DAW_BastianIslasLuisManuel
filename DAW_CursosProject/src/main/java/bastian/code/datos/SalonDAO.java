@@ -39,6 +39,10 @@ public class SalonDAO {
             throw new RuntimeException(e);
         }
 
+        Conexion.close(rs);
+        Conexion.close(ps);
+        Conexion.close(conn);
+
         return salones;
     }
 
@@ -64,6 +68,10 @@ public class SalonDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
+        Conexion.close(rs);
+        Conexion.close(ps);
+        Conexion.close(conn);
 
         return salon;
     }

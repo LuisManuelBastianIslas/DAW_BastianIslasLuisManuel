@@ -48,12 +48,16 @@ public class ProfesorDAO {
             throw new RuntimeException(e);
         }
 
+        Conexion.close(rs);
+        Conexion.close(ps);
+        Conexion.close(conn);
+
         return profesores;
     }
 
     //Un Profesor en especifico
     public static ProfesorJB select(String IdProfesor) {
-        String query = selectSQL + " where idProfesor = " + IdProfesor;
+        String query = selectSQL + " where idProfesor = " + "'"+IdProfesor+"'";
 
         Connection conn = null;
         PreparedStatement ps = null;
@@ -64,25 +68,30 @@ public class ProfesorDAO {
             conn = Conexion.getConnection();
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
+            System.out.println(ps.toString() + "\nPara eliminar este msg, esya en ProfesorDAO");
+            while ( rs.next() ) {
+                String curp = rs.getString("curp");
+                String nombre = rs.getString("nombre");
+                String apellidoPaterno = rs.getString("apellidoPaterno");
+                String apleiidoMaterno = rs.getString("apellidoMaterno");
+                String genero = rs.getString("genero");
+                LocalDate fechaNacimiento = LocalDate.parse(rs.getString("fechaNacimiento"));
+                String direccion = rs.getString("direccion");
+                String telefono = rs.getString("telefono");
+                String celular = rs.getString("celular");
+                String email = rs.getString("email");
+                String idProfesor = rs.getString("idProfesor");
+                TipoJB tipoContrato = TipoDAO.select("Contrato", rs.getInt("idTipoContrato"));
 
-            rs.next();
-            String curp = rs.getString("curp");
-            String nombre = rs.getString("nombre");
-            String apellidoPaterno = rs.getString("apellidoPaterno");
-            String apleiidoMaterno = rs.getString("apellidoMaterno");
-            String genero = rs.getString("genero");
-            LocalDate fechaNacimiento = LocalDate.parse( rs.getString("fechaNacimiento") );
-            String direccion = rs.getString("direccion");
-            String telefono = rs.getString("telefono");
-            String celular = rs.getString("celular");
-            String email = rs.getString("email");
-            String idProfesor = rs.getString("idProfesor");
-            TipoJB tipoContrato = TipoDAO.select("Contrato", rs.getInt("idTipoContrato") );
-
-            profesor = new ProfesorJB(curp, nombre, apellidoPaterno, apleiidoMaterno, genero, fechaNacimiento, direccion, telefono, celular, email, idProfesor, tipoContrato);
+                profesor = new ProfesorJB(curp, nombre, apellidoPaterno, apleiidoMaterno, genero, fechaNacimiento, direccion, telefono, celular, email, idProfesor, tipoContrato);
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
+        Conexion.close(rs);
+        Conexion.close(ps);
+        Conexion.close(conn);
 
         return profesor;
     }

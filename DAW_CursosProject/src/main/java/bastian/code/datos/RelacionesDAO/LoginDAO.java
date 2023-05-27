@@ -2,17 +2,16 @@ package bastian.code.datos.RelacionesDAO;
 
 import bastian.code.datos.Conexion;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class LoginDAO {
 
-    private static final String selectSQL = "select * from login? " +
-                                            "where ? = ? and ? = ? and estatusLogin? = true";
+    private static final String selectSQL = "select * from loginREP " +
+                                            "where REP = ? and REP = ? and estatusLoginREP = true";
 
     public static boolean existAlumno(String user, String password) {
+        String query = selectSQL;
+
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -20,19 +19,15 @@ public class LoginDAO {
 
         try {
             conn = Conexion.getConnection();
-            ps = conn.prepareStatement(selectSQL);
-            ps.setString(1, "Alumno");
-            ps.setString(2, "matriculaAlumno");
-            ps.setString(4, "contraseñaLoginAlumno");
-            ps.setString(6, "Alumno");
+            query = query.replaceFirst("REP", "Alumno");
+            query = query.replaceFirst("REP", "matriculaAlumno");
+            query = query.replaceFirst("REP", "contraseñaLoginAlumno");
+            query = query.replaceFirst("REP", "Alumno");
 
-            String control = ps.toString();
-            control = control.replaceAll("'", "");  //quita las comillas porque me estorban :)
-            ps = conn.prepareStatement(control);
-
+            ps = conn.prepareStatement(query);
             ps.setString(1, user);
             ps.setString(2, password);
-            System.out.println(ps.toString());
+            System.out.println(ps.toString() + "\nPara eliminar este msg, esya en LoginDAO");
             rs = ps.executeQuery();
             String exist = null;
 
@@ -41,6 +36,8 @@ public class LoginDAO {
 
             if (exist != null)
                 res = true;
+
+            System.out.println("Exist = " + exist + " Res = " + res + "\nPara eliminar este msg, esya en LoginDAO");
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
