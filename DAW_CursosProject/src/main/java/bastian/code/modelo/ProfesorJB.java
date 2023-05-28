@@ -1,5 +1,6 @@
 package bastian.code.modelo;
 
+import bastian.code.modelo.CatalogosJB.GeneroJB;
 import bastian.code.modelo.CatalogosJB.TipoJB;
 
 import java.io.Serializable;
@@ -18,7 +19,7 @@ public class ProfesorJB extends persona implements Serializable {
         this.tipoContrato = tipoContrato;
     }
 
-    public ProfesorJB(String curp, String nombre, String apellidoPaterno, String apleiidoMaterno, String genero, LocalDate fechaNacimiento, String direccion, String telefono, String celular, String email, String idProfesor, TipoJB tipoContrato) {
+    public ProfesorJB(String curp, String nombre, String apellidoPaterno, String apleiidoMaterno, GeneroJB genero, LocalDate fechaNacimiento, String direccion, String telefono, String celular, String email, String idProfesor, TipoJB tipoContrato) {
         super(curp, nombre, apellidoPaterno, apleiidoMaterno, genero, fechaNacimiento, direccion, telefono, celular, email);
         this.idProfesor = idProfesor;
         this.tipoContrato = tipoContrato;

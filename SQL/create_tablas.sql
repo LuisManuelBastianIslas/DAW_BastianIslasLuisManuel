@@ -49,6 +49,18 @@ create table estatusCursoAlumno(
 	primary key (idEstatusCursoAlumno)
 );
 
+create table genero(
+	idGenero varchar(1),
+	nombreGenero varchar(18),
+	primary key (idGenero)
+);
+
+create table periodo(
+	idPeriodo int,
+	descripcionPeriodo varchar(15),
+	primary key (idPeriodo)
+);
+
 -- -------------
 -- Entidad Padre
 -- -------------
@@ -58,13 +70,14 @@ create table persona(
 	nombre text not null,
 	apellidoMaterno text not null,
 	apellidoPaterno text not null,
-	genero varchar(1) not null,
+	idGenero varchar(1) not null,
 	fechaNacimiento date not null,
 	direccion text,
 	telefono varchar(10),
 	celular varchar(10),
 	email text,
-	primary key (curp)
+	primary key (curp),
+	foreign key(idGenero) references genero(idGenero)
 );
 
 -- ---------
@@ -131,10 +144,11 @@ create table salon(
 );
 
 create table curso(
-	periodo int not null,
+	idPeriodo int not null,
 	nrc int not null,
 	idEstatusCurso int not null,
-	primary key (periodo, nrc),
+	foreign key (idPeriodo) references periodo(idPeriodo),
+	primary key (idPeriodo, nrc),
 	foreign key (nrc) references asignatura(nrc),
 	foreign key (idEstatusCurso) references estatusCurso(idEstatusCurso)
 );
@@ -179,12 +193,12 @@ create table materiaCarrera(
 );
 
 create table cursoSalon(
-	periodo int not null,
+	idPeriodo int not null,
 	nrc int not null,
 	idSalon varchar(3) not null,
 	hora int not null,
 	diaSemana int not null,
-	foreign key (periodo, nrc) references curso(periodo, nrc),
+	foreign key (idPeriodo, nrc) references curso(idPeriodo, nrc),
 	foreign key (idSalon) references salon(idSalon)
 );
 
@@ -195,18 +209,18 @@ create table cursoAlumno(	-- De esta se saca el cardex
 	idEstatusCursoAlumno int not null,
 	calificacion int,
 	foreign key (matriculaAlumno) references alumno(matriculaAlumno),
-	foreign key (periodo, nrc) references curso(periodo, nrc),
+	foreign key (periodo, nrc) references curso(idPeriodo, nrc),
 	foreign key (idEstatusCursoAlumno) references estatusCursoAlumno(idEstatusCursoAlumno)
 );
 
 create table incidencias(
 	matriculaAlumno varchar(7) not null,
-	periodo int not null,
+	idPeriodo int not null,
 	nrc int not null,
 	fecha date not null,
 	incidencia text not null,
 	foreign key (matriculaAlumno) references alumno(matriculaAlumno),
-	foreign key (periodo, nrc) references curso(periodo, nrc)
+	foreign key (idPeriodo, nrc) references curso(idPeriodo, nrc)
 );
 
 -- ---------------------------------------------------------
@@ -222,20 +236,20 @@ create table administrador(
 create table loginProfesor(
 	idProfesor varchar(4) not null,
 	contraseñaLoginProfesor text not null,
-	estatusLoginProfesor boolean not null,
+	estatusLoginProfesor int not null,
 	foreign key (idProfesor) references profesor(idProfesor)
 );
 
 create table loginAlumno(
 	matriculaAlumno varchar(7) not null,
 	contraseñaLoginAlumno text not null,
-	estatusLoginAlumno boolean not null,
+	estatusLoginAlumno int not null,
 	foreign key (matriculaAlumno) references alumno(matriculaAlumno)
 );
 
 create table loginAdministrador(
 	usuarioAdministrador text not null,
 	contraseñaLoginAdministrador text not null,
-	estatusLoginAdministrador boolean not null,
+	estatusLoginAdministrador int not null,
 	foreign key (usuarioAdministrador) references administrador(usuarioAdministrador)
 );

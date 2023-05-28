@@ -1,5 +1,7 @@
 package bastian.code.modelo;
 
+import bastian.code.modelo.CatalogosJB.GeneroJB;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -10,7 +12,7 @@ public class persona implements Serializable {
     private String nombre;
     private String apellidoPaterno;
     private String apleiidoMaterno;
-    private String genero;
+    private GeneroJB genero;
     private LocalDate fechaNacimiento;
     private String direccion;
     private String telefono;
@@ -19,7 +21,7 @@ public class persona implements Serializable {
 
     public persona() {}
 
-    public persona(String curp, String nombre, String apellidoPaterno, String apleiidoMaterno, String genero, LocalDate fechaNacimiento, String direccion, String telefono, String celular, String email) {
+    public persona(String curp, String nombre, String apellidoPaterno, String apleiidoMaterno, GeneroJB genero, LocalDate fechaNacimiento, String direccion, String telefono, String celular, String email) {
         this.curp = curp;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
@@ -64,11 +66,11 @@ public class persona implements Serializable {
         this.apleiidoMaterno = apleiidoMaterno;
     }
 
-    public String getGenero() {
+    public GeneroJB getGenero() {
         return genero;
     }
 
-    public void setGenero(String genero) {
+    public void setGenero(GeneroJB genero) {
         this.genero = genero;
     }
 

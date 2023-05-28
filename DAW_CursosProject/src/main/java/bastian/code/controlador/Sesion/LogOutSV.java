@@ -16,6 +16,8 @@ public class LogOutSV extends HttpServlet {
         req.getSession().removeAttribute("Profesor");
         req.getSession().removeAttribute("Administrador");
 
+        req.getSession().removeAttribute("TypeUser");
+
         req.getRequestDispatcher("/index.jsp").forward(req, resp);
     }
 }

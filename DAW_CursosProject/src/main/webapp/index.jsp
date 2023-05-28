@@ -12,8 +12,8 @@
             <h1>Bastian Universities</h1>
         </div>
 
-        <h2>Bienvenido</h2>
-        <h3>Inicia sesion con tu urario y contraseña</h3>
+        <h2 class="center">Bienvenido(a)</h2>
+        <h3 class="center">Inicia sesion con tu urario y contraseña</h3>
         <br/>
         <form action="LogInSV" method="post" autocomplete="off" class="formJoin">
             <label>Usuario:</label>

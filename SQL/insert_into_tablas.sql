@@ -60,6 +60,17 @@ values
 ('Baja'),
 ('Terminado');
 
+insert into genero(idGenero, nombreGenero)
+values
+('M', 'Hombre'),
+('F', 'Mujer'),
+('X', 'No Binario'),
+('H', 'Helicoptero Apache');
+
+insert into periodo(idPeriodo, descripcionPeriodo)
+values
+(20202, 'Feb - Jul 2020');
+
 insert into materia(idMateria, nombreMateria, creditos, horas, idTipoMateria)
 values
 (1101, 'Lectura y escritura de textos academicos', 4, 4, 3),	-- 2 de "AFBG"
@@ -112,36 +123,43 @@ insert into asignatura(nrc, idMateria, idProfesor, cupoMinimo, cupoMaximo)
 values
 -- NRC : idCarrera + periodo (Ene-Jun -> 1 | Jul-Dic -> 2) + idMateria
 -- Diferente NRC para separar a Informatica y Mecatronica aun y cuando es la misma materia
-(111101, 1101),	-- 6 de Informatica
-(111201, 1201),
-(122101, 2101),
-(122201, 2201),
-(113101, 3101),
-(113201, 3201),
-(211101, 1101),	-- 6 de Mecatronica
-(211201, 1201),
-(222101, 2101),
-(222201, 2201),
-(213101, 3101),
-(213201, 3201),
-(123301, 3301),							-- 2 de Informatica
-(123401, 3401),
-(223502, 3502),									-- 2 de Mecatronica
-(223601, 3601);
+(121101, 1101, 'P001', 4, 8),	-- 7 de Informatica
+(111201, 1201, 'P003', 3, 6),
+(122101, 2101, 'P002', 4, 8),
+(112201, 2201, 'P004', 3, 6),
+(122201, 2201, 'P003', 3, 6),
+(123101, 3101, 'P004', 3, 6),
+(113101, 3101, 'P004', 3, 6),
+(113201, 3201, 'P003', 3, 6),
+(221101, 1101, 'P001', 4, 8),	-- 7 de Mecatronica
+(211201, 1201, 'P003', 3, 6),
+(222101, 2101, 'P002', 4, 8),
+(212201, 2201, 'P004', 3, 6),
+(222201, 2201, 'P003', 3, 6),
+(223101, 3101, 'P004', 3, 6),
+(213101, 3101, 'P004', 3, 6),
+(213201, 3201, 'P005', 3, 6),
+(123301, 3301, 'P004', 3, 6),	-- 2 de Informatica
+(113401, 3401, 'P006', 3, 6),
+(213502, 3502, 'P005', 3, 6),	-- 2 de Mecatronica
+(223601, 3601, 'P005', 3, 6);
 
 insert into salon(idSalon, idTipoSalon, ubicacion, cantidadPupitres)
 values
-('A01', 1, 'Edificio A', 7),
-('A02', 1, 'Edificio A', 7),
-('A03', 3, 'Edificio A', 6),
-('A04', 4, 'Edificio A', 6),
-('B01', 2, 'Edificio B', 5),
-('B02', 2, 'Edificio B', 5),
-('B03', 2, 'Edificio B', 5);
+('A01', 1, 'Edificio A', 8),
+('A02', 1, 'Edificio A', 8),
+('A03', 3, 'Edificio A', 7),
+('A04', 4, 'Edificio A', 7),
+('B01', 2, 'Edificio B', 6),
+('B02', 2, 'Edificio B', 6),
+('B03', 2, 'Edificio B', 6);
 
---insert into curso(periodo, nrc, idEstatusCurso)
---values
---;
+insert into curso(periodo, nrc, idEstatusCurso)
+values
+(20202, 121101, 2),
+(20202, 221101, 2),
+(20211, 111201, 1),
+(20211, 211201, 1),
 
 insert into requicitoMateria(idMateria, idMateriaRequicito)
 values
@@ -158,13 +176,13 @@ values
 ('P001', 1101),	-- Lectura
 ('P002', 2101),	-- Fisica
 ('P003', 1201),	-- Lit digital
-('P003', 2101),	-- Tecnicas med
+('P003', 3201),	-- Tecnicas med
 ('P003', 2201),	-- Intro prog
 ('P004', 2201),	-- Intro prog
 ('P004', 3101),	-- Prog estruct
 ('P004', 3301),	-- Estruct datos
 ('P005', 3502),	-- Mecanismos
-('P005', 2101),	-- Tecnicas med
+('P005', 3201),	-- Tecnicas med
 ('P005', 3601),	-- Dinamica
 ('P006', 3401);	-- Intro redes
 
@@ -184,8 +202,8 @@ values
 (3201, 2, 6),
 (3301, 1, 8),
 (3401, 1, 7),
-(3502, 2, 7),
-(3601, 2, 8);
+(3601, 2, 7),
+(3502, 2, 8);
 
 --insert into cursoSalon(periodo, nrc, idSalon, hora, diaSemana)
 --values
@@ -198,7 +216,7 @@ values
 
 insert into administrador(usuarioAdministrador, nombreAdministrador)
 values
-('amdin', 'Administrador');
+('admin', 'Administrador');
 
 insert into loginProfesor(idProfesor, contraseñaLoginProfesor, estatusLoginProfesor)
 values

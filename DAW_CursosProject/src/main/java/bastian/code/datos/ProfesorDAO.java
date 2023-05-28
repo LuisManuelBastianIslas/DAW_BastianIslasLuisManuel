@@ -1,6 +1,8 @@
 package bastian.code.datos;
 
+import bastian.code.datos.CatalogosDAO.GeneroDAO;
 import bastian.code.datos.CatalogosDAO.TipoDAO;
+import bastian.code.modelo.CatalogosJB.GeneroJB;
 import bastian.code.modelo.CatalogosJB.TipoJB;
 import bastian.code.modelo.ProfesorJB;
 
@@ -32,7 +34,7 @@ public class ProfesorDAO {
                 String nombre = rs.getString("nombre");
                 String apellidoPaterno = rs.getString("apellidoPaterno");
                 String apleiidoMaterno = rs.getString("apellidoMaterno");
-                String genero = rs.getString("genero");
+                GeneroJB genero = GeneroDAO.select( rs.getString("idGenero") );
                 LocalDate fechaNacimiento = LocalDate.parse( rs.getString("fechaNacimiento") );
                 String direccion = rs.getString("direccion");
                 String telefono = rs.getString("telefono");
@@ -74,7 +76,7 @@ public class ProfesorDAO {
                 String nombre = rs.getString("nombre");
                 String apellidoPaterno = rs.getString("apellidoPaterno");
                 String apleiidoMaterno = rs.getString("apellidoMaterno");
-                String genero = rs.getString("genero");
+                GeneroJB genero = GeneroDAO.select( rs.getString("idGenero") );
                 LocalDate fechaNacimiento = LocalDate.parse(rs.getString("fechaNacimiento"));
                 String direccion = rs.getString("direccion");
                 String telefono = rs.getString("telefono");

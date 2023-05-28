@@ -2,9 +2,11 @@ package bastian.code.datos;
 
 import bastian.code.datos.CatalogosDAO.CarreraDAO;
 import bastian.code.datos.CatalogosDAO.EstatusDAO;
+import bastian.code.datos.CatalogosDAO.GeneroDAO;
 import bastian.code.modelo.AlumnoJB;
 import bastian.code.modelo.CatalogosJB.CarreraJB;
 import bastian.code.modelo.CatalogosJB.EstatusJB;
+import bastian.code.modelo.CatalogosJB.GeneroJB;
 import bastian.code.modelo.ProfesorJB;
 
 import java.sql.*;
@@ -35,7 +37,7 @@ public class AlumnoDAO {
                 String nombre = rs.getString("nombre");
                 String apellidoPaterno = rs.getString("apellidoPaterno");
                 String apleiidoMaterno = rs.getString("apellidoMaterno");
-                String genero = rs.getString("genero"); //Posiblemente cambie a objeto
+                GeneroJB genero = GeneroDAO.select( rs.getString("idGenero") ); //Ya cambió a objeto :)
                 LocalDate fechaNacimiento = LocalDate.parse( rs.getString("fechaNacimiento") );
                 String direccion = rs.getString("direccoin");
                 String telefono = rs.getString("telefono");
@@ -80,7 +82,7 @@ public class AlumnoDAO {
                 String nombre = rs.getString("nombre");
                 String apellidoPaterno = rs.getString("apellidoPaterno");
                 String apleiidoMaterno = rs.getString("apellidoMaterno");
-                String genero = rs.getString("genero"); //Posiblemente cambie a objeto
+                GeneroJB genero = GeneroDAO.select( rs.getString("idGenero") ); //Ya cambió a objeto :)
                 LocalDate fechaNacimiento = LocalDate.parse(rs.getString("fechaNacimiento"));
                 String direccion = rs.getString("direccion");
                 String telefono = rs.getString("telefono");

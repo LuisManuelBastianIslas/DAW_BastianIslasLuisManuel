@@ -17,6 +17,8 @@ drop table carrera;
 drop table profesor;
 drop table materia;
 drop table persona;
+drop table periodo;
+drop table genero;
 drop table estatusAlumno;
 drop table estatusCurso;
 drop table estatusCursoAlumno;

@@ -2,6 +2,7 @@ package bastian.code.modelo;
 
 import bastian.code.modelo.CatalogosJB.CarreraJB;
 import bastian.code.modelo.CatalogosJB.EstatusJB;
+import bastian.code.modelo.CatalogosJB.GeneroJB;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -25,7 +26,7 @@ public class AlumnoJB extends persona implements Serializable {
         this.profesor = profesor;
     }
 
-    public AlumnoJB(String curp, String nombre, String apellidoPaterno, String apleiidoMaterno, String genero, LocalDate fechaNacimiento, String direccion, String telefono, String celular, String email, String matriculaAlumno, CarreraJB carrera, int anoInscripcion, EstatusJB estatusAlumno, ProfesorJB profesor) {
+    public AlumnoJB(String curp, String nombre, String apellidoPaterno, String apleiidoMaterno, GeneroJB genero, LocalDate fechaNacimiento, String direccion, String telefono, String celular, String email, String matriculaAlumno, CarreraJB carrera, int anoInscripcion, EstatusJB estatusAlumno, ProfesorJB profesor) {
         super(curp, nombre, apellidoPaterno, apleiidoMaterno, genero, fechaNacimiento, direccion, telefono, celular, email);
         this.matriculaAlumno = matriculaAlumno;
         this.carrera = carrera;

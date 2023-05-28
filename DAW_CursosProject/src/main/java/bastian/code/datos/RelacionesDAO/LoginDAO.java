@@ -7,7 +7,7 @@ import java.sql.*;
 public class LoginDAO {
 
     private static final String selectSQL = "select * from loginREP " +
-                                            "where REP = ? and REP = ? and estatusLoginREP = true";
+                                            "where REP = ? and REP = ? and estatusLoginREP = 1";
 
     public static boolean existAlumno(String user, String password) {
         String query = selectSQL;
