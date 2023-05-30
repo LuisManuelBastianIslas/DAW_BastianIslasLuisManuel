@@ -1,3 +1,4 @@
+drop table periodoActual;
 drop table loginAdministrador;
 drop table loginAlumno;
 drop table loginProfesor;

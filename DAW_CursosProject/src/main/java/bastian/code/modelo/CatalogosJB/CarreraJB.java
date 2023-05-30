@@ -1,5 +1,6 @@
 package bastian.code.modelo.CatalogosJB;
 
+import bastian.code.datos.CatalogosDAO.CarreraDAO;
 import bastian.code.modelo.ProfesorJB;
 
 import java.io.Serializable;
@@ -59,5 +60,16 @@ public class CarreraJB implements Serializable {
 
     public String getIdProfesor() {
         return this.profesor.getIdProfesor();
+    }
+
+    /**
+     * Funciones calculadas
+     */
+    public int getCantidadSemestres() {
+        return CarreraDAO.getCantidadSemestres(this.idCarrera);
+    }
+
+    public int getCantidadCreditos() {
+        return CarreraDAO.getCantidadCreditos(this.idCarrera);
     }
 }

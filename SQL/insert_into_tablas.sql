@@ -67,9 +67,10 @@ values
 ('X', 'No Binario'),
 ('H', 'Helicoptero Apache');
 
-insert into periodo(idPeriodo, descripcionPeriodo)
+insert into periodo(idPeriodo, mesPeriodo, descripcionPeriodo)
 values
-(20202, 'Feb - Jul 2020');
+(20202, 8, 'Ago - Ene 2020'),
+(20211, 2, 'Feb - Jul 2021');
 
 insert into materia(idMateria, nombreMateria, creditos, horas, idTipoMateria)
 values
@@ -84,7 +85,7 @@ values
 (3502, 'Mecanismos', 6, 4, 4),									-- 2 de Mecatronica
 (3601, 'Dinamica', 6, 4, 4);
 
-insert into profesor(curp, nombre, apellidoMaterno, apellidoPaterno, direccion, genero, telefono, fechaNacimiento, celular, email, idProfesor, idTipoContrato)
+insert into profesor(curp, nombre, apellidoMaterno, apellidoPaterno, direccion, idGenero, telefono, fechaNacimiento, celular, email, idProfesor, idTipoContrato)
 values
 ('GAHA840514MVZRRNXX','Ana María','García','Hernández','Av. Las Palmas #23, Veracruz, Ver.','F','2291848667','1984-05-14','2291757131','anamaríagarcía@bastianuniversities.mx', 'P001',3),
 ('LORJ731004HVZPZNXX','Juan Carlos','López','Ruiz','Calle 20 de Noviembre #45, Boca del Río, Ver.','M','2295931226','1973-10-04','2290435568','juancarloslópez@bastianuniversities.mx', 'P002', 2),
@@ -98,21 +99,21 @@ values
 (1, 'Informatica', 1, 'P006'),
 (2, 'Mecatronica', 1, 'P001');
 
-insert into alumno(curp, nombre, apellidoMaterno, apellidoPaterno, genero, fechaNacimiento, direccion, telefono, celular, email, matriculaAlumno, idCarrera, anoInscripcion, idEstatusAlumno, idProfesor)
+insert into alumno(curp, nombre, apellidoMaterno, apellidoPaterno, idGenero, fechaNacimiento, direccion, telefono, celular, email, matriculaAlumno, idCarrera, anoInscripcion, idEstatusAlumno, idProfesor)
 values
 ('MARA020226FVZRDNXX','Andrea Isabel','Martínez','Rodríguez','F','2002-02-26','Av. Díaz Mirón #123, Veracruz, Ver.','2299247773','2295858892','eB200001@bastianuniversities.mx','B200001','1','2020','1','P002'),
 ('TOHJ010909MVZRRNXX','Juan Antonio','Torres','Hernández','M','2001-09-09','Col. Progreso #67, Boca del Río, Ver.','2298879389','2295424305','eB200002@bastianuniversities.mx','B200002','2','2020','1','P005'),
 ('PERM020120FVZRMRXX','Mariana Alejandra','Pérez','Ramírez','F','2002-01-20','Fracc. El Dorado #9, Veracruz, Ver.','2293023852','2295643312','eB200003@bastianuniversities.mx','B200003','1','2020','1','P002'),
 ('GOPL020201MVZNRSXX','Luis Miguel','González','Pérez','M','2002-02-01','Calle 16 de Septiembre #87, Boca del Río, Ver.','2296754194','2293343720','eB200004@bastianuniversities.mx','B200004','2','2020','1','P005'),
 ('SEGD020720FVZNMNXX','Daniela','Sánchez','Gómez','F','2002-07-20','Av. Ruiz Cortines #54, Veracruz, Ver.','2298930812','2291974570','eB200005@bastianuniversities.mx','B200005','1','2020','1','P004'),
-('ROGJ031012MVZDRSXX','José Manuel','Rodríguez','García','M','2003-10-12','Col. Ricardo Flores Magón #23, Boca del Río, Ver.','2299932065','2297686695','eB200006@bastianuniversities.mx','B200006','2','2020','1','P003'),
+('ROGJ031012MVZDRSXX','José Manuel','Rodríguez','García','M','2002-10-12','Col. Ricardo Flores Magón #23, Boca del Río, Ver.','2299932065','2297686695','eB200006@bastianuniversities.mx','B200006','2','2020','1','P003'),
 ('TORP030623FVZRMLXX','Paola Alejandra','Torres','Romero','F','2003-06-23','Fracc. Costa Verde #14, Veracruz, Ver.','2291158867','2297048085','eB210001@bastianuniversities.mx','B210001','1','2021','1','P003'),
 ('GUPR030507MVZTRBXX','Roberto Carlos','Gutiérrez','Pérez','M','2003-05-07','Calle Orizaba #34, Boca del Río, Ver.','2296343147','2291924352','eB210002@bastianuniversities.mx','B210002','2','2021','1','P003'),
 ('ROHG030605FVZDRBXX','Gabriela','Rodríguez','Hernández','F','2003-06-05','Col. Playa Linda #56, Veracruz, Ver.','2296559634','2291543691','eB210003@bastianuniversities.mx','B210003','1','2021','1','P002'),
 ('MEFM030205MVZNLGXX','Miguel Ángel','Méndez','Flores','M','2003-02-05','Fracc. Lomas de Río Medio #8, Boca del Río, Ver.','2292418467','2296177107','eB210004@bastianuniversities.mx','B210004','2','2021','1','P003'),
-('GAML040817FVZRNRXX','Laura Elizabeth','García','Méndez','F','2004-08-17','Calle Álamo #23, Veracruz, Ver.','2298939512','2296481301','eB210005@bastianuniversities.mx','B210005','1','2021','1','P002'),
+('GAML040817FVZRNRXX','Laura Elizabeth','García','Méndez','F','2003-08-17','Calle Álamo #23, Veracruz, Ver.','2298939512','2296481301','eB210005@bastianuniversities.mx','B210005','1','2021','1','P002'),
 ('HETJ030730MVZRRNXX','Juan Francisco','Hernández','Torres','M','2003-07-30','Col. Mocambo #67, Boca del Río, Ver.','2295351945','2299922784','eB210006@bastianuniversities.mx','B210006','2','2021','1','P004'),
-('RALD050831FVZMPNXX','Diana Paola','Ramos','López','F','2005-08-31','Fracc. Jardines de Virginia #9, Veracruz, Ver.','2295050148','2299424254','eB220001@bastianuniversities.mx','B220001','1','2022','1','P002'),
+('RALD050831FVZMPNXX','Diana Paola','Ramos','López','F','2004-08-31','Fracc. Jardines de Virginia #9, Veracruz, Ver.','2295050148','2299424254','eB220001@bastianuniversities.mx','B220001','1','2022','1','P002'),
 ('TOMF040123MVZRRRXX','Fernando José','Torres','Martínez','M','2004-01-23','Calle Reforma #87, Boca del Río, Ver.','2291465033','2292867532','eB220002@bastianuniversities.mx','B220002','2','2022','1','P003'),
 ('AURM040421FVZGVLXX','Melissa Guadalupe','Aguilar','Rivera','F','2004-04-21','Col. Reforma #54, Veracruz, Ver.','2291428375','2297881312','eB220003@bastianuniversities.mx','B220003','1','2022','1','P001'),
 ('VAGS040226MVZRNLXX','Salvador Arturo','Vargas','González','M','2004-02-26','Fracc. Jardines del Virginia #23, Boca del Río, Ver.','2296421417','2293824520','eB220004@bastianuniversities.mx','B220004','2','2022','1','P005'),
@@ -154,12 +155,12 @@ values
 ('B02', 2, 'Edificio B', 6),
 ('B03', 2, 'Edificio B', 6);
 
-insert into curso(periodo, nrc, idEstatusCurso)
+insert into curso(idPeriodo, nrc, idEstatusCurso)
 values
 (20202, 121101, 2),
 (20202, 221101, 2),
 (20211, 111201, 1),
-(20211, 211201, 1),
+(20211, 211201, 1);
 
 insert into requicitoMateria(idMateria, idMateriaRequicito)
 values
@@ -205,11 +206,11 @@ values
 (3601, 2, 7),
 (3502, 2, 8);
 
---insert into cursoSalon(periodo, nrc, idSalon, hora, diaSemana)
---values
+insert into cursoSalon(periodo, nrc, idSalon, hora, diaSemana)
+values
 
--- into cursoAlumno(matriculaAlumno, periodo, nrc, idEstatusCursoAlumno, calificacion)
---values
+into cursoAlumno(matriculaAlumno, periodo, nrc, idEstatusCursoAlumno, calificacion)
+values
 
 --insert into incidencias(matriculaAlumno, periodo, nrc, fecha, incidencia)
 --values
@@ -251,3 +252,7 @@ values
 insert into loginAdministrador(usuarioAdministrador, contraseñaLoginAdministrador, estatusLoginAdministrador)
 values
 ('admin', 'admin', 1);
+
+insert into periodoActual(periodoActual)
+values
+(20202);

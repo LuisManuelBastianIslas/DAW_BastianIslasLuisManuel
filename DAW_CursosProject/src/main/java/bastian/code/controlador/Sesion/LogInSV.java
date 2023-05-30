@@ -21,14 +21,16 @@ public class LogInSV extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //Obtengo los datos del login
-        String usuario = (String) req.getParameter("usuario").toUpperCase();
+        String usuario = (String) req.getParameter("usuario");
         String contrasena = req.getParameter("contrasena");
 
         System.out.println("\n"+ usuario + " " + contrasena + "\nPara eliminar este mensaje, esta en LogInSV");
 
         //Identifico que tipo de usuatio es y redirecciono
         if ( usuario.toUpperCase().startsWith("B") && Character.isDigit( usuario.charAt(1) ) ) {
-            //Busca el login en alumno
+            usuario = usuario.toUpperCase();    //Lo pongo a mayucuslas por si lo escriben en minuscula
+
+            // Primero busca en loginAlumno
             if ( LoginDAO.existAlumno(usuario, contrasena) ) {
                 req.getSession().removeAttribute("Alumno");                             //Si es que habia una sesion anterior, la elimina
                 req.getSession().setAttribute("Alumno", AlumnoDAO.select(usuario));     //Paso como atributo el objeto Alumno
@@ -42,7 +44,21 @@ public class LogInSV extends HttpServlet {
             } else
                 resp.sendRedirect("index.jsp");
         } else if ( usuario.toUpperCase().startsWith("P") && Character.isDigit( usuario.charAt(1) ) ) {
-            
+            // Despues busca en loginProfesor
+
+        } else {
+            // Al final busca en loginAdministrador
+            if ( LoginDAO.existAdministrador(usuario, contrasena) ) {
+                req.getSession().setAttribute("TypeUser", "Administrador");              //Esto lo usaré como variable para ciertas redirecciones
+
+                //Remuevo los atributos que vienen del form anterior
+                req.removeAttribute("usuario");
+                req.removeAttribute("contrasena");
+
+                req.getRequestDispatcher("VistaAdministrador/IndexAdministrador.jsp").forward(req, resp);
+            }
+            else
+                resp.sendRedirect("index.jsp");
         }
     }
 }

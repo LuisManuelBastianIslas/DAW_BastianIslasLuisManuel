@@ -1,9 +1,12 @@
 package bastian.code.modelo;
 
+import bastian.code.datos.CatalogosDAO.PeriodoDAO;
 import bastian.code.modelo.CatalogosJB.GeneroJB;
+import bastian.code.modelo.CatalogosJB.PeriodoJB;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.Period;
 
 public class persona implements Serializable {
 
@@ -112,6 +115,19 @@ public class persona implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    /**
+     * Funciones calculadas
+     */
+    public int getEdad() {
+        int ano, mes, dia = 1;
+        PeriodoJB periodoActual = PeriodoDAO.getPeriodoActual();
+        ano = periodoActual.getAno();
+        mes = periodoActual.getMesPeriodo();
+        LocalDate hoy = LocalDate.of(ano, mes, dia);
+
+        return Period.between(fechaNacimiento, hoy).getYears();
     }
 
     @Override

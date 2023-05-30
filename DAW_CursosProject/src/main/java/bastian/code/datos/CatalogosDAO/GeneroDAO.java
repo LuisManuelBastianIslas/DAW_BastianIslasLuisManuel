@@ -62,6 +62,10 @@ public class GeneroDAO {
             throw new RuntimeException(e);
         }
 
+        Conexion.close(rs);
+        Conexion.close(ps);
+        Conexion.close(conn);
+
         return genero;
     }
 }

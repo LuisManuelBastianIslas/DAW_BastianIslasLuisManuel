@@ -33,6 +33,7 @@
                             <p>Apellidos:</p>
                             <p>Genero:</p>
                             <p>Fecha de Nacimiento:</p>
+                            <p>Edad:</p>
                             <p>Dirección:</p>
                             <p>Telefóno:</p>
                             <p>Celular:</p>
@@ -47,6 +48,7 @@
                                 out.println("<p>" + alumno.getApellidoPaterno() + " " + alumno.getApleiidoMaterno() + "</p>");
                                 out.println("<p>" + alumno.getGenero().getNombreGenero() + "</p>");
                                 out.println("<p>" + alumno.getFechaNacimiento() + "</p>");
+                                out.println("<p>" + alumno.getEdad() + "</p>");
                                 out.println("<p>" + alumno.getDireccion() + "</p>");
                                 out.println("<p>" + alumno.getTelefono() + "</p>");
                                 out.println("<p>" + alumno.getCelular() + "</p>");
@@ -58,6 +60,7 @@
 
                 <div id = "secondaryContent">
                       <h3>Otras funciones</h3>
+
                       <ul class="none">
                           <li><button type="submit" class = "leftButton" formaction="InfoPersonalAlumnoSV" formmethod="post">Informacion personal</button></li>
                           <li><button type="submit" class = "leftButton" <%--formaction="" formmethod="post" name="otro"--%>>Mis materias</button></li>

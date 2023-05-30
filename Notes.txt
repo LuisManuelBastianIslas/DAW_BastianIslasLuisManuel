@@ -8,7 +8,6 @@ en el proyecto. Tambien se incluyen notas.
 - Para las tablas "estatus" se les hizo un JB (Lo mismoq que tipo
   pero debido al nombre tuve que hacerlo aparte)
 - No se hizo JB de la tabla administrador (No creo no se ocupe)
-- No se hizo JB de la tabla catalogoEstudio (Creo no ocuparla)
 - No se hizo JB de la tabla curso (Tal vez no se ocupe)
 - No se hizo JB de la tabla cursoAlumno (Espero no ocuparla)
 - No se hizo JB de la tabla cursoSalon (Espero no ocuparka)
@@ -25,7 +24,6 @@ en el proyecto. Tambien se incluyen notas.
 *! Editar persona, no se esta caluculando la edad...
 
 *! Terminar el DAO de profesor
-	- Ver si se cambia el ID por String
 	Veo que hay muchas consultas diferentes que se pueden hacer
 	- Como obtener la cantidad de profesores
 
@@ -38,8 +36,6 @@ en el proyecto. Tambien se incluyen notas.
    TIP: usa String.replaceAll("'", "") antes de crear el PreparedStatement
 
 *! Verifica la parte de contraseñas. ¡Dejaste las ñ's, funciona, no se hasta que punto
-
-*? Crear DAO que modifique datos de la BD (periodoActual)
 
 * Se va a cambiar la parte de como una materia puede ser impartida en
   carreras distintas. Osea, otra tabla mas.

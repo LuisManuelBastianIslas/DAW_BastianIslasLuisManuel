@@ -57,6 +57,7 @@ create table genero(
 
 create table periodo(
 	idPeriodo int,
+	mesPerido int,
 	descripcionPeriodo varchar(15),
 	primary key (idPeriodo)
 );
@@ -164,16 +165,12 @@ create table requicitoMateria(
 
 create table estudio(
 	curp varchar(18) not null,
-	-- curpProfesor varchar(18) not null,
-	-- matriculaAlumno varchar(7) not null,
 	universidad text,
 	titulo text,
 	cedula varchar(7),
 	anoGraduacion int,
 	idTipoEstudio int not null,
 	foreign key (curp) references persona(curp),
-	-- foreign key (curpProfesor) references profesor(curpProfesor),
-	-- foreign key (matriculaAlumno) references alumno(matriculaAlumno),
 	foreign key (idTipoEstudio) references tipoEstudio(idTipoEstudio)
 );
 
@@ -224,8 +221,8 @@ create table incidencias(
 );
 
 -- ---------------------------------------------------------
--- Al final una tabla de administradores sin conexion a nada
--- porque harán todo desde los Servlets y JSPs
+-- Casi al final una tabla de administradores sin conexion a
+-- nada porque harán todo desde los Servlets y JSPs
 -- ---------------------------------------------------------
 create table administrador(
 	usuarioAdministrador text not null,
@@ -252,4 +249,12 @@ create table loginAdministrador(
 	contraseñaLoginAdministrador text not null,
 	estatusLoginAdministrador int not null,
 	foreign key (usuarioAdministrador) references administrador(usuarioAdministrador)
+);
+
+-- ---------------------------------------------------
+-- Finalmente, la tabla para gestionar el curso actual
+-- ---------------------------------------------------
+create table periodoActual(
+	periodoActual int,
+	foreign key (periodoActual) references periodo(idPeriodo)
 );

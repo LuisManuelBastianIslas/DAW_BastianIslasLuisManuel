@@ -1,11 +1,14 @@
 package bastian.code.modelo;
 
+import bastian.code.datos.CatalogosDAO.PeriodoDAO;
 import bastian.code.modelo.CatalogosJB.CarreraJB;
 import bastian.code.modelo.CatalogosJB.EstatusJB;
 import bastian.code.modelo.CatalogosJB.GeneroJB;
+import bastian.code.modelo.CatalogosJB.PeriodoJB;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.Period;
 
 public class AlumnoJB extends persona implements Serializable {
 
@@ -85,5 +88,20 @@ public class AlumnoJB extends persona implements Serializable {
 
     public String getIdProfesor() {
         return this.profesor.getIdProfesor();
+    }
+
+    /**
+     * Funciones calculadas
+     */
+    public int getSemestre() {
+        int anoActual, mesActual, dia = 1, mesIns = 8;
+        PeriodoJB periodoActual = PeriodoDAO.getPeriodoActual();
+        anoActual = periodoActual.getAno();
+        mesActual = periodoActual.getMesPeriodo();
+
+        LocalDate inscripcion = LocalDate.of(this.anoInscripcion, mesIns, dia);
+        LocalDate hoy = LocalDate.of(anoActual, mesActual, dia);
+
+        return ( Period.between( inscripcion, hoy ).getMonths() / 6 ) + 1;
     }
 }

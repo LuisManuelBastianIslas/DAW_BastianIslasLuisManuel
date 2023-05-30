@@ -49,4 +49,73 @@ public class LoginDAO {
 
         return res;
     }
+
+    public static boolean existProfesor(String user, String password) {
+        String query = selectSQL;
+
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Boolean res = false;
+
+        try {
+            conn = Conexion.getConnection();
+            query = query.replaceFirst("REP", "Profesor");
+            query = query.replaceFirst("REP", "usuarioProfesor");
+            query = query.replaceFirst("REP", "contraseñaLoginProfesor");
+            query = query.replaceFirst("REP", "Profesor");
+
+            ps = conn.prepareStatement(query);
+            ps.setString(1, user);
+            ps.setString(2, password);
+
+            rs = ps.executeQuery();
+
+            while (rs.next())
+                res = rs.getString("usuarioProfesor") != null;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        Conexion.close(rs);
+        Conexion.close(ps);
+        Conexion.close(conn);
+
+        return res;
+    }
+
+    public static boolean existAdministrador(String user, String password) {
+        String query = selectSQL;
+
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        boolean res = false;
+
+        try {
+            conn = Conexion.getConnection();
+            query = query.replaceFirst("REP", "Administrador");
+            query = query.replaceFirst("REP", "usuarioAdministrador");
+            query = query.replaceFirst("REP", "contraseñaLoginAdministrador");
+            query = query.replaceFirst("REP", "Administrador");
+
+            ps = conn.prepareStatement(query);
+            ps.setString(1, user);
+            ps.setString(2, password);
+
+            rs = ps.executeQuery();
+
+            while (rs.next())
+                res = rs.getString("usuarioAdministrador") != null;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        Conexion.close(rs);
+        Conexion.close(ps);
+        Conexion.close(conn);
+
+        return res;
+    }
 }

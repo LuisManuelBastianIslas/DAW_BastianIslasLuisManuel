@@ -74,5 +74,8 @@ public class AsignaturaDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
+        Conexion.close(ps);
+        Conexion.close(conn);
     }
 }

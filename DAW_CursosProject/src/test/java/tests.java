@@ -1,4 +1,6 @@
 import bastian.code.datos.Conexion;
+import bastian.code.datos.MateriaDAO;
+import bastian.code.modelo.MateriaJB;
 import org.apache.commons.dbcp2.BasicDataSource;
 
 import java.io.*;
@@ -42,10 +44,24 @@ public class tests {
         Conexion.close(conn);
          */
 
-        tockenizacion();
+        //tockenizacion();
 
-        for (int i = 1; i < 7; i++)
-            System.out.println("P" + String.format("%03d", i)); // Generacion de los codigos de los profesores
+        //for (int i = 1; i < 7; i++)
+        //    System.out.println("P" + String.format("%03d", i)); // Generacion de los codigos de los profesores
+
+        ArrayList<ArrayList<MateriaJB>> matrizMateria = new ArrayList<>();
+        matrizMateria.add( new ArrayList<>() );
+        matrizMateria.add( new ArrayList<>() );
+
+        matrizMateria.get(0).add( new MateriaJB() );
+        matrizMateria.get(1).add( new MateriaJB() );
+        matrizMateria.get(1).add( new MateriaJB() );
+
+        for (ArrayList<MateriaJB> materias : matrizMateria) {
+            System.out.println("-----");
+            for (MateriaJB materia : materias)
+                System.out.println("Hay una materia");
+        }
     }
 
     public static void tockenizacion() {

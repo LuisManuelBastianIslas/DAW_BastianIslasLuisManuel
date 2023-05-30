@@ -19,9 +19,17 @@ public class RedirectInicioSV extends HttpServlet {
             //Aqui removeré todos los atributos que vaya generando
 
 
+        }else if ( typeUser.equals("Profesor") ) {
+            //Aqui removeré todos los atributos que vaya generando
+
+
+        } else if ( typeUser.equals("Administrador") ) {
+            //Aqui removeré todos los atributos que vaya generando
+
+
         }
 
         //Al final redireccionaré por igual
-        req.getRequestDispatcher("VistaAlumno/Index" + typeUser + ".jsp").forward(req, resp);
+        req.getRequestDispatcher("Vista" + typeUser + "/Index" + typeUser + ".jsp").forward(req, resp);
     }
 }

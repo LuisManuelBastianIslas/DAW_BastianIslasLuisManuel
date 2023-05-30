@@ -52,7 +52,7 @@ public class CarreraDAO {
     }
 
     public static CarreraJB select(int IdCarerra) {
-        String query = selectSQL + "where idCarrera = " + "'"+IdCarerra+"'";
+        String query = selectSQL + " where idCarrera = " + "'"+IdCarerra+"'";
 
         Connection conn = null;
         PreparedStatement ps = null;
@@ -61,7 +61,7 @@ public class CarreraDAO {
 
         try {
             conn = Conexion.getConnection();
-            ps = conn.prepareStatement(selectSQL);
+            ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
 
             rs.next();
@@ -80,5 +80,64 @@ public class CarreraDAO {
         Conexion.close(conn);
 
         return carrera;
+    }
+
+    /**
+     * Operaciones que tienen que ver, pero no tanto
+     */
+    public static int getCantidadSemestres(int IdCarerra) {
+        String query =  "select max(semestre) as maxSemestre from materiaCarrera " +
+                        "where idCarrera = " +IdCarerra;
+
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        int maxSemestre = -1;   //No deberia de pasar este...
+
+        try {
+            conn = Conexion.getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+
+            while (rs.next())
+                maxSemestre = rs.getInt("maxSemestre");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        Conexion.close(rs);
+        Conexion.close(ps);
+        Conexion.close(conn);
+
+        return maxSemestre;
+    }
+
+    public static int getCantidadCreditos(int IdCarrera) {
+        String query =  "select sum(materia.creditos) as sumCreditos from materia " +
+                        "join materiaCarrera " +
+                        "on materia.idMateria = materiaCarrera.idMateria " +
+                        "where materiaCarrera.idCarrera = " + IdCarrera;
+
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        int cantidadCreditos = -1;  //Nomas para inicializarlo
+
+        try {
+            conn = Conexion.getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+
+            while (rs.next())
+                cantidadCreditos = rs.getInt("sumCreditos");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        Conexion.close(rs);
+        Conexion.close(ps);
+        Conexion.close(conn);
+
+        return cantidadCreditos;
     }
 }
