@@ -70,7 +70,7 @@ public class ProfesorDAO {
             conn = Conexion.getConnection();
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
-            System.out.println(ps.toString() + "\nPara eliminar este msg, esya en ProfesorDAO");
+
             while ( rs.next() ) {
                 String curp = rs.getString("curp");
                 String nombre = rs.getString("nombre");
@@ -94,6 +94,8 @@ public class ProfesorDAO {
         Conexion.close(rs);
         Conexion.close(ps);
         Conexion.close(conn);
+
+        System.out.println(profesor.getGenero().getIdGenero() + "\nPara eliminar esto, esta en ProfesorDAO");
 
         return profesor;
     }

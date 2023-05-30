@@ -1,6 +1,7 @@
 package bastian.code.controlador.Sesion;
 
 import bastian.code.datos.AlumnoDAO;
+import bastian.code.datos.ProfesorDAO;
 import bastian.code.datos.RelacionesDAO.LoginDAO;
 
 import javax.servlet.ServletException;
@@ -44,8 +45,17 @@ public class LogInSV extends HttpServlet {
             } else
                 resp.sendRedirect("index.jsp");
         } else if ( usuario.toUpperCase().startsWith("P") && Character.isDigit( usuario.charAt(1) ) ) {
-            // Despues busca en loginProfesor
+            usuario = usuario.toUpperCase();            //Lo pongo a mayucuslas por si lo escriben en minuscula
 
+            // Despues busca en loginProfesor
+            if ( LoginDAO.existProfesor(usuario, contrasena) ) {
+                req.getSession().removeAttribute("Profesor");
+                req.getSession().setAttribute("Profesor", ProfesorDAO.select(usuario));
+                req.getSession().setAttribute("TypeUser", "Profesor");
+
+                req.getRequestDispatcher("VistaProfesor/IndexProfesor.jsp").forward(req, resp);
+            } else
+                resp.sendRedirect("index.jsp");
         } else {
             // Al final busca en loginAdministrador
             if ( LoginDAO.existAdministrador(usuario, contrasena) ) {

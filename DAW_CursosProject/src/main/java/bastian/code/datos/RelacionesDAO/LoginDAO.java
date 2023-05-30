@@ -61,7 +61,7 @@ public class LoginDAO {
         try {
             conn = Conexion.getConnection();
             query = query.replaceFirst("REP", "Profesor");
-            query = query.replaceFirst("REP", "usuarioProfesor");
+            query = query.replaceFirst("REP", "idProfesor");
             query = query.replaceFirst("REP", "contraseñaLoginProfesor");
             query = query.replaceFirst("REP", "Profesor");
 
@@ -72,7 +72,7 @@ public class LoginDAO {
             rs = ps.executeQuery();
 
             while (rs.next())
-                res = rs.getString("usuarioProfesor") != null;
+                res = rs.getString("idProfesor") != null;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

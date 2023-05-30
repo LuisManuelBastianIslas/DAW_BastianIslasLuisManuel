@@ -17,12 +17,10 @@
         <br/>
         <form action="LogInSV" method="post" autocomplete="off" class="formJoin">
             <label>Usuario:</label>
-            <input type="text" name="usuario">
+            <input type="text" autofocus name="usuario">
             <label>Contraseña:</label>
             <input type="password" name="contrasena">
             <input type="submit" value="Iniciar Sesion">
         </form>
-        <a href="hello-servlet">Hello Servlet</a>
-
     </body>
 </html>

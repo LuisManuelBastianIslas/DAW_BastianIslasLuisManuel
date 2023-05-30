@@ -1,4 +1,5 @@
-<%@ page import="bastian.code.modelo.AlumnoJB" %><%--
+<%@ page import="bastian.code.modelo.AlumnoJB" %>
+<%--
   Solo despliega la informacion personal y si quiere modificarla el alumno, aqui puede
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -65,8 +66,8 @@
                           <li><button type="submit" class = "leftButton" formaction="InfoPersonalAlumnoSV" formmethod="post">Informacion personal</button></li>
                           <li><button type="submit" class = "leftButton" <%--formaction="" formmethod="post" name="otro"--%>>Mis materias</button></li>
                           <li><button type="submit" class = "leftButton" <%--formaction="" formmethod="post" name="otro"--%>>Inscripcion</button></li>
-                          <li><button type="submit" class = "leftButton" <%--formaction="" formmethod="post" name="otro"--%>>Informacion personal</button></li>
-                          <li><button type="submit" class = "leftButton" <%--formaction="" formmethod="post" name="otro"--%>>Ver materias</button></li>
+                          <li><button type="submit" class = "leftButton" <%--formaction="" formmethod="post" name="otro"--%>>Calificacionnes</button></li>
+                          <li><button type="submit" class = "leftButton" formaction="CurriculaSV" formmethod="post">Ver Curricula</button></li>
                       </ul>
                 </div>
 
