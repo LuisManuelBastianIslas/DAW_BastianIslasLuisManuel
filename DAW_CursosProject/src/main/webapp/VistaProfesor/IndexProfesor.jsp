@@ -35,15 +35,14 @@
             <form class="formButtons">
                 <table>
                     <tr>
-                        <td><button type="submit" class = "mainButton" <%--formaction="" formmethod="post" name="otro"--%>>Informacion personal</button></td>
+                        <td><button type="submit" class = "mainButton" formaction="InfoPersonalProfesorSV" formmethod="post">Informacion personal</button></td>
                         <td><button type="submit" class = "mainButton" <%--formaction="" formmethod="post" name="otro"--%>>Horario</button></td>
-                        <td><button type="submit" class = "mainButton" <%--formaction="" formmethod="post" name="otro"--%>>Tutorados</button></td>
                     </tr>
                 </table>
                 <table>
                     <tr>
+                        <td><button type="submit" class = "mainButton" <%--formaction="" formmethod="post" name="otro"--%>>Tutorados</button></td>
                         <td><button type="submit" class = "mainButton" <%--formaction="" formmethod="post" name="otro"--%>>Calificaciones</button></td>
-                        <td><button type="submit" class = "mainButton" <%--formaction="" formmethod="post" name="otro"--%>>Se me olvido jaja</button></td>
                     </tr>
                 </table>
             </form>
