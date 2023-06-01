@@ -307,9 +307,34 @@ a:hover
 	margin-left: 0%;
 }
 
+#paginacion {
+	width: 100%;
+	text-align: center;
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+#paginacion button[type=submit] {
+	color: #004778;
+	background: aliceblue;
+	padding: 1em;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+#paginacion button[type=submit].activo {
+	background: #004778;
+	color: aliceblue;
+}
+
+#paginacion button[type=submit]:hover:not(.activo) {
+	background: #006192;
+	color: aliceblue;
+}
+
 .center {
 	text-align: center;
-	padding-top: 1em;
+	padding-top: 2em;
 	padding-bottom: 1em;
 }
 

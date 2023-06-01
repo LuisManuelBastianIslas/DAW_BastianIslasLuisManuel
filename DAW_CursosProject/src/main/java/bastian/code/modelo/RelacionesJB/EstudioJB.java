@@ -1,6 +1,9 @@
 package bastian.code.modelo.RelacionesJB;
 
+import bastian.code.modelo.CatalogosJB.TipoJB;
+
 import java.io.Serializable;
+import java.time.Year;
 
 public class EstudioJB implements Serializable {
 
@@ -8,19 +11,17 @@ public class EstudioJB implements Serializable {
     private String universidad;
     private String titulo;
     private String cedula;
-    private int anoGraduacion;
-    private int idTipoEstudio;
-    private String nombreTipoEstudio;
+    private Year anoGraduacion;
+    private TipoJB tipoEstudio;
 
     public EstudioJB() {}
 
-    public EstudioJB(String universidad, String titulo, String cedula, int anoGraduacion, int idTipoEstudio, String nombreTipoEstudio) {
+    public EstudioJB(String universidad, String titulo, String cedula, Year anoGraduacion, TipoJB tipoEstudio) {
         this.universidad = universidad;
         this.titulo = titulo;
         this.cedula = cedula;
         this.anoGraduacion = anoGraduacion;
-        this.idTipoEstudio = idTipoEstudio;
-        this.nombreTipoEstudio = nombreTipoEstudio;
+        this.tipoEstudio = tipoEstudio;
     }
 
     public String getUniversidad() {
@@ -47,27 +48,19 @@ public class EstudioJB implements Serializable {
         this.cedula = cedula;
     }
 
-    public int getAnoGraduacion() {
+    public Year getAnoGraduacion() {
         return anoGraduacion;
     }
 
-    public void setAnoGraduacion(int anoGraduacion) {
+    public void setAnoGraduacion(Year anoGraduacion) {
         this.anoGraduacion = anoGraduacion;
     }
 
-    public int getIdTipoEstudio() {
-        return idTipoEstudio;
+    public TipoJB getTipoEstudio() {
+        return tipoEstudio;
     }
 
-    public void setIdTipoEstudio(int idTipoEstudio) {
-        this.idTipoEstudio = idTipoEstudio;
-    }
-
-    public String getNombreTipoEstudio() {
-        return nombreTipoEstudio;
-    }
-
-    public void setNombreTipoEstudio(String nombreTipoEstudio) {
-        this.nombreTipoEstudio = nombreTipoEstudio;
+    public void setTipoEstudio(TipoJB tipoEstudio) {
+        this.tipoEstudio = tipoEstudio;
     }
 }

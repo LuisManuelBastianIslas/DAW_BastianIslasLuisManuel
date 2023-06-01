@@ -54,7 +54,7 @@
                             %>
                         </div>
 
-                        <form action="EstudiosSV" method="post">
+                        <form action="EstudiosProfesorSV" method="post">
                             <input type="submit" value="Ver informacion Profesional">
                         </form>
                     </div>
