@@ -111,6 +111,52 @@ public class AlumnoDAO {
     //Llama a todos los alumnos de un "curso" en especifico
     //Llama a todos los alumnos de una generacion y carrera en especifico
 
+    //Llama a todos los alumnos tutorados de un profesor en comun
+    public static ArrayList<AlumnoJB> selectTutorados(String IdProfesor) {
+        String query =  selectSQL + " where idProfesor = " + "'"+IdProfesor+"'" +
+                        "order by anoInscripcion desc";
+
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        ArrayList<AlumnoJB> alumnos = new ArrayList<>();
+
+        try {
+            conn = Conexion.getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                String curp = rs.getString("curp");
+                String nombre = rs.getString("nombre");
+                String apellidoPaterno = rs.getString("apellidoPaterno");
+                String apleiidoMaterno = rs.getString("apellidoMaterno");
+                GeneroJB genero = GeneroDAO.select( rs.getString("idGenero") ); //Ya cambió a objeto :)
+                LocalDate fechaNacimiento = LocalDate.parse(rs.getString("fechaNacimiento"));
+                String direccion = rs.getString("direccion");
+                String telefono = rs.getString("telefono");
+                String celular = rs.getString("celular");
+                String email = rs.getString("email");
+                String matriculaAlumno = rs.getString("matriculaAlumno");
+                CarreraJB carrera = CarreraDAO.select(rs.getInt("idCarrera"));
+                int anoInscripcion = rs.getInt("anoInscripcion");
+                EstatusJB estatusAlumno = EstatusDAO.select("Alumno", rs.getInt("idEstatusAlumno"));
+                ProfesorJB profesor = ProfesorDAO.select( rs.getString("idProfesor") );
+
+                AlumnoJB alumno = new AlumnoJB(curp, nombre, apellidoPaterno, apleiidoMaterno, genero, fechaNacimiento, direccion, telefono, celular, email, matriculaAlumno, carrera, anoInscripcion, estatusAlumno, profesor);
+                alumnos.add(alumno);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        Conexion.close(rs);
+        Conexion.close(ps);
+        Conexion.close(conn);
+
+        return alumnos;
+    }
+
     /**
      * Tratare de ver si me es posible haces sus variantes entre los distintos status...
      */
