@@ -21,7 +21,7 @@ public class CurriculaSV extends HttpServlet {
         ArrayList<ArrayList<MateriaJB>> matrizMaterias = null;
         int idCarrera = -1;
 
-        if (typeUser.equals("Alumno")) {
+        if ( req.getSession().getAttribute("Alumno") != null ) {
             req.setAttribute("Carrera", ((AlumnoJB)req.getSession().getAttribute("Alumno")).getCarrera() );
             idCarrera = ((AlumnoJB)req.getSession().getAttribute("Alumno")).getIdCarrera();
         } else if (typeUser.equals("Profesor")) {

@@ -22,6 +22,7 @@ public class RedirectInicioSV extends HttpServlet {
         }else if ( typeUser.equals("Profesor") ) {
             //Aqui removeré todos los atributos que vaya generando
             req.getSession().removeAttribute("estudios");
+            req.getSession().removeAttribute("Alumno");
 
         } else if ( typeUser.equals("Administrador") ) {
             //Aqui removeré todos los atributos que vaya generando

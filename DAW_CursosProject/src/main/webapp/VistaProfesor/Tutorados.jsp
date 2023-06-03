@@ -26,15 +26,18 @@
                     <div id = "primaryContent">
                         <h2 class = "center">Tutorados</h2>
 
-                        <form class = "formButtons">
+                        <form action="IndexTutoradoSV" method="post" class = "formButtons">
                             <%
                                 ArrayList<AlumnoJB> tutorados = (ArrayList<AlumnoJB>) request.getAttribute("Tutorados");
                                 for (AlumnoJB alumno : tutorados)
-                                    out.println( "<button type=\"submit\" class=\"tutoradoBT\"><pre>" +
+                                    out.println( "<button name=\"Matricula\" type=\"submit\" value=\"" + alumno.getMatriculaAlumno() + "\" class=\"tutoradoBT\"><pre>" +
                                                         alumno.getNombre() + "\n" +
                                                         alumno.getApellidoPaterno() + "\n" +
                                                         alumno.getApleiidoMaterno() + "\n" +
                                                         alumno.getCarrera().getNombreCarrera() + "\n" +
+                                                        "Generación " + alumno.getMatriculaAlumno().substring(0,3) + "\n" +
+                                                        "Semestre " + alumno.getSemestre() + "\n" +
+                                                        alumno.getEstatusAlumno().getNombre() + "\n" +
                                                         "</pre></button>");
                             %>
                         </form>
