@@ -34,7 +34,13 @@
                     <tr>
                         <td><button type="submit" class = "mainButton" formaction="InfoPersonalAlumnoSV" formmethod="post">Informacion personal</button></td>
                         <td><button type="submit" class = "mainButton" <%--formaction="" formmethod="post" name="otro"--%>>Mis materias</button></td>
-                        <td><button type="submit" class = "mainButton" <%--formaction="" formmethod="post" name="otro"--%>>Inscripcion</button></td>
+                        <%--    Si es un prfesor quien esta acceidiendo a esta vista, este boton esta bloqueado --%>
+                        <%
+                            if ( ((String)request.getSession().getAttribute("TypeUser")).equals("Alumno") )
+                                out.println("<td><button type=\"submit\" class = \"mainButton\" formaction=\"\" formmethod=\"post\">Inscripcion</button></td>");
+                            else
+                                out.println("<td><button disabled type=\"submit\" class = \"mainButton\" formaction=\"\" formmethod=\"post\">Inscripcion</button></td>");
+                        %>
                     </tr>
                 </table>
                 <table>
