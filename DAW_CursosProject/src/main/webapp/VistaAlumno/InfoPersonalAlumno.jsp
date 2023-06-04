@@ -56,6 +56,10 @@
                                 out.println("<p>" + alumno.getEmail() + "</p>");
                             %>
                         </div>
+
+                        <form action="EstudioAlumnoSV" method="post">
+                            <input type="submit" value="Ver informacion Profesional">
+                        </form>
                     </div>
                 </div>
 

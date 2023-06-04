@@ -35,8 +35,12 @@ en el proyecto. Tambien se incluyen notas.
 
 *! Verifica la parte de contraseñas. ¡Dejaste las ñ's, funciona, no se hasta que punto
 
+*! Estudios necesita un id, si bien no es necesaria una llave primaria, necesita in id
+   (o un valor que no se modifique) para usarlo como referencia para los update...
+
 *! No se te olvide hacer las partes de editar y añadir de:
 	- Estudios profesor (añadir y editar y tal vez eliminar)
+	- Estudios alumno (añadir y editar y tal vez eliminar)
 	- Datos personales profesor (editar)
 	- Datos personales alumno (editar)
 
