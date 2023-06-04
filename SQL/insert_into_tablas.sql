@@ -168,9 +168,11 @@ values
 (3301, 3101),
 (3502, 3601);
 
---insert into estudio(curp, universidad, titulo, cedula, anoGraduacion, idTipoEstudio)
---values
---;
+-- Por el momento, solo los profesores tienen estudios...
+insert into estudio(idProfesor, universidad, titulo, cedula, anoGraduacion, idTipoEstudio)
+values
+('P001', 'Universidad X', 'Licendiado en Gramatica', 1234567, 1980, 1);
+('P001', 'Universidad Y', 'Maestria en Lenguistica ', 7654321, 1985, 3);
 
 insert into materiaProfesor(idProfesor, idMateria)
 values

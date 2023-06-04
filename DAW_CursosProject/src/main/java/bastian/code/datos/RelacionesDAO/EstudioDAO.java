@@ -14,8 +14,10 @@ public class EstudioDAO {
     private static final String selectSQL = "select * from estudio";
 
     // Se obtiene un ArrayList<> de los estudios de una persona. Ya ordenado ;)
-    public static ArrayList<EstudioJB> select(String curp) {
-        String query =  selectSQL + " where curp = " + "'"+curp+"' " +
+    public static ArrayList<EstudioJB> select(String Id) {
+        //Con este cambio deberia de funcionar igual, tanto para un alumno, como para in profesor
+        String typeUser = Id.length() == 4 ? "idProfesor" : "matriculaAlumno";
+        String query =  selectSQL + " where " + typeUser + " = " + "'"+Id+"' " +
                         "order by anoGraduacion desc";
 
         Connection conn = null;
@@ -27,7 +29,7 @@ public class EstudioDAO {
             conn = Conexion.getConnection();
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
-
+            System.out.println(ps.toString() + "\nPara eliminar esto, esta en EstudioDAO");
             while(rs.next()) {
                 String universidad = rs.getString("universidad");
                 String titulo = rs.getString("titulo");
@@ -45,6 +47,10 @@ public class EstudioDAO {
         Conexion.close(rs);
         Conexion.close(ps);
         Conexion.close(conn);
+
+        for (EstudioJB estudio : estudios)
+            System.out.println(estudio);
+        System.out.println("Para eliminar esto, esta en EstudioDAO");
 
         return estudios;
     }

@@ -6,6 +6,10 @@
         <title>Estudios</title>
 
         <link href="default.css" rel="stylesheet"/>
+
+        <%
+            boolean isEmpty = ((ArrayList<EstudioJB>)request.getSession().getAttribute("estudios")).isEmpty();
+        %>
     </head>
 
     <body>
@@ -26,51 +30,57 @@
                     <div id = "primaryContent">
                         <h2 class = "center">Informacion Profesional</h2>
 
+                        <form action="CRUDEstudioSV" method="post" class="crudform">
+                            <button type="submit" name="action" value="agregar" class="first">Agregar nuevo</button>
+                            <button type="submit" name="action" value="modificar">Modificar actual</button>
+                            <button type="submit" name="action" value="eliminar">Eliminar actual</button>
+                        </form>
+
                         <div id = "leftColumn">
-                            <p>Universidad:</p>
-                            <p>Titulo:</p>
-                            <p>Cedula:</p>
-                            <p>Año de Graduación:</p>
-                            <p>Estudio:</p>
+                            <%
+                                if (!isEmpty) {
+                                    out.println("<p>Universidad:</p>");
+                                    out.println("<p>Titulo:</p>");
+                                    out.println("<p>Cedula:</p>");
+                                    out.println("<p>Año de Graduación:</p>");
+                                    out.println("<p>Estudio:</p>");
+                                }
+                            %>
                         </div>
 
                         <div id = "rightColumn">
-                            <p>Something</p>
-                            <p>Something</p>
-                            <p>Something</p>
-                            <p>Something</p>
-                            <p>Something</p>
-                            <%--<%
-                                EstudioJB estudio = ((ArrayList<EstudioJB>)request.getSession().getAttribute("estudios")).get((Integer) request.getAttribute("indexEstudio"));
-                                out.println("<p>" + estudio.getUniversidad() + "</p>");
-                                out.println("<p>" + estudio.getTitulo() + "</p>");
-                                out.println("<p>" + estudio.getCedula() + "</p>");
-                                out.println("<p>" + estudio.getAnoGraduacion() + "</p>");
-                                out.println("<p>" + estudio.getTipoEstudio().getNombre() + "</p>");
-                            %>--%>
+                            <%
+                                if (!isEmpty) {
+                                    EstudioJB estudio = ((ArrayList<EstudioJB>) request.getSession().getAttribute("estudios")).get((Integer) request.getAttribute("indexEstudio") - 1);
+                                    out.println("<p>" + estudio.getUniversidad() + "</p>");
+                                    out.println("<p>" + estudio.getTitulo() + "</p>");
+                                    out.println("<p>" + estudio.getCedula() + "</p>");
+                                    out.println("<p>" + estudio.getAnoGraduacion() + "</p>");
+                                    out.println("<p>" + estudio.getTipoEstudio().getNombre() + "</p>");
+                                }
+                            %>
                         </div>
 
                         <div id = "paginacion">
-                            <%
-                                int selected = (Integer) request.getAttribute("indexEstudio");
-                                for (int i = 1; i <= 5; i++) {
-                                    if (i == selected)
-                                        out.println("<button type=\"submit\" formaction=\"EstudiosProfesorSV\" formmethod=\"post\" class=\"activo\" name=\"indexEstudio\" value=\"" + i + "\">" + i + "</button>");
-                                    else
-                                        out.println("<button type=\"submit\" formaction=\"EstudiosProfesorSV\" formmethod\"post\" name=\"indexEstudio\" value=\"" + i + "\">" + i + "</button>");
-                                }
-                            %>
-                            <%--<%
-                                int cantEstudios =  ((ArrayList<EstudioJB>) request.getSession().getAttribute("estudios")).size();
-                                int selected = (Integer) request.getAttribute("indexEstudio");
-                                for (int i = 0; i < cantEstudios; i++) {
-                                    if (i+1 == selected)
-                                        out.println("<a href=\"EstudiosProfesorSV\" class=\"activo\">" + i+1 + "</a>");
-                                    else
-                                        out.println("<a href=\"EstudiosProfesorSV\">" + i+1 + "</a>");
-                                }
-                            %>--%>
+                            <form action="EstudioProfesorSV" method="post">
+                                <%
+                                    int cantEstudios =  ((ArrayList<EstudioJB>) request.getSession().getAttribute("estudios")).size();
+                                    int selected = (Integer) request.getAttribute("indexEstudio");
+                                    for (int i = 1; i <= cantEstudios; i++) {
+                                        if (i == selected)
+                                            out.println("<button type=\"submit\" class=\"activo\" name=\"indexEstudio\" value=\"" + i + "\">" + i + "</button>");
+                                        else
+                                            out.println("<button type=\"submit\" name=\"indexEstudio\" value=\"" + i + "\">" + i + "</button>");
+                                    }
+                                %>
+                            </form>
                         </div>
+
+                        <%--    Al final, si esta vacio, muestra el mesnaje --%>
+                        <%
+                            if (isEmpty)
+                                out.println("<h3 class = \"center\">No tienes estudios cargados, itenta ingresar uno nuevo</h3>");
+                        %>
                     </div>
                 </div>
 

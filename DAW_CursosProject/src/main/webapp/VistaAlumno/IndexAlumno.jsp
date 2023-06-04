@@ -39,7 +39,7 @@
                             if ( ((String)request.getSession().getAttribute("TypeUser")).equals("Alumno") )
                                 out.println("<td><button type=\"submit\" class = \"mainButton\" formaction=\"\" formmethod=\"post\">Inscripcion</button></td>");
                             else
-                                out.println("<td><button disabled type=\"submit\" class = \"mainButton\" formaction=\"\" formmethod=\"post\">Inscripcion</button></td>");
+                                out.println("<td><button disabled type=\"submit\" class = \"mainButton\">Inscripcion</button></td>");
                         %>
                     </tr>
                 </table>

@@ -36,7 +36,7 @@ en el proyecto. Tambien se incluyen notas.
 *! Verifica la parte de contraseñas. ¡Dejaste las ñ's, funciona, no se hasta que punto
 
 *! No se te olvide hacer las partes de editar y añadir de:
-	- Estudios profesor (añadir y editar)
+	- Estudios profesor (añadir y editar y tal vez eliminar)
 	- Datos personales profesor (editar)
 	- Datos personales alumno (editar)
 

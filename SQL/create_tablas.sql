@@ -164,13 +164,17 @@ create table requicitoMateria(
 );
 
 create table estudio(
-	curp varchar(18) not null,
+	--curp varchar(18) not null,
+	idProfesor varchar (4),
+	matriculaAlumno varchar(7),
 	universidad text,
 	titulo text,
 	cedula varchar(7),
 	anoGraduacion int,
 	idTipoEstudio int not null,
-	foreign key (curp) references persona(curp),
+	--foreign key (curp) references persona(curp),
+	foreign key (idProfesor) references profesor(idProfesor),
+	foreign key (matriculaAlumno) references alumno(matriculaAlumno),
 	foreign key (idTipoEstudio) references tipoEstudio(idTipoEstudio)
 );
 

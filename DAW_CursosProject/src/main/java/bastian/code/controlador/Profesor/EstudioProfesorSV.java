@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
-@WebServlet(name ="EstudiosProfesorSV", urlPatterns = {"/EstudiosProfesorSV"} )
+@WebServlet(name ="EstudiosProfesorSV", urlPatterns = {"/EstudioProfesorSV"} )
 public class EstudioProfesorSV extends HttpServlet {
 
     @Override
@@ -22,15 +22,19 @@ public class EstudioProfesorSV extends HttpServlet {
 
         //Primero, comprueba si ya esxiste, si no la genera
         if ( req.getSession().getAttribute("estudios") == null) {
-            ArrayList<EstudioJB> estudios = EstudioDAO.select( ((ProfesorJB)req.getSession().getAttribute("Profesor")).getCurp() );
+            ArrayList<EstudioJB> estudios = EstudioDAO.select( ((ProfesorJB)req.getSession().getAttribute("Profesor")).getIdProfesor() );
             req.getSession().setAttribute("estudios", estudios);
             // Me daban ganas de hacerlo todo en una sola linea
             // Pero sabia que seria muy larga la sentencia... jaja
         }
 
         //Lo mismo para la parte del index
-        if ( req.getAttribute("indexEstudio") == null )
+        if ( req.getParameter("indexEstudio") == null )
             req.setAttribute("indexEstudio", 1);
+        else {
+            int index = Integer.parseInt(req.getParameter("indexEstudio"));
+            req.setAttribute("indexEstudio", index);
+        }
 
         req.getRequestDispatcher("VistaProfesor/Estudios.jsp").forward(req, resp);
     }
