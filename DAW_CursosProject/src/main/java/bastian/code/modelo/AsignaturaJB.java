@@ -1,22 +1,25 @@
 package bastian.code.modelo;
 
+import bastian.code.datos.MateriaDAO;
+import bastian.code.datos.ProfesorDAO;
+
 import java.io.Serializable;
 
 public class AsignaturaJB implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private int nrc;
-    private MateriaJB materia;
-    private ProfesorJB profesor;
+    private int idMateria;
+    private String idProfesor;
     private int cupoMinimo;
     private int cupoMaximo;
 
     public AsignaturaJB() {}
 
-    public AsignaturaJB(int nrc, MateriaJB materia, ProfesorJB profesor, int cupoMinimo, int cupoMaximo) {
+    public AsignaturaJB(int nrc, int idMateria, String idProfesor, int cupoMinimo, int cupoMaximo) {
         this.nrc = nrc;
-        this.materia = materia;
-        this.profesor = profesor;
+        this.idMateria = idMateria;
+        this.idProfesor = idProfesor;
         this.cupoMinimo = cupoMinimo;
         this.cupoMaximo = cupoMaximo;
     }
@@ -30,27 +33,27 @@ public class AsignaturaJB implements Serializable {
     }
 
     public int getIdMateria() {
-        return this.materia.getIdMateria();
+        return this.idMateria;
+    }
+
+    public void setIdMateria(int idMateria) {
+        this.idMateria = idMateria;
     }
 
     public MateriaJB getMateria() {
-        return materia;
+        return MateriaDAO.select(this.idMateria);
     }
 
-    public void setMateria(MateriaJB materia) {
-        this.materia = materia;
-    }
-
-    public ProfesorJB getProfesor() {
-        return profesor;
-    }
-
-    public void setProfesor(ProfesorJB profesor) {
-        this.profesor = profesor;
+    public void setIdProfesor(String idProfesor) {
+        this.idProfesor = idProfesor;
     }
 
     public String getIdProfesor() {
-        return this.profesor.getIdProfesor();
+        return this.idProfesor;
+    }
+
+    public ProfesorJB getProfesor() {
+        return ProfesorDAO.select(this.idProfesor);
     }
 
     public int getCupoMinimo() {

@@ -4,6 +4,7 @@ import bastian.code.modelo.AsignaturaJB;
 import bastian.code.modelo.MateriaJB;
 import bastian.code.modelo.ProfesorJB;
 
+import java.io.Serializable;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -30,28 +31,65 @@ public class AsignaturaDAO {
             while (rs.next()) {
                 int nrc = rs.getInt("nrc");
                 int idMateria = rs.getInt("idMateria");
-                String curpPorfesor = rs.getString("curpProfesor");
+                String idProfesor = rs.getString("idProfesor");
                 int cupoMinimo = rs.getInt("cupoMinimo");
                 int cupoMaximo = rs.getInt("cupoMaximo");
-                MateriaJB materia = MateriaDAO.select(idMateria);
-                ProfesorJB profesor = new ProfesorJB();   //Aun en proceso  ////No se te olvide!!!
 
-                AsignaturaJB asignatura = new AsignaturaJB(nrc, materia, profesor, cupoMinimo, cupoMaximo);
+                AsignaturaJB asignatura = new AsignaturaJB(nrc, idMateria, idProfesor, cupoMinimo, cupoMaximo);
                 asignaturas.add(asignatura);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
+        Conexion.close(rs);
+        Conexion.close(ps);
+        Conexion.close(conn);
+
         return asignaturas;
     }
 
     //Una asignatura en especifico
+    public static AsignaturaJB select(int NRC) {
+        String query = selectSQL + " where nrc = " + NRC;
+
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        AsignaturaJB asignatura = null;
+
+        try {
+            conn = Conexion.getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                int nrc = rs.getInt("nrc");
+                int idMateria = rs.getInt("idMateria");
+                String idProfesor = rs.getString("idProfesor");
+                int cupoMinimo = rs.getInt("cupoMinimo");
+                int cupoMaximo = rs.getInt("cupoMaximo");
+
+                asignatura = new AsignaturaJB(nrc, idMateria, idProfesor, cupoMinimo, cupoMaximo);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        Conexion.close(rs);
+        Conexion.close(ps);
+        Conexion.close(conn);
+
+        return asignatura;
+    }
 
     //Lista las asignaturas que impate un Profesor en especifico
     //Lista las asignaturas que son de una materia en especifico
     //Lista las asignaturas que son de una carrera en especifico
     //Lista las asignaturas que son de una carrera en especifico y para un semestre en especifico
+
+    //Lista las asignaturas que son de un alumno en especifico en un periodo en especifico
+
 
     /**
      * SEGUNDA PARTE: Funciones con insertSQL
