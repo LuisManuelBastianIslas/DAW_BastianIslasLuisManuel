@@ -14,7 +14,7 @@ en el proyecto. Tambien se incluyen notas.
 - Para la tabla requicito materia se usa el mismo JB que materia
 
 -- Asignatura tiene el nuevo formato de extraccion de informacion con DAOs
--- CursoAlumno tiene el nuevo formato de extraccion de informacion con DAOs	<- Tiene periodo en lugar de idPeriodo
+-- CursoAlumno tiene el nuevo formato de extraccion de informacion con DAOs
 -- CursoSalon tiene el nuevo formato de extraccion de informacion con DAOs
 
 *! Terminar el DAO de asignatura

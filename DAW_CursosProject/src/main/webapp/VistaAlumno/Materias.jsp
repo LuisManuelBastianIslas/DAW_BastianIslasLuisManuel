@@ -1,11 +1,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="bastian.code.modelo.RelacionesJB.CursoAlumnoJB" %>
-<%@ page import="java.util.Map" %>
 <%@ page import="bastian.code.modelo.ProfesorJB" %>
 <%@ page import="bastian.code.modelo.RelacionesJB.CursoSalonJB" %>
-<%@ page import="java.util.List" %>
-<%@ page import="java.util.stream.Collectors" %>
-<%@ page import="bastian.code.datos.RelacionesDAO.CursoAlumnoDAO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
     <head>
@@ -53,6 +49,7 @@
                                         out.println("<br>");
 
                                         out.println("<p>" + "Salon(es): " + curso.getSalones() + "</p></div></div>");
+                                        //out.println("<p>" + "Estatus: " + curso.getCurso().getEstatusCurso.getNombre() + "</p>"); //Proximamente
                                     }
                                 }
                             %>

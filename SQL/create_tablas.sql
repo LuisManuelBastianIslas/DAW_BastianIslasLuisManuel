@@ -206,12 +206,12 @@ create table cursoSalon(
 
 create table cursoAlumno(	-- De esta se saca el cardex
 	matriculaAlumno varchar(7) not null,
-	periodo int not null,
+	idPeriodo int not null,
 	nrc int not null,
 	idEstatusCursoAlumno int not null,
 	calificacion int,
 	foreign key (matriculaAlumno) references alumno(matriculaAlumno),
-	foreign key (periodo, nrc) references curso(idPeriodo, nrc),
+	foreign key (idPeriodo, nrc) references curso(idPeriodo, nrc),
 	foreign key (idEstatusCursoAlumno) references estatusCursoAlumno(idEstatusCursoAlumno)
 );
 

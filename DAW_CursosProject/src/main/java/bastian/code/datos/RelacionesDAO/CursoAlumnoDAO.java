@@ -12,7 +12,10 @@ public class CursoAlumnoDAO {
     private static final String selectSQL = "select * from cursoAlumno";
 
     public static ArrayList<CursoAlumnoJB> select(String MatriculaAlumno) {
-        String query = selectSQL + " where matriculaAlumno = " + "'"+MatriculaAlumno+"' and periodo = " + PeriodoDAO.getPeriodoActual().getIdPeriodo();
+        String query =  selectSQL +
+                        " join curso " +
+                        " on cursoAlumno.nrc = curso.nrc and cursoAlumno.idPeriodo = curso.idPeriodo" +
+                        " where matriculaAlumno = " + "'"+MatriculaAlumno+"' and cursoAlumno.idPeriodo = " + PeriodoDAO.getPeriodoActual().getIdPeriodo();
 
         Connection conn = null;
         PreparedStatement ps = null;
@@ -26,7 +29,7 @@ public class CursoAlumnoDAO {
             System.out.println(ps.toString() + "\nPara eliminar esto, estas en CursoAlumnoDAO");
             while (rs.next()) {
                 String matriculaAlumno = rs.getString("matriculaAlumno");
-                int idPeriodo = rs.getInt("periodo");
+                int idPeriodo = rs.getInt("idPeriodo");
                 int NRC = rs.getInt("nrc");
                 int idEstatusCursoAlumno = rs.getInt("idEstatusCursoAlumno");
                 int calificacion = rs.getInt("calificacion");

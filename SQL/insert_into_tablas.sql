@@ -41,7 +41,8 @@ insert into estatusCurso(nombreEstatusCurso)
 values
 ('Pendiente'),
 ('En curso'),
-('Finalizado');
+('Finalizado').
+('Terminado');
 
 insert into estatusAlumno(nombreEstatusAlumno)
 values

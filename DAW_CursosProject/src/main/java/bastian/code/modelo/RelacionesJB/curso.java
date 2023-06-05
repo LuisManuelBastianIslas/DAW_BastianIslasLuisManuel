@@ -43,4 +43,10 @@ public class curso implements Serializable {
     public AsignaturaJB getAsignatura() {
         return AsignaturaDAO.select(this.nrc);
     }
+
+    /*  Proximamente
+    public CursoJB getCurso() {
+        return CursoDAO.select(this.nrc);
+    }
+     */
 }
