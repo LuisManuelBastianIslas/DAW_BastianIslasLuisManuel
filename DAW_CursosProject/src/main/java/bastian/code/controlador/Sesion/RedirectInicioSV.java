@@ -17,12 +17,15 @@ public class RedirectInicioSV extends HttpServlet {
 
         if ( typeUser.equals("Alumno") ) {
             //Aqui removeré todos los atributos que vaya generando
+            req.removeAttribute("Cursos");
 
 
         }else if ( typeUser.equals("Profesor") ) {
             //Aqui removeré todos los atributos que vaya generando
             req.getSession().removeAttribute("estudios");
             req.getSession().removeAttribute("Alumno");
+
+            req.removeAttribute("Cursos");
 
         } else if ( typeUser.equals("Administrador") ) {
             //Aqui removeré todos los atributos que vaya generando

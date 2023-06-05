@@ -34,22 +34,26 @@
                         <div id = "box">
                             <%
                                 ArrayList<CursoAlumnoJB> cursos = (ArrayList<CursoAlumnoJB>) request.getAttribute("Cursos");
-                                for (CursoAlumnoJB curso : cursos) {
-                                    ProfesorJB profesor = curso.getAsignatura().getProfesor();
-                                    ArrayList<CursoSalonJB> horarios = curso.getCursoSalon();
+                                if (cursos.isEmpty()) {
+                                    out.println("<h3 class=\"center\">No hay materias cargadas para este semestre aun</h3>");
+                                } else {
+                                    for (CursoAlumnoJB curso : cursos) {
+                                        ProfesorJB profesor = curso.getAsignatura().getProfesor();
+                                        ArrayList<CursoSalonJB> horarios = curso.getCursoSalon();
 
-                                    out.println("<div id = \"materiaContainer\"><div id = \"materia\">");
-                                    out.println("<p>" + curso.getNRC() + " - " + curso.getAsignatura().getMateria().getNombreMateria() + "</p>");
-                                    out.println("<br>");
-                                    out.println("<p>" + "Acad. " + profesor.getFullNameByApellidos() + "</p>");
-                                    out.println("<p>" + "Correo: " + profesor.getEmail() + "</p>");
-                                    out.println("<br>");
+                                        out.println("<div id = \"materiaContainer\"><div id = \"materia\">");
+                                        out.println("<p>" + curso.getNRC() + " - " + curso.getAsignatura().getMateria().getNombreMateria() + "</p>");
+                                        out.println("<br>");
+                                        out.println("<p>" + "Acad. " + profesor.getFullNameByApellidos() + "</p>");
+                                        out.println("<p>" + "Correo: " + profesor.getEmail() + "</p>");
+                                        out.println("<br>");
 
-                                    for (CursoSalonJB h : horarios)
-                                        out.println("<p>" + h.getDiaSemana() + " " + h.getHorario() + "\n" + "</p>");
-                                    out.println("<br>");
+                                        for (CursoSalonJB h : horarios)
+                                            out.println("<p>" + h.getDiaSemana() + " " + h.getHorario() + "\n" + "</p>");
+                                        out.println("<br>");
 
-                                    out.println("<p>" + "Salon(es): " + curso.getSalones() + "</p></div></div>");
+                                        out.println("<p>" + "Salon(es): " + curso.getSalones() + "</p></div></div>");
+                                    }
                                 }
                             %>
                         </div>
@@ -58,6 +62,14 @@
 
                 <div id = "secondaryContent">
                     <h3>Otras Funciones</h3>
+
+                    <ul class="none">
+                        <li><button type="submit" class = "leftButton" formaction="InfoPersonalAlumnoSV" formmethod="post">Informacion personal</button></li>
+                        <li><button type="submit" class = "leftButton" formaction="MateriasSV" formmethod="post">Mis materias</button></li>
+                        <li><button type="submit" class = "leftButton" <%--formaction="" formmethod="post" name="otro"--%>>Inscripcion</button></li>
+                        <li><button type="submit" class = "leftButton" <%--formaction="" formmethod="post" name="otro"--%>>Calificacionnes</button></li>
+                        <li><button type="submit" class = "leftButton" formaction="CurriculaSV" formmethod="post">Ver Curricula</button></li>
+                    </ul>
                 </div>
 
                 <div class="clear"></div>
@@ -67,35 +79,3 @@
         </div>
     </body>
 </html>
-
-<%--<%!
-    // Se que me estoy enredando con los nombres..
-    // Posiblemente ni yo mismo recuerde porque lo hice asi...
-    private String imprimirMaterias(ArrayList<CursoAlumnoJB> cursos) {
-        List<String> materias = cursos.stream()
-                .map(mt -> {                                            // Primero lo convierto al string del contenido y añadiendo html
-                    ProfesorJB profesor = mt.getAsignatura().getProfesor();
-                    ArrayList<CursoSalonJB> horarios = mt.getCursoSalon();
-
-                    String horario = "";
-                    for (CursoSalonJB h : horarios)
-                        horario += h.getDiaSemana() + " " + h.getHorario() + "\n";
-
-                    return  "<p>" + mt.getNRC() + " - " + mt.getAsignatura().getMateria().getNombreMateria() + "</p>" +
-                            "<pre>" +
-                            "Acad. " + profesor.getFullNameByApellidos() + "\n" +
-                            "Correo: " + profesor.getEmail() + "\n" +
-                            horario + "\n" +
-                            "Salon(es): " + mt.getSalones() +
-                            "</pre>";
-                        })
-                .map(s -> "<div id = \"materia\">" + s + "</div>")      // Luego lo encapsulo en mas html
-                .collect(Collectors.toList());                          // y fonalmente lo paso a la lista
-
-        String materiasHTML = "";
-        for(String materiaHTML : materias)
-            materiasHTML += materiaHTML;
-
-        return materiasHTML;
-    }
-%>--%>
