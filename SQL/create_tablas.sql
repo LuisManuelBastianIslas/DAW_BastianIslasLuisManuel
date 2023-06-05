@@ -57,7 +57,7 @@ create table genero(
 
 create table periodo(
 	idPeriodo int,
-	mesPerido int,
+	mesPeriodo int,
 	descripcionPeriodo varchar(15),
 	primary key (idPeriodo)
 );
@@ -164,6 +164,7 @@ create table requicitoMateria(
 );
 
 create table estudio(
+	idEstudio serial,
 	--curp varchar(18) not null,
 	idProfesor varchar (4),
 	matriculaAlumno varchar(7),

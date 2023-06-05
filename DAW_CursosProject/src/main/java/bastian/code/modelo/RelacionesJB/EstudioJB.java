@@ -8,6 +8,7 @@ import java.time.Year;
 public class EstudioJB implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    private int idEstudio;
     private String universidad;
     private String titulo;
     private String cedula;
@@ -16,12 +17,21 @@ public class EstudioJB implements Serializable {
 
     public EstudioJB() {}
 
-    public EstudioJB(String universidad, String titulo, String cedula, Year anoGraduacion, TipoJB tipoEstudio) {
+    public EstudioJB(int idEstudio, String universidad, String titulo, String cedula, Year anoGraduacion, TipoJB tipoEstudio) {
+        this.idEstudio = idEstudio;
         this.universidad = universidad;
         this.titulo = titulo;
         this.cedula = cedula;
         this.anoGraduacion = anoGraduacion;
         this.tipoEstudio = tipoEstudio;
+    }
+
+    public int getIdEstudio() {
+        return idEstudio;
+    }
+
+    public void setIdEstudio(int idEstudio) {
+        this.idEstudio = idEstudio;
     }
 
     public String getUniversidad() {

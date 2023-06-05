@@ -31,13 +31,14 @@ public class EstudioDAO {
             rs = ps.executeQuery();
             System.out.println(ps.toString() + "\nPara eliminar esto, esta en EstudioDAO");
             while(rs.next()) {
+                int idEstudio = rs.getInt("idEstudio");
                 String universidad = rs.getString("universidad");
                 String titulo = rs.getString("titulo");
                 String cedula = rs.getString("cedula");
                 Year anoGraduacion = Year.of( rs.getInt("anoGraduacion") );
                 TipoJB tipoEstudio = TipoDAO.select("Estudio", rs.getInt("idTipoEstudio"));
 
-                EstudioJB estudio = new EstudioJB(universidad, titulo, cedula, anoGraduacion, tipoEstudio);
+                EstudioJB estudio = new EstudioJB(idEstudio, universidad, titulo, cedula, anoGraduacion, tipoEstudio);
                 estudios.add(estudio);
             }
         } catch (SQLException e) {

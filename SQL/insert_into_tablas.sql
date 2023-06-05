@@ -41,8 +41,7 @@ insert into estatusCurso(nombreEstatusCurso)
 values
 ('Pendiente'),
 ('En curso'),
-('Finalizado'),
-('Terminado');
+('Finalizado');
 
 insert into estatusAlumno(nombreEstatusAlumno)
 values
@@ -124,26 +123,30 @@ insert into asignatura(nrc, idMateria, idProfesor, cupoMinimo, cupoMaximo)
 values
 -- NRC : idCarrera + periodo (Ene-Jun -> 1 | Jul-Dic -> 2) + idMateria
 -- Diferente NRC para separar a Informatica y Mecatronica aun y cuando es la misma materia
-(121101, 1101, 'P001', 4, 8),	-- 7 de Informatica
-(111201, 1201, 'P003', 3, 6),
-(122101, 2101, 'P002', 4, 8),
-(112201, 2201, 'P004', 3, 6),
-(122201, 2201, 'P003', 3, 6),
-(123101, 3101, 'P004', 3, 6),
-(113101, 3101, 'P004', 3, 6),
-(113201, 3201, 'P003', 3, 6),
-(221101, 1101, 'P001', 4, 8),	-- 7 de Mecatronica
-(211201, 1201, 'P003', 3, 6),
-(222101, 2101, 'P002', 4, 8),
-(212201, 2201, 'P004', 3, 6),
-(222201, 2201, 'P003', 3, 6),
-(223101, 3101, 'P004', 3, 6),
-(213101, 3101, 'P004', 3, 6),
-(213201, 3201, 'P005', 3, 6),
-(123301, 3301, 'P004', 3, 6),	-- 2 de Informatica
-(113401, 3401, 'P006', 3, 6),
-(213502, 3502, 'P005', 3, 6),	-- 2 de Mecatronica
-(223601, 3601, 'P005', 3, 6);
+-- Primero 7 materias de Informatica
+(121101, 1101, 'P001', 3, 8),	-- Lectura		Ago - Ene
+(111201, 1201, 'P003', 3, 6),	-- Lit digital	Feb - Jun
+(122101, 2101, 'P002', 3, 8),	-- Fisica		Ago - Ene
+(112201, 2201, 'P004', 3, 6),	-- Intro prog	Feb - Jun
+(122201, 2201, 'P003', 3, 6),	-- Intro prog	Ago - Ene
+(123101, 3101, 'P004', 3, 6),	-- Prog estruct
+(113101, 3101, 'P004', 3, 6),	-- Prog estruct
+(113201, 3201, 'P003', 3, 6),	-- Tecnicas med
+--Ahora unas de Mecatronica
+(221101, 1101, 'P001', 3, 8),	-- Lectura
+(211201, 1201, 'P003', 3, 6),	-- Lit digital
+(222101, 2101, 'P002', 3, 8),	-- Fisica
+(212201, 2201, 'P004', 3, 6),	-- Intro prog
+(222201, 2201, 'P003', 3, 6),	-- Intro prog
+(223101, 3101, 'P004', 3, 6),	-- Prog estruct
+(213101, 3101, 'P004', 3, 6),	-- Prog estruct
+(213201, 3201, 'P005', 3, 6),	-- Tecnicas med
+-- 2 especificas de Informatica
+(123301, 3301, 'P004', 3, 6),	-- Estruct datos
+(113401, 3401, 'P006', 3, 6),	-- Intro redes
+-- 2 especificas de Mecatronica
+(213502, 3502, 'P005', 3, 6),	-- Mecanismos
+(223601, 3601, 'P005', 3, 6);	-- Dinamica
 
 insert into salon(idSalon, idTipoSalon, ubicacion, cantidadPupitres)
 values
@@ -171,7 +174,7 @@ values
 -- Por el momento, solo los profesores tienen estudios...
 insert into estudio(idProfesor, universidad, titulo, cedula, anoGraduacion, idTipoEstudio)
 values
-('P001', 'Universidad X', 'Licendiado en Gramatica', 1234567, 1980, 1);
+('P001', 'Universidad X', 'Licendiado en Gramatica', 1234567, 1980, 1),
 ('P001', 'Universidad Y', 'Maestria en Lenguistica ', 7654321, 1985, 3);
 
 insert into materiaProfesor(idProfesor, idMateria)
@@ -208,11 +211,27 @@ values
 (3601, 2, 7),
 (3502, 2, 8);
 
-insert into cursoSalon(periodo, nrc, idSalon, hora, diaSemana)
+insert into cursoSalon(idperiodo, nrc, idSalon, hora, diaSemana)
 values
+-- Primer semestre solo hay dos materias porque es el primer semestre de toda la escuela
+(20202, 121101, 'A01', 8, 1),
+(20202, 121101, 'A01', 8, 2),
+(20202, 121101, 'A01', 8, 3),
+(20202, 121101, 'A01', 8, 4),
+(20202, 221101, 'A01', 9, 1),
+(20202, 221101, 'A01', 9, 2),
+(20202, 221101, 'A01', 9, 3),
+(20202, 221101, 'A01', 9, 4);
 
-into cursoAlumno(matriculaAlumno, periodo, nrc, idEstatusCursoAlumno, calificacion)
+insert into cursoAlumno(matriculaAlumno, periodo, nrc, idEstatusCursoAlumno, calificacion)
 values
+-- Primera generación de alumnos inscritos a la primer materia
+('B200001', 20202, 121101, 1, null),
+('B200003', 20202, 121101, 1, null),
+('B200005', 20202, 121101, 1, null),
+('B200002', 20202, 221101, 1, null),
+('B200004', 20202, 221101, 1, null),
+('B200006', 20202, 221101, 1, null);
 
 --insert into incidencias(matriculaAlumno, periodo, nrc, fecha, incidencia)
 --values
