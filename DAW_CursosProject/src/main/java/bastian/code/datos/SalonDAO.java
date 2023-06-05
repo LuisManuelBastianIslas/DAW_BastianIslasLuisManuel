@@ -4,7 +4,6 @@ import bastian.code.datos.CatalogosDAO.TipoDAO;
 import bastian.code.modelo.CatalogosJB.TipoJB;
 import bastian.code.modelo.SalonJB;
 
-import javax.persistence.Id;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -48,7 +47,7 @@ public class SalonDAO {
     }
 
     public static SalonJB select(String IdSalon) {
-        String query = selectSQL + "where idSalon = " +"'"+IdSalon+"'";
+        String query = selectSQL + " where idSalon = " +"'"+IdSalon+"'";
 
         Connection conn = null;
         PreparedStatement ps = null;

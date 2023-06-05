@@ -292,6 +292,40 @@ a:hover
 	list-style: none;
 }
 
+#box {
+	margin: 2em;
+	padding: 1em;
+	text-align: center;
+	width: auto;
+	max-width: 90%;
+	background: aliceblue;
+	border-radius: 3em;
+}
+
+#materiaContainer {
+	padding: 1em;
+	margin: auto;
+	width: 20em;
+}
+
+#materia {
+	color: #F8F8F8;
+	width: 18em;
+	height: 14em;
+	text-align: left;
+	padding: 1em;
+	background: #006192;
+	border-radius: 1em;
+	border: #F8F8F8;
+	border-width: 0.5em;
+
+	line-height: 1em;
+}
+
+#materia p {
+	margin: 0;
+}
+
 #rightColumn {
 	float: right;
 	width: 50%;

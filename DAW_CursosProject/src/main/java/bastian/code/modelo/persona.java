@@ -69,6 +69,12 @@ public class persona implements Serializable {
         this.apleiidoMaterno = apleiidoMaterno;
     }
 
+    public String getApellidos() { return this.apellidoPaterno + " " + this.apleiidoMaterno; }
+
+    public String getFullNameByNames() { return this.nombre + " " + getApellidos(); }
+
+    public String getFullNameByApellidos() { return getApellidos() + " " + this.nombre; }
+
     public GeneroJB getGenero() {
         return genero;
     }

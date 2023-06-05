@@ -4,20 +4,17 @@ import bastian.code.datos.AlumnoDAO;
 import bastian.code.datos.AsignaturaDAO;
 import bastian.code.datos.CatalogosDAO.EstatusDAO;
 import bastian.code.datos.CatalogosDAO.PeriodoDAO;
+import bastian.code.datos.RelacionesDAO.CursoSalonDAO;
 import bastian.code.modelo.AlumnoJB;
 import bastian.code.modelo.AsignaturaJB;
 import bastian.code.modelo.CatalogosJB.EstatusJB;
 import bastian.code.modelo.CatalogosJB.PeriodoJB;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class CursoAlumnoJB implements Serializable {
 
-    /**
-     * Funciona de manera curiosa, en la BD hay muchas relaciones.
-     * Pero en el objeto solo alamecnará datos puntuales,
-     * omitiendo algunos datos como los foreign keys
-     */
     private static final long serialVersionUID = 1L;
     private String matriculaAlumno;
     private int idPeriodo;
@@ -25,6 +22,7 @@ public class CursoAlumnoJB implements Serializable {
     private int idEstatusCursoAlumno;
     private int calificacion;
     // No se si me convenga hacer un ArrayList de el horario
+    private ArrayList<CursoSalonJB> cursoSalon;
 
     public CursoAlumnoJB() {}
 
@@ -90,5 +88,31 @@ public class CursoAlumnoJB implements Serializable {
 
     public void setCalificacion(int calificacion) {
         this.calificacion = calificacion;
+    }
+
+     private void initializeCursoSalon() {
+        cursoSalon = CursoSalonDAO.select(this.NRC);
+    }
+
+    public ArrayList<CursoSalonJB> getCursoSalon () {
+        // Si es null, lo crea. Si ya existe, solo lo devuelve
+        if (cursoSalon == null)
+            initializeCursoSalon();
+
+        return cursoSalon;
+    }
+
+    public String getSalones() {
+        // Comprueba si ya esxiste cursoSalon, sino lo inicializa
+        if (cursoSalon == null)
+            initializeCursoSalon();
+
+        String salones = "";
+
+        for (CursoSalonJB curso : cursoSalon)
+            if ( !salones.contains( curso.getSalon().getIdSalon() ) )
+                salones += " " + curso.getIdSalon() + ",";
+
+        return salones.substring(0, salones.length()-1);
     }
 }

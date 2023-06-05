@@ -77,6 +77,8 @@ public class CursoSalonJB implements Serializable {
         return this.hora.plusMinutes(59);
     }
 
+    public String getHorario() { return getHora() + " - " + getHoraFin(); }
+
     public int getIntDiaSemana() {
         return intDiaSemana;
     }
