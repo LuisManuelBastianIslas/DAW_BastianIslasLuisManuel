@@ -42,7 +42,7 @@
                                         ArrayList<CursoSalonJB> horarios = curso.getCursoSalon();
 
                                         out.println("<div id = \"materiaContainer\"><div id = \"materia\">");
-                                        out.println("<p>" + curso.getNRC() + " - " + curso.getAsignatura().getMateria().getNombreMateria() + "</p>");
+                                        out.println("<p>" + curso.getNrc() + " - " + curso.getAsignatura().getMateria().getNombreMateria() + "</p>");
                                         out.println("<br>");
                                         out.println("<p>" + "Acad. " + profesor.getFullNameByApellidos() + "</p>");
                                         out.println("<p>" + "Correo: " + profesor.getEmail() + "</p>");

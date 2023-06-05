@@ -13,12 +13,10 @@ import bastian.code.modelo.CatalogosJB.PeriodoJB;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class CursoAlumnoJB implements Serializable {
+public class CursoAlumnoJB extends curso implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private String matriculaAlumno;
-    private int idPeriodo;
-    private int NRC;
     private int idEstatusCursoAlumno;
     private int calificacion;
     // No se si me convenga hacer un ArrayList de el horario
@@ -26,10 +24,9 @@ public class CursoAlumnoJB implements Serializable {
 
     public CursoAlumnoJB() {}
 
-    public CursoAlumnoJB(String matriculaAlumno, int idPeriodo, int NRC, int idEstatusCursoAlumno, int calificacion) {
+    public CursoAlumnoJB(String matriculaAlumno, int idPeriodo, int nrc, int idEstatusCursoAlumno, int calificacion) {
+        super(idPeriodo, nrc);
         this.matriculaAlumno = matriculaAlumno;
-        this.idPeriodo = idPeriodo;
-        this.NRC = NRC;
         this.idEstatusCursoAlumno = idEstatusCursoAlumno;
         this.calificacion = calificacion;
     }
@@ -44,30 +41,6 @@ public class CursoAlumnoJB implements Serializable {
 
     public AlumnoJB getAlumno() {
         return AlumnoDAO.select(this.matriculaAlumno);
-    }
-
-    public int getIdPeriodo() {
-        return idPeriodo;
-    }
-
-    public void setIdPeriodo(int idPeriodo) {
-        this.idPeriodo = idPeriodo;
-    }
-
-    public PeriodoJB getPeriodo() {
-        return PeriodoDAO.select(this.idPeriodo);
-    }
-
-    public int getNRC() {
-        return NRC;
-    }
-
-    public void setNRC(int NRC) {
-        this.NRC = NRC;
-    }
-
-    public AsignaturaJB getAsignatura() {
-        return AsignaturaDAO.select(this.NRC);
     }
 
     public int getIdEstatusCursoAlumno() {
@@ -91,7 +64,7 @@ public class CursoAlumnoJB implements Serializable {
     }
 
      private void initializeCursoSalon() {
-        cursoSalon = CursoSalonDAO.select(this.NRC);
+        cursoSalon = CursoSalonDAO.select(getNrc());
     }
 
     public ArrayList<CursoSalonJB> getCursoSalon () {

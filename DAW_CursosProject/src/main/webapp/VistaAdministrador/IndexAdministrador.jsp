@@ -25,15 +25,9 @@
             <form class="formButtons">
                 <table>
                     <tr>
-                        <td><button type="submit" class = "mainButton" formaction="InfoPersonalAlumnoSV" formmethod="post">Estudiantes</button></td>
+                        <td><button type="submit" class = "mainButton" formaction="" formmethod="post">Estudiantes</button></td>
                         <td><button type="submit" class = "mainButton" <%--formaction="" formmethod="post" name="otro"--%>>Profesores</button></td>
                         <td><button type="submit" class = "mainButton" <%--formaction="" formmethod="post" name="otro"--%>>Materias y Cursos</button></td>
-                    </tr>
-                </table>
-                <table>
-                    <tr>
-                        <td><button type="submit" class = "mainButton" <%--formaction="" formmethod="post" name="otro"--%>>Informacion personal</button></td>
-                        <td><button type="submit" class = "mainButton" <%--formaction="" formmethod="post" name="otro"--%>>Ver materias</button></td>
                     </tr>
                 </table>
             </form>

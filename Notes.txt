@@ -8,9 +8,6 @@ en el proyecto. Tambien se incluyen notas.
 - Para las tablas "estatus" se les hizo un JB (Lo mismoq que tipo
   pero debido al nombre tuve que hacerlo aparte)
 - No se hizo JB de la tabla administrador (No creo no se ocupe)
-- No se hizo JB de la tabla curso (Tal vez no se ocupe)
-- No se hizo JB de la tabla estatusAlumno (No creo que se ocupe)
-- No se hizo JB de la tabla estatusCurso (No creo que se ocupe)
 - Se hizo JB de la tabla incidencias (puede que al final no la ocupe)
 - Ninguna tabla login tiene JB por obvias razones
 - No se hizo JB de la tabla materiaProfesor (Posiblemente si se ocupe)
