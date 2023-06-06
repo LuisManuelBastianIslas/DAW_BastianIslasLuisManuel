@@ -36,7 +36,7 @@
                 <table>
                     <tr>
                         <td><button type="submit" class = "mainButton" formaction="InfoPersonalProfesorSV" formmethod="post">Informacion personal</button></td>
-                        <td><button type="submit" class = "mainButton" <%--formaction="" formmethod="post" name="otro"--%>>Horario</button></td>
+                        <td><button type="submit" class = "mainButton" formaction="HorarioProfesorSV" formmethod="post" name="otro">Horario</button></td>
                     </tr>
                 </table>
                 <table>

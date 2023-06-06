@@ -48,8 +48,8 @@
                                             out.println("<p>" + h.getDiaSemana() + " " + h.getHorario() + "\n" + "</p>");
                                         out.println("<br>");
 
-                                        out.println("<p>" + "Salon(es): " + curso.getSalones() + "</p></div></div>");
-                                        //out.println("<p>" + "Estatus: " + curso.getCurso().getEstatusCurso.getNombre() + "</p>"); //Proximamente
+                                        out.println("<p>" + "Salon(es): " + curso.getSalones() + "</p>");
+                                        out.println("<p>" + "Estatus: " + curso.getCurso().getEstatusCurso().getNombre() + "</p></div></div>"); //Proximamente
                                     }
                                 }
                             %>

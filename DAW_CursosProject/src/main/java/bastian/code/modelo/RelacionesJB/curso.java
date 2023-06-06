@@ -2,6 +2,7 @@ package bastian.code.modelo.RelacionesJB;
 
 import bastian.code.datos.AsignaturaDAO;
 import bastian.code.datos.CatalogosDAO.PeriodoDAO;
+import bastian.code.datos.RelacionesDAO.CursoDAO;
 import bastian.code.modelo.AsignaturaJB;
 import bastian.code.modelo.CatalogosJB.PeriodoJB;
 
@@ -44,9 +45,7 @@ public class curso implements Serializable {
         return AsignaturaDAO.select(this.nrc);
     }
 
-    /*  Proximamente
     public CursoJB getCurso() {
         return CursoDAO.select(this.nrc);
     }
-     */
 }

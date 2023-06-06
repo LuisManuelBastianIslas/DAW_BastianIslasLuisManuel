@@ -26,6 +26,6 @@ public class CursoJB extends curso implements Serializable {
     }
 
     public EstatusJB getEstatusCurso() {
-        return EstatusDAO.select("EstatusCurso", this.idEstatusCurso);
+        return EstatusDAO.select("Curso", this.idEstatusCurso);
     }
 }
