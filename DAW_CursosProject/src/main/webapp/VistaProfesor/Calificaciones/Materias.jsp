@@ -1,7 +1,9 @@
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="bastian.code.modelo.RelacionesJB.CursoJB" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
     <head>
-        <title>Calificaciones</title>
+        <title>Title</title>
 
         <link href="default.css" rel="stylesheet"/>
     </head>
@@ -22,16 +24,27 @@
             <div id = "content">
                 <div id = "primaryContentContainer">
                     <div id = "primaryContent">
-                        <h2 class = "center">Selecciona la opcion</h2>
+                        <h2 class = "center">Seleccione la materia a calificar</h2>
 
                         <div id = "box">
-                            <div id = "materiaContainer">
-                                <form><button type="submit" class="mainButton" formaction="" formmethod="post">Historial de Calificaciones</button></form>
-                            </div>
+                            <%
+                                ArrayList<CursoJB> cursos = (ArrayList<CursoJB>) request.getAttribute("Cursos");
 
-                            <div id = "materiaContainer">
-                                <form><button type="submit" class="mainButton" formaction="MateriasxCalificarSV" formmethod="post">Calificar este Semestre</button></form>
-                            </div>
+                                if (cursos.isEmpty())
+                                    out.println("<h3>Uy, parece que no tienes materias este semestre</h3>");
+                                else {
+                                    out.println("<form action = \"\" method = \"post\">");
+                                    for (CursoJB curso : cursos) {
+                                        out.println("<div id = \"materiaContainer\">");
+                                        out.println("<button type = \"submit\" class = \"mainButton\">" +
+                                                    "<p>" + curso.getAsignatura().getNrc() + " - " + curso.getAsignatura().getMateria().getNombreMateria() + "</p>" +
+                                                    curso.getAsignatura().getCarrera().getNombreCarrera() +
+                                                    "</button>");
+                                        out.println("</div>");
+                                    }
+                                    out.println("</form>");
+                                }
+                            %>
                         </div>
                     </div>
                 </div>
@@ -47,7 +60,7 @@
                     </form>
                 </div>
 
-                <div class="clear"></div>
+                <div class = "clear"></div>
             </div>
 
             <div id = "footer"></div>
