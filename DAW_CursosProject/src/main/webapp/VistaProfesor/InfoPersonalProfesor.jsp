@@ -65,7 +65,7 @@
 
                     <ul class="none">
                         <li><button type="submit" class = "leftButton" formaction="InfoPersonalProfesorSV" formmethod="post">Informacion personal</button></li>
-                        <li><button type="submit" class = "leftButton" <%--formaction="" formmethod="post" name="otro"--%>>Horario</button></li>
+                        <li><button type="submit" class = "leftButton" formaction="HorarioProfesorSV" formmethod="post">Horario</button></li>
                         <li><button type="submit" class = "leftButton" formaction="TutoradosSV" formmethod="post">Tutorados</button></li>
                         <li><button type="submit" class = "leftButton" <%--formaction="" formmethod="post" name="otro"--%>>Calificacionnes</button></li>
                     </ul>

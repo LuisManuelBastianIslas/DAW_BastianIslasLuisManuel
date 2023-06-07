@@ -303,6 +303,8 @@ a:hover
 }
 
 #materiaContainer {
+	display: inline-block;
+
 	padding: 1em;
 	margin: auto;
 	width: 20em;
@@ -323,6 +325,11 @@ a:hover
 
 #materia p {
 	margin: 0;
+}
+
+#materia h3,h4,h5,h6 {
+	color: #F8F8F8;
+	font-weight: bold;
 }
 
 #rightColumn {

@@ -4,10 +4,7 @@ import bastian.code.datos.CatalogosDAO.PeriodoDAO;
 import bastian.code.datos.Conexion;
 import bastian.code.modelo.RelacionesJB.CursoJB;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class CursoDAO {

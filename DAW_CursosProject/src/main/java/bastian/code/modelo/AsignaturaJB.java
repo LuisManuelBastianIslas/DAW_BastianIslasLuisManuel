@@ -1,7 +1,9 @@
 package bastian.code.modelo;
 
+import bastian.code.datos.CatalogosDAO.CarreraDAO;
 import bastian.code.datos.MateriaDAO;
 import bastian.code.datos.ProfesorDAO;
+import bastian.code.modelo.CatalogosJB.CarreraJB;
 
 import java.io.Serializable;
 
@@ -70,5 +72,13 @@ public class AsignaturaJB implements Serializable {
 
     public void setCupoMaximo(int cupoMaximo) {
         this.cupoMaximo = cupoMaximo;
+    }
+
+    /**
+     * Funciones calculadas
+     */
+    public CarreraJB getCarrera() {
+        String nrcSTR = this.getNrc() + "";
+        return CarreraDAO.select( Integer.parseInt( nrcSTR.charAt(0) + "" ) );
     }
 }

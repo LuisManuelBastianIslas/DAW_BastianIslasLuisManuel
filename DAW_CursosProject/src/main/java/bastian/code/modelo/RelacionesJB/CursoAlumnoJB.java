@@ -64,7 +64,7 @@ public class CursoAlumnoJB extends curso implements Serializable {
     }
 
      private void initializeCursoSalon() {
-        cursoSalon = CursoSalonDAO.select(getNrc());
+        cursoSalon = createCursoSalon();
     }
 
     public ArrayList<CursoSalonJB> getCursoSalon () {

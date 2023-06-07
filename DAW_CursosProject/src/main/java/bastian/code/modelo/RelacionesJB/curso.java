@@ -3,10 +3,12 @@ package bastian.code.modelo.RelacionesJB;
 import bastian.code.datos.AsignaturaDAO;
 import bastian.code.datos.CatalogosDAO.PeriodoDAO;
 import bastian.code.datos.RelacionesDAO.CursoDAO;
+import bastian.code.datos.RelacionesDAO.CursoSalonDAO;
 import bastian.code.modelo.AsignaturaJB;
 import bastian.code.modelo.CatalogosJB.PeriodoJB;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class curso implements Serializable {
 
@@ -48,4 +50,6 @@ public class curso implements Serializable {
     public CursoJB getCurso() {
         return CursoDAO.select(this.nrc);
     }
+
+    public ArrayList<CursoSalonJB> createCursoSalon() { return CursoSalonDAO.select(this.nrc); }
 }
