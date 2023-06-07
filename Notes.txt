@@ -25,9 +25,11 @@ en el proyecto. Tambien se incluyen notas.
 	- Como obtener la cantidad de profesores
 
 *! Terminar el DAO de alumno
-	- Usa String.subString() y String.format() para las
 	Veo que hay muchas consultas diferentes que se pueden hacer
 	- Com obtener la cantidad de alumnos de un periodo
+
+*! Modifica todos los <ul> y cambialos por <form> para que te funcionen todos
+   los botones de la izquierda
 
 *! No se te olvide limitar las acciones del Profesor cuando entra a la
    vista de sus tutorados...
@@ -41,7 +43,7 @@ en el proyecto. Tambien se incluyen notas.
 	- Datos personales profesor (editar)
 	- Datos personales alumno (editar)
 
-*! Considerar si es becesario ver que "compareños" hay en una materia,
+*! Considerar si es necesario ver que "compareños" hay en una materia,
    aunque puede que no lo haga porque no lo hace MiUV
 
 * Se va a cambiar la parte de como una materia puede ser impartida en

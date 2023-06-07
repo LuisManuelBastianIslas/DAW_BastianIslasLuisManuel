@@ -42,7 +42,7 @@
                 <table>
                     <tr>
                         <td><button type="submit" class = "mainButton" formaction="TutoradosSV" formmethod="post">Tutorados</button></td>
-                        <td><button type="submit" class = "mainButton" <%--formaction="" formmethod="post" name="otro"--%>>Calificaciones</button></td>
+                        <td><button type="submit" class = "mainButton" formaction="CalificacionesProfesorSV" formmethod="post">Calificaciones</button></td>
                     </tr>
                 </table>
             </form>
