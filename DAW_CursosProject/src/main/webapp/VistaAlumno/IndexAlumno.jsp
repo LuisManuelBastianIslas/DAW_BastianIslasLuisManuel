@@ -45,7 +45,7 @@
                 </table>
                 <table>
                     <tr>
-                        <td><button type="submit" class = "mainButton" <%--formaction="" formmethod="post" name="otro"--%>>Calificaciones</button></td>
+                        <td><button type="submit" class = "mainButton" formaction="ToIndexCalificacionesAlumnoSv" formmethod="post">Calificaciones</button></td>
                         <td><button type="submit" class = "mainButton" formaction="CurriculaSV" formmethod="post">Ver Curricula</button></td>
                     </tr>
                 </table>

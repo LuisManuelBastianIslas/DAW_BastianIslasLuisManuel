@@ -12,6 +12,7 @@ public class CursoAlumnoDAO {
     private static final String selectSQL = "select * from cursoAlumno";
     private static final String updateSQL = "update cursoAlumno";
 
+    // Este manda todas las materias sin importar si fueron eliminadas o cosas asi
     public static ArrayList<CursoAlumnoJB> select(String MatriculaAlumno) {
         String query =  selectSQL + " where matriculaAlumno = " + "'"+MatriculaAlumno+"' and idPeriodo = " + PeriodoDAO.getPeriodoActual().getIdPeriodo();
 
@@ -49,7 +50,41 @@ public class CursoAlumnoDAO {
         return cursos;
     }
 
-    // Obtiene la lista de alumnos
+    public static ArrayList<CursoAlumnoJB> selectAproved(String MatriculaAlumno) {
+        String query = selectSQL + " where matriculaAlumno = " +"'"+MatriculaAlumno+"'" + " and diEstatusCursoAlumno = 2";
+
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        ArrayList<CursoAlumnoJB> cursos = new ArrayList<>();
+
+        try {
+            conn = Conexion.getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                String matriculaAlumno = rs.getString("matriculaAlumno");
+                int idPeriodo = rs.getInt("idPeriodo");
+                int nrc = rs.getInt("nrc");
+                int idEstatusCursoAlumno = rs.getInt("idEstatusCursoAlumno");
+                int calificacion = rs.getInt("calificacion");
+
+                CursoAlumnoJB curso = new CursoAlumnoJB(matriculaAlumno, idPeriodo, nrc, idEstatusCursoAlumno, calificacion);
+                cursos.add(curso);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        Conexion.close(rs);
+        Conexion.close(ps);
+        Conexion.close(conn);
+
+        return cursos;
+    }
+
+    // Obtiene la lista de alumnos de un curso
     public static ArrayList<CursoAlumnoJB> select(int NRC) {
         String query = selectSQL + " where nrc = " + NRC + " and idPeriodo = " + PeriodoDAO.getPeriodoActual().getIdPeriodo() + " and (idEstatusCursoAlumno <> 4 or idEstatusCursoAlumno <> 5)";
 
@@ -83,6 +118,8 @@ public class CursoAlumnoDAO {
 
         return alumnos;
     }
+
+
 
     // Le pone la calificacion al alumno
     public static void updateCalificar(String matriculaAlumno, int nrc, int calificacion, int idEstatusCursoAlumno) {
