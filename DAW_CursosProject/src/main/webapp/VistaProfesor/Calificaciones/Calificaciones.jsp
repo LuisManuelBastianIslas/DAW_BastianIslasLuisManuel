@@ -26,9 +26,9 @@
                     <div id = "primaryContent">
                         <h2 class = "center">Califiquelos</h2>
 
-                        <form action="" method="post">
+                        <form action="ActualizarCalificacionesSV" method="post">
                             <%
-                                ArrayList<CursoAlumnoJB> alumnos = (ArrayList<CursoAlumnoJB>) request.getAttribute("Alumnos");
+                                ArrayList<CursoAlumnoJB> alumnos = (ArrayList<CursoAlumnoJB>) request.getSession().getAttribute("Alumnos");
 
                                 // Espero que pueda resolver los casos donde no haya alumnos, que en teoria no deberia de pasar
                                 for (CursoAlumnoJB ca : alumnos) {
@@ -37,7 +37,7 @@
                                     out.println("</div>");
 
                                     out.println("<div id = \"tightColumn\">");
-                                    out.println("<p><input type = \"number\" min = \"0\" max = \"10\" name = \"" + ca.getAlumno().getMatriculaAlumno() + "\" value = \"" + ca.getCalificacion() + "\"></p>");
+                                    out.println("<p><input type = \"number\" min = \"0\" max = \"10\" maxlength = \"2\" name = \"" + ca.getAlumno().getMatriculaAlumno() + "\" value = \"" + ca.getCalificacion() + "\"></p>");
                                     out.println("</div></div>");
                                 }
                             %>

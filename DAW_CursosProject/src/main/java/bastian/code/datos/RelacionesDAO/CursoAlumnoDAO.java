@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class CursoAlumnoDAO {
 
     private static final String selectSQL = "select * from cursoAlumno";
+    private static final String updateSQL = "update cursoAlumno";
 
     public static ArrayList<CursoAlumnoJB> select(String MatriculaAlumno) {
         String query =  selectSQL + " where matriculaAlumno = " + "'"+MatriculaAlumno+"' and idPeriodo = " + PeriodoDAO.getPeriodoActual().getIdPeriodo();
@@ -81,5 +82,26 @@ public class CursoAlumnoDAO {
         Conexion.close(conn);
 
         return alumnos;
+    }
+
+    // Le pone la calificacion al alumno
+    public static void updateCalificar(String matriculaAlumno, int nrc, int calificacion, int idEstatusCursoAlumno) {
+        String update = updateSQL +
+                        " set calificacion = " + calificacion + ", idEstatusCursoAlumno = " + idEstatusCursoAlumno +
+                        " where matriculaAlumno = " + "'"+matriculaAlumno+"'" + "and nrc = " + nrc;
+
+        Connection conn = null;
+        PreparedStatement ps = null;
+
+         try {
+             conn = Conexion.getConnection();
+             ps = conn.prepareStatement(update);
+             ps.executeUpdate();
+         } catch (SQLException e) {
+             throw new RuntimeException(e);
+         }
+
+         Conexion.close(ps);
+         Conexion.close(conn);
     }
 }

@@ -21,7 +21,7 @@ public class CalificarCursoSV extends HttpServlet {
         ArrayList<CursoAlumnoJB> alumnos = CursoAlumnoDAO.select(nrc);
 
         // Para despues mandarlo
-        req.setAttribute("Alumnos", alumnos);
+        req.getSession().setAttribute("Alumnos", alumnos);
         req.getRequestDispatcher("VistaProfesor/Calificaciones/Calificaciones.jsp").forward(req, resp);
     }
 }
