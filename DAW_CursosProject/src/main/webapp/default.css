@@ -372,6 +372,11 @@ a:hover
 	color: aliceblue;
 }
 
+#divisor {
+	margin: 0.1em;
+	padding: 0.1em;
+}
+
 .center {
 	text-align: center;
 	padding-top: 2em;
@@ -430,6 +435,10 @@ input[type=text], input[type=password] {
 	border-radius: 0.2em;
 	padding: 0.5em 0.5em;
 	margin: 0.5em 0;
+}
+
+input[type=number] {
+	padding: 0.1em 0.5em;
 }
 
 input[type=submit] {

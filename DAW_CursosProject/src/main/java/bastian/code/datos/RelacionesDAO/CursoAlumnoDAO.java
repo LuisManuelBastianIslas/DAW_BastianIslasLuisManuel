@@ -27,11 +27,11 @@ public class CursoAlumnoDAO {
             while (rs.next()) {
                 String matriculaAlumno = rs.getString("matriculaAlumno");
                 int idPeriodo = rs.getInt("idPeriodo");
-                int NRC = rs.getInt("nrc");
+                int nrc = rs.getInt("nrc");
                 int idEstatusCursoAlumno = rs.getInt("idEstatusCursoAlumno");
                 int calificacion = rs.getInt("calificacion");
 
-                CursoAlumnoJB curso = new CursoAlumnoJB(matriculaAlumno, idPeriodo, NRC, idEstatusCursoAlumno, calificacion);
+                CursoAlumnoJB curso = new CursoAlumnoJB(matriculaAlumno, idPeriodo, nrc, idEstatusCursoAlumno, calificacion);
                 cursos.add(curso);
             }
         } catch (SQLException e) {
@@ -46,5 +46,40 @@ public class CursoAlumnoDAO {
         System.out.println("Para eliminar esto, esta en CursoAlumnoDAO");
 
         return cursos;
+    }
+
+    // Obtiene la lista de alumnos
+    public static ArrayList<CursoAlumnoJB> select(int NRC) {
+        String query = selectSQL + " where nrc = " + NRC + " and idPeriodo = " + PeriodoDAO.getPeriodoActual().getIdPeriodo() + " and (idEstatusCursoAlumno <> 4 or idEstatusCursoAlumno <> 5)";
+
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        ArrayList<CursoAlumnoJB> alumnos = new ArrayList<>();
+
+        try {
+            conn = Conexion.getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                String matriculaAlumno = rs.getString("matriculaAlumno");
+                int idPeriodo = rs.getInt("idPeriodo");
+                int nrc = rs.getInt("nrc");
+                int idEstatusCursoAlumno = rs.getInt("idEstatusCursoAlumno");
+                int calificacion = rs.getInt("calificacion");
+
+                CursoAlumnoJB cursoAlumno = new CursoAlumnoJB(matriculaAlumno, idPeriodo, nrc, idEstatusCursoAlumno, calificacion);
+                alumnos.add(cursoAlumno);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        Conexion.close(rs);
+        Conexion.close(ps);
+        Conexion.close(conn);
+
+        return alumnos;
     }
 }

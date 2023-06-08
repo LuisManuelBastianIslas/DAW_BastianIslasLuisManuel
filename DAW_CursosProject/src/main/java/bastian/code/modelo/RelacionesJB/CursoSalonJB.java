@@ -1,10 +1,6 @@
 package bastian.code.modelo.RelacionesJB;
 
-import bastian.code.datos.AsignaturaDAO;
-import bastian.code.datos.CatalogosDAO.PeriodoDAO;
 import bastian.code.datos.SalonDAO;
-import bastian.code.modelo.AsignaturaJB;
-import bastian.code.modelo.CatalogosJB.PeriodoJB;
 import bastian.code.modelo.SalonJB;
 
 import java.io.Serializable;

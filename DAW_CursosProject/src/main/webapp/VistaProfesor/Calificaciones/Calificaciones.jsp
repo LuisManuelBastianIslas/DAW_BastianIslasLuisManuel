@@ -1,17 +1,17 @@
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="bastian.code.modelo.RelacionesJB.CursoJB" %>
+<%@ page import="bastian.code.modelo.RelacionesJB.CursoAlumnoJB" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
     <head>
         <title>Title</title>
-
-        <link href="default.css" rel="stylesheet"/>
     </head>
 
     <body>
         <div id = "outer">
             <div id = "header">
                 <h1>Bastian Universities</h1>
+
+                <link href="default.css" rel="stylesheet"/>
             </div>
 
             <div id = "menu">
@@ -24,28 +24,25 @@
             <div id = "content">
                 <div id = "primaryContentContainer">
                     <div id = "primaryContent">
-                        <h2 class = "center">Seleccione la materia a calificar</h2>
+                        <h2 class = "center">Califiquelos</h2>
 
-                        <div id = "box">
+                        <form action="" method="post">
                             <%
-                                ArrayList<CursoJB> cursos = (ArrayList<CursoJB>) request.getAttribute("Cursos");
+                                ArrayList<CursoAlumnoJB> alumnos = (ArrayList<CursoAlumnoJB>) request.getAttribute("Alumnos");
 
-                                if (cursos.isEmpty())
-                                    out.println("<h3>Uy, parece que no tienes materias este semestre</h3>");
-                                else {
-                                    out.println("<form action = \"CalificarCursoSV\" method = \"post\">");
-                                    for (CursoJB curso : cursos) {
-                                        out.println("<div id = \"materiaContainer\">");
-                                        out.println("<button type = \"submit\" class = \"mainButton\" name = \"NRC\" value = \"" + curso.getNrc() + "\">" +
-                                                    "<p>" + curso.getAsignatura().getNrc() + " - " + curso.getAsignatura().getMateria().getNombreMateria() + "</p>" +
-                                                    curso.getAsignatura().getCarrera().getNombreCarrera() +
-                                                    "</button>");
-                                        out.println("</div>");
-                                    }
-                                    out.println("</form>");
+                                // Espero que pueda resolver los casos donde no haya alumnos, que en teoria no deberia de pasar
+                                for (CursoAlumnoJB ca : alumnos) {
+                                    out.println("<div id = \"divisor\"><div id = \"leftColumn\">");
+                                    out.println("<p>" + ca.getAlumno().getFullNameByApellidos() + "</p>");
+                                    out.println("</div>");
+
+                                    out.println("<div id = \"tightColumn\">");
+                                    out.println("<p><input type = \"number\" min = \"0\" max = \"10\" name = \"" + ca.getAlumno().getMatriculaAlumno() + "\" value = \"" + ca.getCalificacion() + "\"></p>");
+                                    out.println("</div></div>");
                                 }
                             %>
-                        </div>
+                            <input type="submit" value="Enviar">
+                        </form>
                     </div>
                 </div>
 

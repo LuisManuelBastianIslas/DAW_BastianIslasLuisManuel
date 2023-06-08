@@ -1,14 +1,9 @@
 package bastian.code.modelo.RelacionesJB;
 
 import bastian.code.datos.AlumnoDAO;
-import bastian.code.datos.AsignaturaDAO;
 import bastian.code.datos.CatalogosDAO.EstatusDAO;
-import bastian.code.datos.CatalogosDAO.PeriodoDAO;
-import bastian.code.datos.RelacionesDAO.CursoSalonDAO;
 import bastian.code.modelo.AlumnoJB;
-import bastian.code.modelo.AsignaturaJB;
 import bastian.code.modelo.CatalogosJB.EstatusJB;
-import bastian.code.modelo.CatalogosJB.PeriodoJB;
 
 import java.io.Serializable;
 import java.util.ArrayList;
