@@ -1,7 +1,5 @@
-<%@ page import="java.util.ArrayList" %>
 <%@ page import="bastian.code.modelo.RelacionesJB.CursoAlumnoJB" %>
-<%@ page import="bastian.code.modelo.ProfesorJB" %>
-<%@ page import="bastian.code.modelo.RelacionesJB.CursoSalonJB" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
     <head>
@@ -27,29 +25,22 @@
                 <div id = "primaryContentContainer">
                     <div id = "primaryContent">
                         <h2 class="center">Mis Materias</h2>
+
                         <div id = "box">
                             <%
                                 ArrayList<CursoAlumnoJB> cursos = (ArrayList<CursoAlumnoJB>) request.getAttribute("Cursos");
+
                                 if (cursos.isEmpty()) {
                                     out.println("<h3 class=\"center\">No hay materias cargadas para este semestre aun</h3>");
                                 } else {
                                     for (CursoAlumnoJB curso : cursos) {
-                                        ProfesorJB profesor = curso.getAsignatura().getProfesor();
-                                        ArrayList<CursoSalonJB> horarios = curso.getCursoSalon();
 
                                         out.println("<div id = \"materiaContainer\"><div id = \"materia\">");
-                                        out.println("<p>" + curso.getNrc() + " - " + curso.getAsignatura().getMateria().getNombreMateria() + "</p>");
+                                        out.println("<p>" + curso.getAsignatura().getMateria().getNombreMateria() + "</p>");
+                                        out.println("<p>" + "Creditos: " + curso.getAsignatura().getMateria().getCreditos() + "</p>");
                                         out.println("<br>");
-                                        out.println("<p>" + "Acad. " + profesor.getFullNameByApellidos() + "</p>");
-                                        out.println("<p>" + "Correo: " + profesor.getEmail() + "</p>");
-                                        out.println("<br>");
-
-                                        for (CursoSalonJB h : horarios)
-                                            out.println("<p>" + h.getDiaSemana() + " " + h.getHorario() + "\n" + "</p>");
-                                        out.println("<br>");
-
-                                        out.println("<p>" + "Salon(es): " + curso.getSalones() + "</p>");
-                                        out.println("<p>" + "Estatus: " + curso.getCurso().getEstatusCurso().getNombre() + "</p></div></div>"); //Proximamente
+                                        out.println("<p>" + "Calificacion: " + (curso.getIdEstatusCursoAlumno() == 1 ? "Sin calificar" : curso.getCalificacion()) + "</p>");
+                                        out.println("</div></div>");
                                     }
                                 }
                             %>

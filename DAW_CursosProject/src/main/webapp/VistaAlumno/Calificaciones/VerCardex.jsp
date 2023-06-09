@@ -53,7 +53,7 @@
                         <button type="submit" class = "leftButton" formaction="InfoPersonalAlumnoSV" formmethod="post">Informacion personal</button>
                         <button type="submit" class = "leftButton" formaction="MateriasSV" formmethod="post">Mis materias</button>
                         <button type="submit" class = "leftButton" <%--formaction="" formmethod="post" name="otro"--%>>Inscripcion</button>
-                        <button type="submit" class = "leftButton" formaction="VistaAlumno/Calificaciones/ToIndexCalificacionesSv" formmethod="post">Calificacionnes</button>
+                        <button type="submit" class = "leftButton" formaction="ToIndexCalificacionesAlumnoSV" formmethod="post">Calificacionnes</button>
                         <button type="submit" class = "leftButton" formaction="CurriculaSV" formmethod="post">Ver Curricula</button>
                     </form>
                 </div>
