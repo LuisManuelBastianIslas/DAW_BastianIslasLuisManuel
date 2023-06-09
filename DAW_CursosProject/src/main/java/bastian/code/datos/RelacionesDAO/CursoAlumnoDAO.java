@@ -51,7 +51,7 @@ public class CursoAlumnoDAO {
     }
 
     public static ArrayList<CursoAlumnoJB> selectAproved(String MatriculaAlumno) {
-        String query = selectSQL + " where matriculaAlumno = " +"'"+MatriculaAlumno+"'" + " and diEstatusCursoAlumno = 2";
+        String query = selectSQL + " where matriculaAlumno = " +"'"+MatriculaAlumno+"'" + " and idEstatusCursoAlumno = 2";
 
         Connection conn = null;
         PreparedStatement ps = null;
