@@ -8,7 +8,17 @@ public class LoginDAO {
 
     private static final String selectSQL = "select * from loginREP " +
                                             "where REP = ? and REP = ? and estatusLoginREP = 1";
+    private static final String updateSQL = "update loginREP " +
+                                            "set estatusLoginREP = 0 " +
+                                            "where REP = ?";
+    private static final String insertSQL = "insert into loginREP(REP, REP, REP) " +
+                                            "values " +
+                                            "(?, ?, ?)";
 
+    /**
+     * Parte de los Alumnos
+     */
+    //Comprueba el login
     public static boolean existAlumno(String user, String password) {
         String query = selectSQL;
 
@@ -50,6 +60,67 @@ public class LoginDAO {
         return res;
     }
 
+    // Bloquea las contraseñas ya existentes
+    public static void updateNewPasswordAlumno(String MatriculaAlumno, String Contrasena) {
+        // Esto se hace en dos pasos...
+            // Primero bloquea las contraseñas ya existentes
+            // Para depues añadir la nueva contraseña
+
+        String query = updateSQL;
+
+        Connection conn = null;
+        PreparedStatement ps = null;
+
+        try {
+            conn = Conexion.getConnection();
+            query = query.replaceFirst("REP", "Alumno");
+            query = query.replaceFirst("REP", "Alumno");
+            query = query.replaceFirst("REP", "matriculaAlumno");
+
+            ps = conn.prepareStatement(query);
+            ps.setString(1, MatriculaAlumno);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        Conexion.close(ps);
+        Conexion.close(conn);
+
+        // Aqui es donde se inserta la nueva contraseña
+        insertNewPasswordAlumno(MatriculaAlumno, Contrasena);
+    }
+
+    // Añade una nueva contraseña
+    public static void insertNewPasswordAlumno(String MatriculaAlumno, String Contrasena) {
+        String query = insertSQL;
+
+        Connection conn = null;
+        PreparedStatement ps = null;
+
+        try {
+            conn = Conexion.getConnection();
+            query = query.replaceFirst("REP", "Alumno");
+            query = query.replaceFirst("REP", "matriculaAlumno");
+            query = query.replaceFirst("REP", "contraseñaLoginAlumno");
+            query = query.replaceFirst("REP", "estatusLoginAlumno");
+
+            ps = conn.prepareStatement(query);
+            ps.setString(1, MatriculaAlumno);
+            ps.setString(2, Contrasena);
+            ps.setInt(3, 1);    // 1 es que es valido
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        Conexion.close(ps);
+        Conexion.close(conn);
+    }
+
+    /**
+     * Parte de los Profesores
+     */
     public static boolean existProfesor(String user, String password) {
         String query = selectSQL;
 
@@ -84,6 +155,13 @@ public class LoginDAO {
         return res;
     }
 
+    // Bloquea las contraseñas ya existentes
+
+    // Añade una nueva contraseña
+
+    /**
+     * Parte de los administradores
+     */
     public static boolean existAdministrador(String user, String password) {
         String query = selectSQL;
 
@@ -118,4 +196,8 @@ public class LoginDAO {
 
         return res;
     }
+
+    // Bloquea las contraseñas ya existentes
+
+    // Añade una nueva contraseña
 }

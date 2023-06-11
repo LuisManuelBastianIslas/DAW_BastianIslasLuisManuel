@@ -3,6 +3,7 @@ package bastian.code.controlador.Administrador.Alumno;
 import bastian.code.datos.AlumnoDAO;
 import bastian.code.datos.CatalogosDAO.PeriodoDAO;
 import bastian.code.datos.ProfesorDAO;
+import bastian.code.datos.RelacionesDAO.LoginDAO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -45,7 +46,10 @@ public class AddNuevoAlumnoSV extends HttpServlet {
         int idRandom = (r.nextInt() % daoP.getCantProfesores()) + 1;
         String randomIdProfesor = "P" + String.format("%03d", idRandom);
 
+        // Se hace el insert por medio del DAO
+        // Y tambien se le asigna loas datos de login por defecto
         AlumnoDAO.insert(curp, nombre, apellidoPaterno, apellidoMaterno, idGenero, fechaNacimiento, direccion, telefono, celular, email, matricula, idCarrera, anoInscripción, idEstatusAlumno, randomIdProfesor);
+        LoginDAO.insertNewPasswordAlumno(matricula, "password");
 
         // Al final regresa por si acaso se necesita ingresar mas alumnos
         req.getRequestDispatcher("VistaAdministrador/Alumno/NuevoAlumno.jsp").forward(req, resp);
