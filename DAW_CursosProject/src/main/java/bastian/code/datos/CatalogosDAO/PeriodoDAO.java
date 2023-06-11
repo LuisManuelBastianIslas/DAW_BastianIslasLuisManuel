@@ -187,6 +187,27 @@ public class PeriodoDAO {
         return periodoActual;
     }
 
+    public static PeriodoJB getNextPeriodo() {
+        int anoActual = getPeriodoActual().getAno();
+        int periodoActual = getPeriodoActual().getPeriodo();
+
+        // Calcula el siguiente idPeriodo
+        switch (periodoActual) {
+            case 1:
+                periodoActual = 2;
+                break;
+            case 2:
+                periodoActual = 1;
+                anoActual++;
+                break;
+            default:
+        }
+
+        String nextIdPeriodo = anoActual + "" + periodoActual;
+
+        return select( Integer.parseInt(nextIdPeriodo) );
+    }
+
     public static void setPeriodoActual(int periodoActual) {
         Connection conn = null;
         PreparedStatement ps = null;

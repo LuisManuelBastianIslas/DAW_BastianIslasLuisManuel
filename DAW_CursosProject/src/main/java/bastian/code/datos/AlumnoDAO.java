@@ -3,6 +3,7 @@ package bastian.code.datos;
 import bastian.code.datos.CatalogosDAO.CarreraDAO;
 import bastian.code.datos.CatalogosDAO.EstatusDAO;
 import bastian.code.datos.CatalogosDAO.GeneroDAO;
+import bastian.code.datos.CatalogosDAO.PeriodoDAO;
 import bastian.code.modelo.AlumnoJB;
 import bastian.code.modelo.CatalogosJB.CarreraJB;
 import bastian.code.modelo.CatalogosJB.EstatusJB;
@@ -16,6 +17,9 @@ import java.util.ArrayList;
 public class AlumnoDAO {
 
     private static final String selectSQL = "select * from alumno";
+    private static final String insertSQL = "insert into alumno(curp, nombre, apellidomaterno, apellidopaterno, idgenero, fechanacimiento, direccion, telefono, celular, email, matriculaalumno, idcarrera, anoinscripcion, idestatusalumno, idprofesor)" +
+                                            " VALUES" +
+                                            " (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     /**
      * Funciones con el select
@@ -37,17 +41,17 @@ public class AlumnoDAO {
                 String nombre = rs.getString("nombre");
                 String apellidoPaterno = rs.getString("apellidoPaterno");
                 String apleiidoMaterno = rs.getString("apellidoMaterno");
-                GeneroJB genero = GeneroDAO.select( rs.getString("idGenero") ); //Ya cambió a objeto :)
-                LocalDate fechaNacimiento = LocalDate.parse( rs.getString("fechaNacimiento") );
+                GeneroJB genero = GeneroDAO.select(rs.getString("idGenero")); //Ya cambió a objeto :)
+                LocalDate fechaNacimiento = LocalDate.parse(rs.getString("fechaNacimiento"));
                 String direccion = rs.getString("direccoin");
                 String telefono = rs.getString("telefono");
                 String celular = rs.getString("celular");
                 String email = rs.getString("email");
                 String matriculaAlumno = rs.getString("matriculaAlumno");
-                CarreraJB carrera = CarreraDAO.select( rs.getInt("idCarrera") );
+                CarreraJB carrera = CarreraDAO.select(rs.getInt("idCarrera"));
                 int anoInscripcion = rs.getInt("anoInscripcion");
-                EstatusJB estatusAlumno = EstatusDAO.select("Alumno", rs.getInt("idEstatusAlumno") );
-                ProfesorJB profesor = ProfesorDAO.select( rs.getString("idProfesor") );
+                EstatusJB estatusAlumno = EstatusDAO.select("Alumno", rs.getInt("idEstatusAlumno"));
+                ProfesorJB profesor = ProfesorDAO.select(rs.getString("idProfesor"));
 
                 AlumnoJB alumno = new AlumnoJB(curp, nombre, apellidoPaterno, apleiidoMaterno, genero, fechaNacimiento, direccion, telefono, celular, email, matriculaAlumno, carrera, anoInscripcion, estatusAlumno, profesor);
                 alumnos.add(alumno);
@@ -65,7 +69,7 @@ public class AlumnoDAO {
 
     //Llama a un alumno en especifico
     public static AlumnoJB select(String MatriculaAlumno) {
-        String query = selectSQL + " where matriculaALumno = " + "'"+MatriculaAlumno.toUpperCase()+"'";
+        String query = selectSQL + " where matriculaALumno = " + "'" + MatriculaAlumno.toUpperCase() + "'";
 
         Connection conn = null;
         PreparedStatement ps = null;
@@ -77,12 +81,12 @@ public class AlumnoDAO {
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             System.out.println(ps.toString() + "\nPara eliminar este msg, esya en AlumnoDAO");
-            while ( rs.next() ) {
+            while (rs.next()) {
                 String curp = rs.getString("curp");
                 String nombre = rs.getString("nombre");
                 String apellidoPaterno = rs.getString("apellidoPaterno");
                 String apleiidoMaterno = rs.getString("apellidoMaterno");
-                GeneroJB genero = GeneroDAO.select( rs.getString("idGenero") ); //Ya cambió a objeto :)
+                GeneroJB genero = GeneroDAO.select(rs.getString("idGenero")); //Ya cambió a objeto :)
                 LocalDate fechaNacimiento = LocalDate.parse(rs.getString("fechaNacimiento"));
                 String direccion = rs.getString("direccion");
                 String telefono = rs.getString("telefono");
@@ -92,7 +96,7 @@ public class AlumnoDAO {
                 CarreraJB carrera = CarreraDAO.select(rs.getInt("idCarrera"));
                 int anoInscripcion = rs.getInt("anoInscripcion");
                 EstatusJB estatusAlumno = EstatusDAO.select("Alumno", rs.getInt("idEstatusAlumno"));
-                ProfesorJB profesor = ProfesorDAO.select( rs.getString("idProfesor") );
+                ProfesorJB profesor = ProfesorDAO.select(rs.getString("idProfesor"));
 
                 alumno = new AlumnoJB(curp, nombre, apellidoPaterno, apleiidoMaterno, genero, fechaNacimiento, direccion, telefono, celular, email, matriculaAlumno, carrera, anoInscripcion, estatusAlumno, profesor);
             }
@@ -113,8 +117,8 @@ public class AlumnoDAO {
 
     //Llama a todos los alumnos tutorados de un profesor en comun
     public static ArrayList<AlumnoJB> selectTutorados(String IdProfesor) {
-        String query =  selectSQL + " where idProfesor = " + "'"+IdProfesor+"'" +
-                        "order by anoInscripcion desc";
+        String query = selectSQL + " where idProfesor = " + "'" + IdProfesor + "'" +
+                "order by anoInscripcion desc";
 
         Connection conn = null;
         PreparedStatement ps = null;
@@ -131,7 +135,7 @@ public class AlumnoDAO {
                 String nombre = rs.getString("nombre");
                 String apellidoPaterno = rs.getString("apellidoPaterno");
                 String apleiidoMaterno = rs.getString("apellidoMaterno");
-                GeneroJB genero = GeneroDAO.select( rs.getString("idGenero") ); //Ya cambió a objeto :)
+                GeneroJB genero = GeneroDAO.select(rs.getString("idGenero")); //Ya cambió a objeto :)
                 LocalDate fechaNacimiento = LocalDate.parse(rs.getString("fechaNacimiento"));
                 String direccion = rs.getString("direccion");
                 String telefono = rs.getString("telefono");
@@ -141,7 +145,7 @@ public class AlumnoDAO {
                 CarreraJB carrera = CarreraDAO.select(rs.getInt("idCarrera"));
                 int anoInscripcion = rs.getInt("anoInscripcion");
                 EstatusJB estatusAlumno = EstatusDAO.select("Alumno", rs.getInt("idEstatusAlumno"));
-                ProfesorJB profesor = ProfesorDAO.select( rs.getString("idProfesor") );
+                ProfesorJB profesor = ProfesorDAO.select(rs.getString("idProfesor"));
 
                 AlumnoJB alumno = new AlumnoJB(curp, nombre, apellidoPaterno, apleiidoMaterno, genero, fechaNacimiento, direccion, telefono, celular, email, matriculaAlumno, carrera, anoInscripcion, estatusAlumno, profesor);
                 alumnos.add(alumno);
@@ -160,4 +164,83 @@ public class AlumnoDAO {
     /**
      * Tratare de ver si me es posible haces sus variantes entre los distintos status...
      */
+
+    /**
+     * Funciones se insert
+     */
+    public static void insert(String curp, String nombre, String apellidoPaterno, String apleiidoMaterno, String idGenero, LocalDate fechaNacimiento, String direccion, String telefono, String celular, String email, String matriculaAlumno, int idCarrera, int anoInscripcion, int idEstatusAlumno, String idProfesor) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+
+        try {
+            conn = Conexion.getConnection();
+            ps = conn.prepareStatement(insertSQL);
+            ps.setString(1, curp);
+            ps.setString(2, nombre);
+            ps.setString(3, apellidoPaterno);
+            ps.setString(4, apleiidoMaterno);
+            ps.setString(5, idGenero);
+            ps.setString(6, fechaNacimiento.toString());
+            ps.setString(7, direccion);
+            ps.setString(8, telefono);
+            ps.setString(9, celular);
+            ps.setString(10, email);
+            ps.setString(11, matriculaAlumno);
+            ps.setInt(12, idCarrera);
+            ps.setInt(13, anoInscripcion);
+            ps.setInt(14, idEstatusAlumno);
+            ps.setString(15, idProfesor);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        Conexion.close(ps);
+        Conexion.close(conn);
+    }
+
+    /**
+     * Funciones que no son tan importantes para tener en static
+     */
+    // Esta funcion se usará en el JSP con la finalidad de discernir si es posible o no añadir
+    // un nuevo alumno para el siguiente periodo
+    public boolean AddingIsPosible() {
+        // Simplemente compara el ultimo perido registrado en la BD y si el periodo es Feb - Jul
+        return PeriodoDAO.selectLast().getIdPeriodo() > PeriodoDAO.getPeriodoActual().getIdPeriodo() && PeriodoDAO.getPeriodoActual().getPeriodo() == 1;
+        // Si existe un periodo mayor al periodo actual, siginifica que se pueden inscribir alumnos para el siguiente periodo
+    }
+
+    // Me da la siguiente matricula para el siguiente semestre
+    // Para esto, ya se sabe que esta en el perido Feb - Jul
+    public String getNextMatricula() {
+        int ano = PeriodoDAO.getPeriodoActual().getAno(); // Variable de referencia
+
+        // Necesito obtener el siguiente id. Es la cantidad de alumnos del periodo + 1
+        int nextId = getCantAlumnos( ano ) + 1;
+
+        String anoStr = ano + "";
+
+        return  "B" + anoStr.substring(2) + String.format("%04d", nextId);
+    }
+
+    private int getCantAlumnos(int AnoInscripcion) {
+        String query =  "select count(matriculaAlumno) as cantAlumnos from alumno" +
+                        " where anoInscripcion = " + AnoInscripcion;
+
+        int  cantAlumnos = 0;
+
+        try {
+            ResultSet rs = Conexion.getConnection().prepareStatement(query).executeQuery();
+
+            while (rs.next()) {
+                cantAlumnos = rs.getInt("cantAlumnos");
+            }
+
+            Conexion.close(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return cantAlumnos;
+    }
 }

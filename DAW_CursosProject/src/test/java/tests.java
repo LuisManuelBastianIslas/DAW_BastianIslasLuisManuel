@@ -1,3 +1,4 @@
+import bastian.code.datos.AlumnoDAO;
 import bastian.code.datos.Conexion;
 import bastian.code.datos.MateriaDAO;
 import bastian.code.modelo.MateriaJB;
@@ -49,19 +50,23 @@ public class tests {
         //for (int i = 1; i < 7; i++)
         //    System.out.println("P" + String.format("%03d", i)); // Generacion de los codigos de los profesores
 
-        ArrayList<ArrayList<MateriaJB>> matrizMateria = new ArrayList<>();
-        matrizMateria.add( new ArrayList<>() );
-        matrizMateria.add( new ArrayList<>() );
+//        ArrayList<ArrayList<MateriaJB>> matrizMateria = new ArrayList<>();
+//        matrizMateria.add( new ArrayList<>() );
+//        matrizMateria.add( new ArrayList<>() );
+//
+//        matrizMateria.get(0).add( new MateriaJB() );
+//        matrizMateria.get(1).add( new MateriaJB() );
+//        matrizMateria.get(1).add( new MateriaJB() );
+//
+//        for (ArrayList<MateriaJB> materias : matrizMateria) {
+//            System.out.println("-----");
+//            for (MateriaJB materia : materias)
+//                System.out.println("Hay una materia");
+//        }
 
-        matrizMateria.get(0).add( new MateriaJB() );
-        matrizMateria.get(1).add( new MateriaJB() );
-        matrizMateria.get(1).add( new MateriaJB() );
+        AlumnoDAO dao = new AlumnoDAO();
 
-        for (ArrayList<MateriaJB> materias : matrizMateria) {
-            System.out.println("-----");
-            for (MateriaJB materia : materias)
-                System.out.println("Hay una materia");
-        }
+        System.out.println(dao.getNextMatricula());
     }
 
     public static void tockenizacion() {
