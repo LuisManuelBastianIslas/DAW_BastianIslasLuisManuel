@@ -307,7 +307,8 @@ a:hover
 
 	padding: 1em;
 	margin: auto;
-	width: 20em;
+	/*width: 20em;*/
+	/*width: auto;*/
 }
 
 #materia {
@@ -345,6 +346,11 @@ a:hover
 	width: 50%;
 	margin-right: 0%;
 	margin-left: 0%;
+}
+
+#leftColumn p {
+	padding: 0.75em;
+	margin: 0.25em;
 }
 
 #paginacion {
@@ -429,7 +435,7 @@ label {
 	color: #fff;
 }
 
-input[type=text], input[type=password] {
+input[type=text], input[type=password], input[type=date], select {
 	width: 100%;
 	border: none;
 	border-radius: 0.2em;

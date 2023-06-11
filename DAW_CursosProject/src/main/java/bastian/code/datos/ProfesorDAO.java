@@ -101,4 +101,38 @@ public class ProfesorDAO {
     }
 
     //Profesores de una materia en especifico
+
+
+    /**
+     * Funciones que no son tan importantes como para ser static
+     */
+
+    // Obtengo la matidad total de profesores
+    public int getCantProfesores() {
+        String query =  "select count(idProfesor) as cantProfesores from profesor";
+
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        int  cantProfesores = 0;
+
+        try {
+            conn = Conexion.getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                cantProfesores = rs.getInt("cantProfesores");
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        Conexion.close(rs);
+        Conexion.close(ps);
+        Conexion.close(conn);
+
+        return cantProfesores;
+    }
 }

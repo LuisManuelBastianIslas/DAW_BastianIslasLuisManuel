@@ -1,3 +1,4 @@
+<%@ page import="bastian.code.datos.AlumnoDAO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
     <head>
@@ -25,7 +26,13 @@
                         <h2 class = "center">Selecciona la funcion</h2>
 
                         <form class = "formButtons">
-                            <button type = "submit" class = "mainButton" formaction = "" formmethod = "post">Nuevo alumno</button>
+                            <%
+                                AlumnoDAO dao = new AlumnoDAO();
+                                if ( dao.AddingIsPosible() )
+                                    out.println("<div id = \"materiaContainer\"><button type = \"submit\" class = \"mainButton\" formaction = \"NuevoAlumnoSV\" formmethod = \"post\">Nuevo alumno</button></div>");
+                                else
+                                    out.println("<div id = \"materiaContainer\"><button type = \"submit\" class = \"mainButton\" disabled tittle = \"No es periodo de altas, prueba con otro semestre.\">Nuevo alumno</button></div>");
+                            %>
                         </form>
                     </div>
                 </div>
@@ -35,11 +42,15 @@
 
                     <form>
                         <button type="submit" class = "leftButton" formaction="IndexAdminALumnoSV" formmethod="post">Alumnos</button>
-                        <button type="submit" class = "leftButton" formaction="" formmethod="post">Mis materias</button>
-                        <button type="submit" class = "leftButton" formaction="" formmethod="post">Inscripcion</button>
+                        <button type="submit" class = "leftButton" formaction="" formmethod="post">Profesores</button>
+                        <button type="submit" class = "leftButton" formaction="" formmethod="post">Materias y Cursos</button>
                     </form>
                 </div>
+
+                <div class = "clear"></div>
             </div>
+
+            <div id = "footer"></div>
         </div>
     </body>
 </html>

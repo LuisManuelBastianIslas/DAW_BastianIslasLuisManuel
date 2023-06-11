@@ -180,7 +180,7 @@ public class AlumnoDAO {
             ps.setString(3, apellidoPaterno);
             ps.setString(4, apleiidoMaterno);
             ps.setString(5, idGenero);
-            ps.setString(6, fechaNacimiento.toString());
+            ps.setDate(6, Date.valueOf(fechaNacimiento));
             ps.setString(7, direccion);
             ps.setString(8, telefono);
             ps.setString(9, celular);
@@ -190,6 +190,7 @@ public class AlumnoDAO {
             ps.setInt(13, anoInscripcion);
             ps.setInt(14, idEstatusAlumno);
             ps.setString(15, idProfesor);
+            System.out.println(ps.toString() + "\nPara eliminar esto, esta en AlumnoDAO.insert");
             ps.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -206,6 +207,7 @@ public class AlumnoDAO {
     // un nuevo alumno para el siguiente periodo
     public boolean AddingIsPosible() {
         // Simplemente compara el ultimo perido registrado en la BD y si el periodo es Feb - Jul
+        System.out.println(PeriodoDAO.getPeriodoActual().getPeriodo() + "\nPara eliminar esto, esya en AlumnoDAO.AddingIsPosible()");
         return PeriodoDAO.selectLast().getIdPeriodo() > PeriodoDAO.getPeriodoActual().getIdPeriodo() && PeriodoDAO.getPeriodoActual().getPeriodo() == 1;
         // Si existe un periodo mayor al periodo actual, siginifica que se pueden inscribir alumnos para el siguiente periodo
     }
@@ -223,23 +225,60 @@ public class AlumnoDAO {
         return  "B" + anoStr.substring(2) + String.format("%04d", nextId);
     }
 
-    private int getCantAlumnos(int AnoInscripcion) {
+    // Obtiene la cantidad de alumnos en general
+    public int getCantAlumnos(int AnoInscripcion) {
         String query =  "select count(matriculaAlumno) as cantAlumnos from alumno" +
                         " where anoInscripcion = " + AnoInscripcion;
 
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
         int  cantAlumnos = 0;
 
         try {
-            ResultSet rs = Conexion.getConnection().prepareStatement(query).executeQuery();
+            conn = Conexion.getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
 
             while (rs.next()) {
                 cantAlumnos = rs.getInt("cantAlumnos");
             }
-
-            Conexion.close(rs);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
+        Conexion.close(rs);
+        Conexion.close(ps);
+        Conexion.close(conn);
+
+        return cantAlumnos;
+    }
+
+    // Obtiene la cantidad del alumnos en una carrera en especifico
+    public int getCantAlumnos(int AnoInscripcion, int IdCarrera) {
+        String query =  "select count(matriculaAlumno) as cantAlumnos from alumno" +
+                " where anoInscripcion = " + AnoInscripcion + " and idCarrera = " + IdCarrera;
+
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        int  cantAlumnos = 0;
+
+        try {
+            conn = Conexion.getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                cantAlumnos = rs.getInt("cantAlumnos");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        Conexion.close(rs);
+        Conexion.close(ps);
+        Conexion.close(conn);
 
         return cantAlumnos;
     }
