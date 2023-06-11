@@ -353,6 +353,11 @@ a:hover
 	margin: 0.25em;
 }
 
+#rightColumn p {
+	padding: 0.75em;
+	margin: 0.25em;
+}
+
 #paginacion {
 	width: 100%;
 	text-align: center;

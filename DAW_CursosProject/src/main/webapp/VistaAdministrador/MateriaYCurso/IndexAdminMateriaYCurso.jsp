@@ -1,8 +1,7 @@
-<%@ page import="bastian.code.datos.AlumnoDAO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
     <head>
-        <title>Administrador - Alumnos</title>
+        <title>Administrador - Materias y Cursos</title>
 
         <link href="default.css" rel="stylesheet"/>
     </head>
@@ -23,16 +22,16 @@
             <div id = "content">
                 <div id = "primaryContentContainer">
                     <div id = "primaryContent">
-                        <h2 class = "center">Selecciona la funcion</h2>
+                        <h2 class = "center">Elige una opcion</h2>
 
-                        <form class = "formButtons">
-                            <%
-                                AlumnoDAO dao = new AlumnoDAO();
-                                if ( dao.AddingIsPosible() )
-                                    out.println("<div id = \"materiaContainer\"><button type = \"submit\" class = \"mainButton\" formaction = \"NuevoAlumnoSV\" formmethod = \"post\">Nuevo alumno</button></div>");
-                                else
-                                    out.println("<div id = \"materiaContainer\"><button type = \"submit\" class = \"mainButton\" disabled tittle = \"No es periodo de altas, prueba con otro semestre.\">Nuevo alumno</button></div>");
-                            %>
+                        <form class="formButtons">
+                            <div id = "materiaContainer">
+                                <button type="submit" class = "mainButton" formaction="" formmethod="post">Administrar Materias</button>
+                            </div>
+
+                            <div id = "materiaContainer">
+                                <button type="submit" class = "mainButton" formaction="IndexAdminCursoSV" formmethod="post">Administrar Cursos</button>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -47,7 +46,7 @@
                     </form>
                 </div>
 
-                <div class = "clear"></div>
+                <div class="clear"></div>
             </div>
 
             <div id = "footer"></div>

@@ -27,7 +27,7 @@
                     <tr>
                         <td><button type="submit" class = "mainButton" formaction="IndexAdminALumnoSV" formmethod="post">Alumnos</button></td>
                         <td><button type="submit" class = "mainButton" formaction="" formmethod="post">Profesores</button></td>
-                        <td><button type="submit" class = "mainButton" formaction="" formmethod="post">Materias y Cursos</button></td>
+                        <td><button type="submit" class = "mainButton" formaction="IndexAdminMateriaYCursoSV" formmethod="post">Materias y Cursos</button></td>
                     </tr>
                 </table>
             </form>

@@ -82,7 +82,7 @@
                     <form>
                         <button type="submit" class = "leftButton" formaction="IndexAdminALumnoSV" formmethod="post">Alumnos</button>
                         <button type="submit" class = "leftButton" formaction="" formmethod="post">Profesores</button>
-                        <button type="submit" class = "leftButton" formaction="" formmethod="post">Materias y Cursos</button>
+                        <button type="submit" class = "leftButton" formaction="IndexAdminMateriaYCursoSV" formmethod="post">Materias y Cursos</button>
                     </form>
 
                     <br>
