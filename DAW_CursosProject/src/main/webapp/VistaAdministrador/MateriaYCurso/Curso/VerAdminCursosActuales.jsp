@@ -56,7 +56,7 @@
                         </div>
 
                         <div id = "paginacion">
-                            <form action="VerAdminCursosActuales" method="post">
+                            <form action="VerAdminCursosActualesSV" method="post">
                                 <%
                                     int selected = (Integer) request.getAttribute("Index");
 

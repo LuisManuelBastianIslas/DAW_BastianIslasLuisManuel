@@ -29,17 +29,16 @@
                         <div id = "box">
                             <form class="formButtons">
                                 <div id = "materiaContainer">
-                                    <button type="submit" class = "mainButton" formaction="VerAdminCursosActuales" formmethod="post">Ver cursos actuales</button>
+                                    <button type="submit" class = "mainButton" formaction="VerAdminCursosActualesSV" formmethod="post">Ver cursos actuales</button>
                                 </div>
 
                                 <div id = "materiaContainer">
                                     <%
                                         // Si no hay un periodo siguiente, no se pueden inscribir materias
                                         if (PeriodoDAO.IsThereNextPeriodo())
-                                            out.println("<button type=\"submit\" class = \"mainButton\" formaction=\"\" formmethod=\"post\">Inscribir cursos</button>");
+                                            out.println("<button type=\"submit\" class = \"mainButton\" formaction=\"InscribirAdminCursoSV\" formmethod=\"post\">Inscribir cursos</button>");
                                         else
                                             out.println("<button type=\"submit\" class = \"mainButton\" disabled>Inscribir cursos</button>");
-
                                     %>
                                 </div>
                             </form>

@@ -86,7 +86,44 @@ public class AsignaturaDAO {
     //Lista las asignaturas que impate un Profesor en especifico
     //Lista las asignaturas que son de una materia en especifico
     //Lista las asignaturas que son de una carrera en especifico
-    //Lista las asignaturas que son de una carrera en especifico y para un semestre en especifico
+
+    //Lista las asignaturas que son de una carrera en especifico y que aun no se oferta para el siguiente semestre
+    public static ArrayList<AsignaturaJB> selectAviable(int IdPeriodo, int IdCarrera, int NextPeriodo) {
+        // Creditos del query a W3 y un tipo randon de Microsoft Developer Network ;)
+        String query =  selectSQL + " where  cast(nrc as varchar(6)) like '" + IdCarrera + NextPeriodo + "%' and not exists (" +
+                        " select curso.nrc from curso" +
+                        " where curso.idPeriodo = " + IdPeriodo + " and curso.nrc = asignatura.nrc)";
+
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        ArrayList<AsignaturaJB> asignaturas = new ArrayList<>();
+
+        try {
+            conn = Conexion.getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            System.out.println(ps.toString() + "\nPara eliminar esto, esta en AsignaturaDAO.selectAviable()");
+            while (rs.next()) {
+                int nrc = rs.getInt("nrc");
+                int idMateria = rs.getInt("idMateria");
+                String idProfesor = rs.getString("idProfesor");
+                int cupoMinimo = rs.getInt("cupoMinimo");
+                int cupoMaximo = rs.getInt("cupoMaximo");
+
+                AsignaturaJB asignatura = new AsignaturaJB(nrc, idMateria, idProfesor, cupoMinimo, cupoMaximo);
+                asignaturas.add(asignatura);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        Conexion.close(rs);
+        Conexion.close(ps);
+        Conexion.close(conn);
+
+        return asignaturas;
+    }
 
     //Lista las asignaturas que son de un alumno en especifico en un periodo en especifico
 

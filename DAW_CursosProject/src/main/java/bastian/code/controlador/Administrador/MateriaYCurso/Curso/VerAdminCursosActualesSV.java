@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
-@WebServlet (name = "VerAdminCursosActuales", urlPatterns = {"/VerAdminCursosActuales"})
-public class VerAdminCursosActuales extends HttpServlet {
+@WebServlet (name = "VerAdminCursosActualesSV", urlPatterns = {"/VerAdminCursosActualesSV"})
+public class VerAdminCursosActualesSV extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

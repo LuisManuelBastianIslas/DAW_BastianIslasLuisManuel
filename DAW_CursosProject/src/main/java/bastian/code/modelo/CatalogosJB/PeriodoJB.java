@@ -41,11 +41,30 @@ public class PeriodoJB implements Serializable {
         this.descripcionPeriodo = descripcionPeriodo;
     }
 
-    public int getAno() {
-        return idPeriodo / 10;
-    }
+    public int getAno() { return idPeriodo / 10; }
 
     public int getPeriodo() {
         return idPeriodo % getAno();
+    }
+
+    public int getNextIdPeriodo() {
+        int anoActual = getAno();
+        int periodoActual = getPeriodo();
+
+        // Calcula el siguiente idPeriodo
+        switch (periodoActual) {
+            case 1:
+                periodoActual = 2;
+                break;
+            case 2:
+                periodoActual = 1;
+                anoActual++;
+                break;
+            default:
+        }
+
+        String nextIdPeriodo = anoActual + "" + periodoActual;
+
+        return Integer.parseInt(nextIdPeriodo);
     }
 }

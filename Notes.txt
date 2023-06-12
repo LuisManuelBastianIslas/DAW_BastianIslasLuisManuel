@@ -66,3 +66,10 @@ en el proyecto. Tambien se incluyen notas.
    pero ya estoy mas alla que aca :/
    Como no hare filtrados de ese tipo y el usuario no me especifico como lo queria, asi se queda
    a menos que tenga tiempo para hacer la modificacion
+
+NOTAS PARA EL PROYECTO
+
+- Los botones a la izquierda aun no borran variables, por lo que puede resultar en venetos
+  inserperados....
+- La parte de script me base bastante de : https://codepad.co/snippet/limitar-cantidad-de-checkbox-seleccionados-de-un-div
+-  Se quedó una función incompleta en CursoSalonDAO
