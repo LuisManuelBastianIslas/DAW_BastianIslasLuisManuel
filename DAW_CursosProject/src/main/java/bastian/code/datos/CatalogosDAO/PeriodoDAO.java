@@ -23,6 +23,8 @@ public class PeriodoDAO {
      * Funciones del Select
      */
     public static ArrayList<PeriodoJB> select() {
+        String query = selectSQL + " order by idPeriodo desc";
+
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -30,7 +32,7 @@ public class PeriodoDAO {
 
         try {
             conn = Conexion.getConnection();
-            ps = conn.prepareStatement(selectSQL);
+            ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -118,6 +120,9 @@ public class PeriodoDAO {
      * Funciones del insert
      */
     public static void insert() {
+        // Esto va en dos partes, primero añade el nuevo periodo
+        // y depsues lo pone como periodo actual
+
         PeriodoJB lastPeriodo = PeriodoDAO.selectLast();
         int ano = lastPeriodo.getAno();
         int periodo = lastPeriodo.getPeriodo();
@@ -143,11 +148,12 @@ public class PeriodoDAO {
 
         Connection conn = null;
         PreparedStatement ps = null;
+        int nvoidPeriodo = Integer.parseInt("" + ano + periodo);
 
         try {
             conn = Conexion.getConnection();
             ps = conn.prepareStatement(insertSQL);
-            ps.setInt(1, Integer.parseInt("" + ano + periodo));
+            ps.setInt(1, nvoidPeriodo);
             ps.setInt(2, mes);
             ps.setString(3, descripcion);
 
@@ -158,6 +164,9 @@ public class PeriodoDAO {
 
         Conexion.close(ps);
         Conexion.close(conn);
+
+        // Aqui es donde lo pone como periodo actual
+        setPeriodoActual( nvoidPeriodo );
     }
 
     /**
@@ -224,5 +233,11 @@ public class PeriodoDAO {
 
         Conexion.close(ps);
         Conexion.close(conn);
+    }
+
+    public static boolean IsThereNextPeriodo() {
+        // Si existe un periodo mayor al periodo actual se ayuda a saber si se pueden
+        // hacer muchas de las funciones de inscripción
+        return selectLast().getIdPeriodo() > getPeriodoActual().getIdPeriodo();
     }
 }

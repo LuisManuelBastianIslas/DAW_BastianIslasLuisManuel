@@ -206,9 +206,9 @@ public class AlumnoDAO {
     // Esta funcion se usará en el JSP con la finalidad de discernir si es posible o no añadir
     // un nuevo alumno para el siguiente periodo
     public boolean AddingIsPosible() {
-        // Simplemente compara el ultimo perido registrado en la BD y si el periodo es Feb - Jul
+        // Simplemente verifica que existe un siguiente periodo en la BD y si el periodo es Feb - Jul
         System.out.println(PeriodoDAO.getPeriodoActual().getPeriodo() + "\nPara eliminar esto, esya en AlumnoDAO.AddingIsPosible()");
-        return PeriodoDAO.selectLast().getIdPeriodo() > PeriodoDAO.getPeriodoActual().getIdPeriodo() && PeriodoDAO.getPeriodoActual().getPeriodo() == 1;
+        return PeriodoDAO.IsThereNextPeriodo() && PeriodoDAO.getPeriodoActual().getPeriodo() == 1;
         // Si existe un periodo mayor al periodo actual, siginifica que se pueden inscribir alumnos para el siguiente periodo
     }
 

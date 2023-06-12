@@ -70,7 +70,8 @@ values
 insert into periodo(idPeriodo, mesPeriodo, descripcionPeriodo)
 values
 (20202, 8, 'Ago - Ene 2020'),
-(20211, 2, 'Feb - Jul 2021');
+(20211, 2, 'Feb - Jul 2021'),
+(20212, 8, 'Ago - Ene 2021');
 
 insert into materia(idMateria, nombreMateria, creditos, horas, idTipoMateria)
 values

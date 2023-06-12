@@ -33,23 +33,30 @@
                                 </div>
 
                                 <div id = "materiaContainer">
-                                    <button type="submit" class = "mainButton" formaction="" formmethod="post">Inscribir cursos</button>
+                                    <%
+                                        // Si no hay un periodo siguiente, no se pueden inscribir materias
+                                        if (PeriodoDAO.IsThereNextPeriodo())
+                                            out.println("<button type=\"submit\" class = \"mainButton\" formaction=\"\" formmethod=\"post\">Inscribir cursos</button>");
+                                        else
+                                            out.println("<button type=\"submit\" class = \"mainButton\" disabled>Inscribir cursos</button>");
+
+                                    %>
                                 </div>
                             </form>
 
                             <div>
                                 <h3>Cambiar periodo actual</h3>
 
-                                <form action="" method="post">
-                                    <select name="idPerido">
+                                <form action="UpdateCursoActualSV" method="post">
+                                    <select name="IdPeriodo">
                                         <option value="-1">Añadir nuevo</option>
 
                                         <%
                                             for (PeriodoJB p : PeriodoDAO.select())
                                                 if (PeriodoDAO.getPeriodoActual().getIdPeriodo() == p.getIdPeriodo())
-                                                    out.println("<option value=\"" + p.getIdPeriodo() + "\">" + p.getDescripcionPeriodo() + "</option>");
-                                                else
                                                     out.println("<option value=\"" + p.getIdPeriodo() + "\" selected>" + p.getDescripcionPeriodo() + "</option>");
+                                                else
+                                                    out.println("<option value=\"" + p.getIdPeriodo() + "\">" + p.getDescripcionPeriodo() + "</option>");
                                         %>
                                     </select>
 
