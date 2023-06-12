@@ -29,7 +29,7 @@ public class RedirectInicioSV extends HttpServlet {
 
         } else if ( typeUser.equals("Administrador") ) {
             //Aqui removeré todos los atributos que vaya generando
-
+            req.getSession().removeAttribute("Cursos");
 
         }
 

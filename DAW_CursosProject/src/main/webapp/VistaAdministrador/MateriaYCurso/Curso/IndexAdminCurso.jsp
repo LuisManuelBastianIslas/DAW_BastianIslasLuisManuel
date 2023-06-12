@@ -29,7 +29,7 @@
                         <div id = "box">
                             <form class="formButtons">
                                 <div id = "materiaContainer">
-                                    <button type="submit" class = "mainButton" formaction="" formmethod="post">Ver cursos actuales</button>
+                                    <button type="submit" class = "mainButton" formaction="VerAdminCursosActuales" formmethod="post">Ver cursos actuales</button>
                                 </div>
 
                                 <div id = "materiaContainer">
